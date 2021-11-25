@@ -55,7 +55,7 @@
 				<i class="fas fa-angle-right"></i>
 			</button>
 		</div>
-		<form id="search-form" action="${contextRoot}/app/search/all">
+		<form id="search-form" action="${contextRoot}/app/search/main">
 			<div class="search-container">
 				<input type="text" name="keyword" id="search-bar">
 				<button class="search-icon">

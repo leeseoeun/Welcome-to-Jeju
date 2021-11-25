@@ -65,7 +65,7 @@ public class SearchController {
   }
 
   @GetMapping("/search/all")
-  public ModelAndView searchAll(String keyword) throws Exception {
+  public ModelAndView searchAll(String option, String keyword) throws Exception {
 
     Collection<User> userList = userDao.findByKeyword(keyword);
     Collection<Theme> themeList = themeDao.findByKeyword(keyword);
@@ -76,8 +76,22 @@ public class SearchController {
     mv.addObject("themeList", themeList);
     mv.addObject("hashtagList", hashtagList);
     mv.addObject("keyword", keyword);
-    mv.addObject("pageTitle", "통합 검색 목록보기");
-    mv.addObject("contentUrl", "search/Search.jsp");
+    mv.addObject("pageTitle", "검색 목록보기");
+
+    if (option.equals("all")) {
+      mv.addObject("contentUrl", "search/Search.jsp");
+
+    } else if (option.equals("theme")) {
+      mv.addObject("contentUrl", "search/SearchTheme.jsp");
+
+    }  else if (option.equals("hashtag")) {
+      mv.addObject("contentUrl", "search/SearchHashtag.jsp");
+
+    } else {
+      mv.addObject("contentUrl", "search/SearchUser.jsp");
+
+    }
+
     mv.setViewName("template_main");
     return mv;
 
@@ -98,6 +112,26 @@ public class SearchController {
     mv.addObject("keyword", keyword);
     mv.addObject("pageTitle", "통합 검색 목록보기");
     mv.addObject("contentUrl", "search/SearchSidebar.jsp");
+    mv.setViewName("template_main");
+    return mv;
+
+  }
+
+  // 메서드명, url 경로명 상의하기
+  @GetMapping("/search/main")
+  public ModelAndView searchmain(String keyword) throws Exception {
+
+    Collection<User> userList = userDao.findByKeyword(keyword);
+    Collection<Theme> themeList = themeDao.findByKeyword(keyword);
+    Collection<Theme> hashtagList = themeDao.findByHashtag(keyword);
+
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("userList", userList);
+    mv.addObject("themeList", themeList);
+    mv.addObject("hashtagList", hashtagList);
+    mv.addObject("keyword", keyword);
+    mv.addObject("pageTitle", "통합 검색 목록보기");
+    mv.addObject("contentUrl", "search/Search.jsp");
     mv.setViewName("template_main");
     return mv;
 

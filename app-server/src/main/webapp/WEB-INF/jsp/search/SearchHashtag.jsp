@@ -1,32 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+  pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<c:set scope="page" var="contextRoot"
+  value="${pageContext.servletContext.contextPath}" />
+<link rel="stylesheet" href="${contextRoot}/css/home.css?ver=1">
+<link rel="stylesheet" href="${contextRoot}/css/theme_list.css">
 
-<style>
-.container {
-	xborder: 1px solid red;
-	width: 640px;
-}
-</style>
+  <div class="hot-theme">
+    <div class="title">
+    <br>
+    <br>
+    <h1 style="text-align: center;">🔎 해시태그 '${keyword}'로 검색한 테마 목록</h1>
+    <br>
+    <br>
+    </div>
+    <ul class="theme-list">
+      <c:forEach items="${hashtagList}" var="theme">
+        <a class="list-container" href="../place/list?no=${theme.no}">
+          <li>
+            <div class="content">
 
-<div class="container">
-	<h1>💗해시태그 ${keyword}로 찾은 테마 목록</h1>
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>테마 제목</th>
-			</tr>
-		</thead>
-		<tbody>
+              <c:if test="${!empty theme.emoji}">
+                <div class="icon">${theme.emoji}</div>
+              </c:if>
+              <c:if test="${empty theme.emoji}">
+                <div class="icon">🏄</div>
+              </c:if>
+              <div class="theme-title">${theme.title}</div>
+              <div class="theme-count">${theme.hashtags}</div>
+            </div> <!-- .content -->
+        </li>
+        </a>
+      </c:forEach>
+      <c:forEach begin="0" end="${3-(fn:length(themeList)%3)-1}">
+        <a class="list-container" style="visibility: hidden;">
+          <li>
+            <div class="content">
+              <div class="icon">${theme.no}</div>
+              <div class="theme-title">${theme.title}</div>
+              <div class="theme-count">#${theme.hashtags}</div>
+            </div> <!-- .content -->
+        </li>
+        </a>
+      </c:forEach>
+    </ul>
+  </div>
 
-			<c:forEach items="${themeList}" var="theme">
-				<tr>
-					<td><a href='../theme/detail?no=${theme.no}'>${theme.title}</a></td>
-				</tr>
-
-			</c:forEach>
-
-		</tbody>
-	</table>
-</div>
-<!--  .container -->
