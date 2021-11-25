@@ -48,7 +48,7 @@
   <a href="${contextRoot}/app/theme/list">
 	<li><span class="emozi">🗺</span><span class="name">전체 테마 보기</span></li>
 	</a>
-	<a href="${contextRoot}/app/ranking">
+	<a href="${contextRoot}/app/search/sidebar">
   <li><span class="emozi">🔎</span><span class="name">검색</span></li>
   </a>
 	<a href="${contextRoot}/app/ranking">
