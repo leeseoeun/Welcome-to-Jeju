@@ -36,7 +36,11 @@
   <li><span class="emozi">👫</span><span class="name">참여 테마</span></li>
   
   <a href="${contextRoot}/app/likedtheme/list">
-  <li><span class="emozi">📌</span><span class="name">나의 좋아요</span></li>
+  <li><span class="emozi">📌</span><span class="name">좋아하는 테마</span></li>
+  </a>
+  
+  <a href="${contextRoot}/app/likeduser/list">
+  <li><span class="emozi">📌</span><span class="name">좋아하는 유저</span></li>
   </a>
 </ul>
 </div>

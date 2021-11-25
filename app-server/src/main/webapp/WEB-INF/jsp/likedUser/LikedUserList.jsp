@@ -7,6 +7,13 @@
 <link rel="stylesheet" href="${contextRoot}/css/home.css">
 <script defer src="${contextRoot}/javascript/home.js"></script>
 
+<style>
+.delete {
+position: relative;
+left: -15px;
+}
+</style>
+
   <div class="dash-board">
         <div class="hot-curators">
             <div class="title">
@@ -16,7 +23,7 @@
             </div>
             <ul class="hot-curators-list">
                 <c:forEach items="${userList}" var="user">
-                        <a href='delete?userNo=${user.no}'>⛔</a>
+                       
                     <li>
                         <a href="theme/userlist?userNo=${user.no}" class="content">
                             <div class="icon">${user.emoji}</div>
@@ -24,6 +31,7 @@
                             <div class="theme-count">${user.registeredDate}</div>
                         </a>
                     </li>
+                         <div class=delete><a href='delete?userNo=${user.no}'>⛔</a></div>
                 </c:forEach>
             </ul>
             </div>
