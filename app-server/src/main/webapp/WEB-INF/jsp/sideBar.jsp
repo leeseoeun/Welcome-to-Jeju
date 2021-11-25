@@ -9,6 +9,19 @@
 <i class="fas fa-times"></i>
 </button>
 
+<!-- 로그아웃 -->
+<c:if test="${empty loginUser}">
+<div class="logout-menu-box">
+<ul class="logout-menu-box-list">
+<li>
+  <form action='${contextRoot}/app/auth/loginform'>
+  <span class="emozi">🔒</span><button type="submit" class="name">로그인</button>
+</form>
+</li>
+</ul>
+</div>
+</c:if>
+
 <!-- 로그인 -->
 <c:if test="${!empty loginUser}">
 <div class="my-menu-box">
@@ -17,27 +30,30 @@
   <li><span class="emozi">📝</span><span class="name">내 정보</span></li>
   </a>
   <a href="${contextRoot}/app/mytheme/list?no=${loginUser.no}">
-  <li><span class="emozi">🗺</span><span class="name">나의 테마</span></li>
+  <li><span class="emozi">👩‍</span><span class="name">나의 테마</span></li>
   </a>
+  
+  <li><span class="emozi">👫</span><span class="name">참여 테마</span></li>
+  
   <a href="${contextRoot}/app/likedtheme/list">
-  <li><span class="emozi">📌</span><span class="name">좋아하는 테마</span></li>
-  </a>
-  <a href="${contextRoot}/app/likeduser/list">
-  <li><span class="emozi">📌</span><span class="name">좋아하는 유저</span></li>
+  <li><span class="emozi">📌</span><span class="name">나의 좋아요</span></li>
   </a>
 </ul>
 </div>
 </c:if>
 
+<!-- 기본 -->
 <div class="public-menu-box">
 <ul class="public-menu-box-list">
   <a href="${contextRoot}/app/theme/list">
 	<li><span class="emozi">🗺</span><span class="name">전체 테마 보기</span></li>
 	</a>
 	<a href="${contextRoot}/app/ranking">
+  <li><span class="emozi">🔎</span><span class="name">검색</span></li>
+  </a>
+	<a href="${contextRoot}/app/ranking">
 	<li><span class="emozi">🏆</span><span class="name">순위</span></li>
 	</a>
-	<li><span class="emozi">🚨</span><span class="name">신고</span></li>
 </ul>        
 </div>
 
@@ -60,23 +76,11 @@
 <c:if test="${!empty loginUser}">
 <div class="logout-menu-box">
 <ul class="logout-menu-box-list">
+<li><span class="emozi">🚨</span><span class="name">신고</span></li>
 <li>
 	<form action='${contextRoot}/app/auth/logout'>
-	<span class="emozi">🚪</span><button type="submit" class="name">로그아웃</button>
+	<span class="emozi">🔓</span><button type="submit" class="name">로그아웃</button>
 	</form>
-</li>
-</ul>
-</div>
-</c:if>
-
-<!-- 로그아웃 -->
-<c:if test="${empty loginUser}">
-<div class="logout-menu-box">
-<ul class="logout-menu-box-list">
-<li>
-	<form action='${contextRoot}/app/auth/loginform'>
-	<span class="emozi">🚪</span><button type="submit" class="name">로그인</button>
-</form>
 </li>
 </ul>
 </div>
