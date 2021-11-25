@@ -68,11 +68,13 @@ public class SearchController {
   public ModelAndView searchAll(String keyword) throws Exception {
 
     Collection<User> userList = userDao.findByKeyword(keyword);
-    Collection<Theme> themeList = themeDao.findByHashtag(keyword);
+    Collection<Theme> themeList = themeDao.findByKeyword(keyword);
+    Collection<Theme> hashtagList = themeDao.findByHashtag(keyword);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("userList", userList);
     mv.addObject("themeList", themeList);
+    mv.addObject("hashtagList", hashtagList);
     mv.addObject("keyword", keyword);
     mv.addObject("pageTitle", "통합 검색 목록보기");
     mv.addObject("contentUrl", "search/Search.jsp");

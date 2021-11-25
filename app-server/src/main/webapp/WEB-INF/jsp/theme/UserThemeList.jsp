@@ -11,7 +11,7 @@
 <div class="main-container">
 
 <br>
-<h1 style=text-align:center;>${user.nickname}님의 테마 목록 보기</h1>
+<h1 style=text-align:center;>${user.emoji} ${user.nickname}님의 테마 목록 보기</h1>
 <br>
 
 <ul class="theme-list">
