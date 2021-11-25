@@ -11,12 +11,6 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 
-<style>
-.dropdown-menu {
-	font-size: small;
-}
-</style>
-
 <div class="side-menu-bar">
 	<button class="close-button">
 		<i class="fas fa-times"></i>
@@ -51,21 +45,21 @@
 
 				<li><span class="emozi">👫</span><span class="name">참여
 						테마</span></li>
-				<!-- Single button -->
-				<div class="btn-group">
-					<button type="button" class="btn btn-default dropdown-toggle"
-						data-toggle="dropdown" aria-expanded="false"
-						style="font-family: inherit;">
-						🙆 나의 좋아요 <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
-						<li style="font-size: medium"><a
-							href="${contextRoot}/app/likedtheme/list">💗 좋아하는 테마</a></li>
-						<li style="font-size: medium"><a
-							href="${contextRoot}/app/likeduser/list">💗 좋아하는 유저</a></li>
-					</ul>
-				</div>
-			</ul>
+
+        <!-- Single button -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle"
+            data-toggle="dropdown" aria-expanded="false">
+            <span class="emozi">🙆</span><span class="name">나의 좋아요</span><span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li style="font-size: medium"><a
+              href="${contextRoot}/app/likedtheme/list"><span class="emozi">💗</span><span class="name">좋아하는 테마</span></a></li>
+            <li style="font-size: medium"><a
+              href="${contextRoot}/app/likeduser/list"><span class="emozi">💗</span><span class="name">좋아하는 유저</span></a></li>
+          </ul>
+        </div>
+      </ul>
 		</div>
 	</c:if>
 
