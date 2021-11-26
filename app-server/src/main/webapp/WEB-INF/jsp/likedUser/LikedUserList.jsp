@@ -25,7 +25,7 @@ left: -15px;
                 <c:forEach items="${userList}" var="user">
                        
                     <li>
-                        <a href="theme/userlist?userNo=${user.no}" class="content">
+                        <a href="../theme/userlist?no=${user.no}" class="content">
                             <div class="icon">${user.emoji}</div>
                             <div class="curator-name">${user.nickname}</div>
                             <div class="theme-count">${user.registeredDate}</div>
