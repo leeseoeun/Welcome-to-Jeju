@@ -21,7 +21,7 @@
       <result column="owner_nickname" property="nickname"/>
     </association>
     
-    <association property="category" javaType="Category">
+    <association property="category" javaType="ThemeCategory">
       <id column="category_no" property="no"/>
       <result column="category_name" property="name"/>
     </association>
@@ -32,7 +32,7 @@
 	  </collection>
   </resultMap>
   
-  <resultMap type="Category" id="CategoryMap">
+  <resultMap type="ThemeCategory" id="CategoryMap">
     <id column="category_no" property="no"/>
     <result column="name" property="name"/>
   </resultMap>
@@ -403,7 +403,7 @@
 		  lt.user_no=#{no}
   </select>
   
-  <select id="findTop10" resultMap="ThemeMap">
+  <select id="themeRanking" resultMap="ThemeMap">
         select
             t.theme_no,
             t.title,
@@ -427,7 +427,7 @@
         limit 10
     </select>
 
-    <select id="latest10Theme" resultMap="ThemeMap">
+    <select id="newTheme" resultMap="ThemeMap">
         select
             t.theme_no,
             t.title,
