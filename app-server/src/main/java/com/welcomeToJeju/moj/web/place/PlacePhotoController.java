@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.welcomeToJeju.moj.dao.PlaceDao;
-import com.welcomeToJeju.moj.domain.Photo;
+import com.welcomeToJeju.moj.domain.PlacePhoto;
 import com.welcomeToJeju.moj.domain.User;
 import net.coobird.thumbnailator.ThumbnailParameter;
 import net.coobird.thumbnailator.Thumbnails;
@@ -26,7 +26,7 @@ public class PlacePhotoController {
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @PostMapping("/photo/add")
-  public ModelAndView add(Photo photo, Part photoFile,
+  public ModelAndView add(PlacePhoto photo, Part photoFile,
       HttpSession session, /* Place place */String id) throws Exception {
     User user = (User) session.getAttribute("loginUser");
 

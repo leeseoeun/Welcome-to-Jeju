@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import com.welcomeToJeju.moj.dao.ThemeDao;
 import com.welcomeToJeju.moj.dao.UserDao;
-import com.welcomeToJeju.moj.domain.Category;
+import com.welcomeToJeju.moj.domain.ThemeCategory;
 import com.welcomeToJeju.moj.domain.Theme;
 import com.welcomeToJeju.moj.domain.User;
 
@@ -41,7 +41,7 @@ public class MyThemeAddController extends HttpServlet {
 
       theme.setTitle(request.getParameter("title"));
 
-      Category category = themeDao.findCategoryByNo(
+      ThemeCategory category = themeDao.findCategoryByNo(
           Integer.valueOf(request.getParameter("category")));
       // 카테고리
       theme.setCategory(category);

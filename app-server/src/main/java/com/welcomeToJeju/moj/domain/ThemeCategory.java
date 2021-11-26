@@ -1,6 +1,6 @@
 package com.welcomeToJeju.moj.domain;
 
-public class Category {
+public class ThemeCategory {
 
   int no;
   String name;

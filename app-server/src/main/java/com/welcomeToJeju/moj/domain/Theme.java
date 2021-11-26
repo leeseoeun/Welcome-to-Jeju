@@ -8,7 +8,7 @@ public class Theme implements Comparable<Theme> {
   private int no;
   private String title;
   private User owner;
-  private Category category;
+  private ThemeCategory category;
   private int isPublic;
   private int isShare;
 
@@ -60,11 +60,11 @@ public class Theme implements Comparable<Theme> {
     this.owner = owner;
   }
 
-  public Category getCategory() {
+  public ThemeCategory getCategory() {
     return category;
   }
 
-  public void setCategory(Category category) {
+  public void setCategory(ThemeCategory category) {
     this.category = category;
   }
 

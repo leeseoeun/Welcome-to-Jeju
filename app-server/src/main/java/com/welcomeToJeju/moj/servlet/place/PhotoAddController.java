@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import com.welcomeToJeju.moj.dao.PlaceDao;
-import com.welcomeToJeju.moj.domain.Photo;
+import com.welcomeToJeju.moj.domain.PlacePhoto;
 import com.welcomeToJeju.moj.domain.User;
 
 @WebServlet("/photo/add")
@@ -32,7 +32,7 @@ public class PhotoAddController extends HttpServlet {
       throws ServletException, IOException {
 
     try {
-      Photo photo = new Photo();
+      PlacePhoto photo = new PlacePhoto();
 
       photo.setPlaceId(request.getParameter("id"));
 

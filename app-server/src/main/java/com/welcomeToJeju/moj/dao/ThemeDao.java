@@ -2,7 +2,7 @@ package com.welcomeToJeju.moj.dao;
 
 import java.util.HashMap;
 import java.util.List;
-import com.welcomeToJeju.moj.domain.Category;
+import com.welcomeToJeju.moj.domain.ThemeCategory;
 import com.welcomeToJeju.moj.domain.Theme;
 
 public interface ThemeDao {
@@ -18,11 +18,11 @@ public interface ThemeDao {
   void deletePlaceUserTheme(int themeNo) throws Exception;
 
   List<Theme> findAll() throws Exception;
-  List<Theme> findTop10() throws Exception;
-  List<Theme> latest10Theme() throws Exception;
+  List<Theme> themeRanking() throws Exception;
+  List<Theme> newTheme() throws Exception;
   List<Theme> findAllPublicTheme() throws Exception;
   List<Theme> findAllPublicThemeByUserNo(int userNo) throws Exception;
-  List<Category> findAllCategory() throws Exception;
+  List<ThemeCategory> findAllCategory() throws Exception;
   List<Theme> findAllByPlaceId(String placeId) throws Exception;
 
   // 테마 검색
@@ -33,12 +33,12 @@ public interface ThemeDao {
   List<Theme> findByHashtag(String hashtag) throws Exception;
   List<Theme> findByKeyword(String keyword) throws Exception;
 
-  Category findCategoryByNo(int no) throws Exception;
+  ThemeCategory findCategoryByNo(int no) throws Exception;
 
   void updateViewCount(int themeNo) throws Exception;
   void updateReportedCount(HashMap<String,Object> params) throws Exception;
 
-  List<Theme> themeRankingByViewCount() throws Exception;
+  List<Theme> themeRankingByViewCount() throws Exception;   // 삭제
   List<Theme> findAllReportedTheme() throws Exception;
 
   // 좋아하는 테마

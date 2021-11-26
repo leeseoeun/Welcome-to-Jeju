@@ -1,6 +1,6 @@
 package com.welcomeToJeju.moj.domain;
 
-public class Comment {
+public class PlaceComment {
 
   int no;
   String comment;

@@ -176,19 +176,19 @@
           <span>🌟 전체 테마</span>
           <!-- <div class="sub">전체 테마 목록</div> -->
         </div>
-        <ul class="hot-theme-list">
+        <%-- <ul class="hot-theme-list">
           <c:forEach items="${allTheme}" var="theme">
             <li>
               <a href="place/list?no=${theme.no}" class="content">
                 <div class="icon">${theme.emoji}</div>
                 <div class="theme-content">
                   <div class="theme-title">${theme.title}</div>
-                  <%-- <div class="curators">${theme.hashtags}</div> --%>
+                  <div class="curators">${theme.hashtags}</div>
                 </div>
               </a>
             </li>
           </c:forEach>
-        </ul>
+        </ul> --%>
       </div>  <!-- .hot-theme -->
     </div>  <!-- .dash-board -->
     
@@ -212,7 +212,7 @@
         <div class="content">
           <div class="icon">${theme.no}</div>
           <div class="theme-title">${theme.title}</div>
-          <div class="theme-count">#${theme.hashtags}</div>
+          <!-- <div class="theme-count">#${theme.hashtags}</div> -->
         </div>  <!-- .content -->
       </li>
     </a>

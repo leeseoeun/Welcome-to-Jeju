@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.welcomeToJeju.moj.dao.ThemeDao;
 import com.welcomeToJeju.moj.dao.UserDao;
-import com.welcomeToJeju.moj.domain.Category;
+import com.welcomeToJeju.moj.domain.ThemeCategory;
 import com.welcomeToJeju.moj.domain.Theme;
 import com.welcomeToJeju.moj.domain.User;
 
@@ -43,7 +43,7 @@ public class MyThemeController {
     theme.setOwner(user);
     String[] hashtagArr = hashtags.split("#");
 
-    Category c = themeDao.findCategoryByNo(Integer.parseInt(category));
+    ThemeCategory c = themeDao.findCategoryByNo(Integer.parseInt(category));
     theme.setCategory(c);
     themeDao.insert(theme);
     for (String hashtag : hashtagArr) {

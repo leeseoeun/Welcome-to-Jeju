@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import com.google.gson.Gson;
 import com.welcomeToJeju.moj.dao.PlaceDao;
-import com.welcomeToJeju.moj.domain.Comment;
-import com.welcomeToJeju.moj.domain.Photo;
+import com.welcomeToJeju.moj.domain.PlaceComment;
+import com.welcomeToJeju.moj.domain.PlacePhoto;
 import com.welcomeToJeju.moj.domain.Place;
 import com.welcomeToJeju.moj.domain.Theme;
 import com.welcomeToJeju.util.KakaoMapApi;
@@ -94,9 +94,9 @@ public class PlaceAddController extends HttpServlet {
       place.setxCoord(selectedPlace.getX());
       place.setyCoord(selectedPlace.getY());
 
-      ArrayList<Photo> photos = new ArrayList<>();
+      ArrayList<PlacePhoto> photos = new ArrayList<>();
       while(true) {
-        Photo photo = new Photo();
+        PlacePhoto photo = new PlacePhoto();
         String photoName = Prompt.inputString("사진 (종료 : 엔터) > ");
         if(photoName.length() == 0) break;
         photo.setFilePath(photoName);
@@ -107,7 +107,7 @@ public class PlaceAddController extends HttpServlet {
 
       break;
     }
-    Comment comment = new Comment();
+    PlaceComment comment = new PlaceComment();
     String comment_content = Prompt.inputString("장소 후기 > ");
     comment.setComment(comment_content);
     place.getComments().add(comment);
@@ -127,7 +127,7 @@ public class PlaceAddController extends HttpServlet {
     param3.put("userNo", AuthLoginHandler.getLoginUser().getNo());
     placeDao.insertPlaceUserTheme(param3);
 
-    for(Comment cmt : place.getComments()) {
+    for(PlaceComment cmt : place.getComments()) {
       param1.put("placeId", place.getId());
       param1.put("userNo", AuthLoginHandler.getLoginUser().getNo());
       param1.put("comment", cmt.getComment());
@@ -135,7 +135,7 @@ public class PlaceAddController extends HttpServlet {
     }
 
 
-    for(Photo photo : place.getPhotos()) {
+    for(PlacePhoto photo : place.getPhotos()) {
       param2.put("placeId", place.getId());
       param2.put("userNo", AuthLoginHandler.getLoginUser().getNo());
       param2.put("filePath", photo.getFilePath());

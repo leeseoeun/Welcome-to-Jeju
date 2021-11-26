@@ -9,8 +9,8 @@ public class Place {
   private String place_name;
   private String address_name;
 
-  private List<Photo> photos = new ArrayList<>();
-  private List<Comment> comments = new ArrayList<>();
+  private List<PlacePhoto> photos = new ArrayList<>();
+  private List<PlaceComment> comments = new ArrayList<>();
   private List<Theme> themes = new ArrayList<>();
 
   private String x;
@@ -63,19 +63,19 @@ public class Place {
 		this.y = y;
 	}
 
-	public List<Photo> getPhotos() {
+	public List<PlacePhoto> getPhotos() {
     return photos;
   }
 
-  public void setPhotos(List<Photo> photos) {
+  public void setPhotos(List<PlacePhoto> photos) {
     this.photos = photos;
   }
 
-  public List<Comment> getComments() {
+  public List<PlaceComment> getComments() {
     return comments;
   }
 
-  public void setComments(List<Comment> comments) {
+  public void setComments(List<PlaceComment> comments) {
     this.comments = comments;
   }
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.welcomeToJeju.moj.dao.PlaceDao;
-import com.welcomeToJeju.moj.domain.Comment;
+import com.welcomeToJeju.moj.domain.PlaceComment;
 import com.welcomeToJeju.moj.domain.User;
 
 @Controller
@@ -20,7 +20,7 @@ public class PlaceCommentController {
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @PostMapping("/comment/add")
-  public ModelAndView add(Comment comment,
+  public ModelAndView add(PlaceComment comment,
       HttpSession session, /* Place place */String id) throws Exception {
     User user = (User) session.getAttribute("loginUser");
 

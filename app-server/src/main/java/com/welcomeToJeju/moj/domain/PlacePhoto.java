@@ -1,6 +1,6 @@
 package com.welcomeToJeju.moj.domain;
 
-public class Photo {
+public class PlacePhoto {
 
   int no;
   String filePath;
