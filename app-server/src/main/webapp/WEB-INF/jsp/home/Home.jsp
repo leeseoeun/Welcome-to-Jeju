@@ -1,21 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <c:set scope="page" var="contextRoot"
-	value="${pageContext.servletContext.contextPath}" />
+  value="${pageContext.servletContext.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <title>제주 옵서예</title>
+
 <jsp:include page="../template_head.jsp" />
 <link rel="stylesheet" href="${contextRoot}/css/home.css?ver=1">
 <script defer src="${contextRoot}/javascript/home.js"></script>
+
 <style>
 .owl-dots {
-	display: none;
+  display: none;
 }
 
 .owl-item {
-	
 }
 
 .customPrevBtn, .customNextBtn {
@@ -26,35 +29,40 @@
 	font-weight: bold;
 }
 
-@media ( max-width :768px) {
-	.pbPrevBtn, .pbNextBtn {
-		display: none;
-	}
+@media (max-width: 768px) {
+  .pbPrevBtn, .pbNextBtn {
+    display: none;
+  }
 }
 </style>
-<body>
-	<main>
 
+<body>
+  <main>
 		<jsp:include page="../header.jsp" />
 		<jsp:include page="../sideBar.jsp" />
+		
+		<!-- 전체 테마 기준 -->
 		<div class="theme-slide">
 			<button class="left">
 				<i class="fas fa-angle-left"></i>
 			</button>
 			<ul class="slide-theme-content">
 				<c:forEach items="${Top10Themes}" var="theme">
-					<li><a href="place/list?no=${theme.no}"
-						class="slide-theme-content-item">
+					<li>
+            <a href="place/list?no=${theme.no}" class="slide-theme-content-item">
 							<div class="icon">${theme.emoji}</div>
 							<div class="theme-title">${theme.title}</div>
 							<div class="curators">${theme.hashtags}</div>
-					</a></li>
+            </a>
+				  </li>
 				</c:forEach>
 			</ul>
 			<button class="right">
 				<i class="fas fa-angle-right"></i>
 			</button>
 		</div>
+		
+		<!-- 검색 -->
 		<form id="search-form" action="${contextRoot}/app/search/main">
 			<div class="search-container">
 				<input type="text" name="keyword" id="search-bar">
@@ -63,45 +71,80 @@
 				</button>
 			</div>
 		</form>
+		
+    <!-- 테마 순위 -->
 		<div class="dash-board">
+      <div class="hot-theme">
+        <div class="title">
+          <span>🥇 테마 순위</span>
+          <!-- <div class="sub">인기 있는 테마</div> -->
+        </div>
+        <ul class="hot-theme-list owl-carousel">
+          <c:forEach items="${Top10Themes}" var="theme">
+            <li>
+              <a href="place/list?no=${theme.no}" class="content">
+                <div class="icon">${theme.emoji}</div>
+                <div class="theme-content">
+	                <div class="theme-title">${theme.title}</div>
+	                <%-- <div class="curators">${theme.hashtags}</div> --%>
+                </div>
+              </a>
+            </li>
+          </c:forEach>
+        </ul>
+      </div>  <!-- .hot-theme -->
+    </div>  <!-- .dash-board -->
+      
+    <!-- 유저 순위 -->
+    <div class="dash-board">
 			<div class="hot-curators">
 				<div class="title">
-					<span>유저 순위&#128640;</span>
-					<div class="sub">인기 있는 유저</div>
+					<span>🥈 유저 순위</span>
+					<!-- <div class="sub">인기 있는 유저</div> -->
 				</div>
 				<ul class="hot-curators-list .owl-carousel2">
 					<c:forEach items="${Top10User}" var="user">
-						<li><a href="theme/userlist?no=${user.no}" class="content">
+						<li>
+						  <a href="theme/userlist?no=${user.no}" class="content">
 								<div class="icon">${user.emoji}</div>
 								<div class="curator-name">${user.nickname}</div>
-								<div class="theme-count">${user.registeredDate}</div>
-						</a></li>
+								<%-- <div class="theme-count">${user.registeredDate}</div> --%>
+						  </a>
+						</li>
 					</c:forEach>
 				</ul>
-			</div>
-
-			<div class="hot-theme">
-				<div class="title">
-					<span>테마 순위</span>
-					<div class="sub">인기 있는 테마</div>
-				</div>
-				<ul class="hot-theme-list owl-carousel">
-					<c:forEach items="${Top10Themes}" var="theme">
-						<li><a href="place/list?no=${theme.no}" class="content">
-								<c:if test="${!empty theme.emoji}">
-									<div class="icon">${theme.emoji}</div>
-								</c:if> <c:if test="${empty theme.emoji}">
-									<div class="icon">🏄</div>
-								</c:if>
-								<div class="theme-content">
-									<div class="theme-title">${theme.title}</div>
-									<div class="curators">${theme.hashtags}</div>
-								</div>
-						</a></li>
-					</c:forEach>
-				</ul>
-			</div>
-
+			</div>  <!-- .hot-curators -->
+    </div>  <!-- .dash-board -->
+    
+    <br><br><br>
+    
+    <!-- 장소 순위 -->
+    <div class="hot-place">
+      <div class="title">
+        <span>🥉 장소 순위</span>
+        <!-- <div class="sub">인기 있는 장소</div> -->
+      </div>
+      <ul class="hot-place-list owl-carousel">
+        <c:forEach items="${Top10Places}" var="place">
+          <li>
+            <a href="#" class="content">
+              <div class="desc">
+                <div class="name">${place.place_name}</div>
+                <div class="address">${place.address_name}</div>
+              </div>
+              <div class="themes">
+                <c:forEach items="${place.themes}" var="placeBelongTheme"
+                  begin="0" end="2">
+                  <div class="theme">${placeBelongTheme.title}</div>
+                </c:forEach>
+              </div>  <!-- .themes -->
+            </a>
+          </li>
+        </c:forEach>
+      </ul>
+    </div>  <!-- .hot-place -->
+		
+		<div class="dash-board">
 			<div class="hot-theme">
 				<div class="title">
 					<span>최신 테마</span>
@@ -123,7 +166,9 @@
 					</c:forEach>
 				</ul>
 			</div>
-
+    </div>
+		
+		<div class="dash-board">		
 			<div class="hot-theme">
 				<div class="title">
 					<span>전체 테마</span>
@@ -145,32 +190,9 @@
 					</c:forEach>
 				</ul>
 			</div>
-		</div>
-
-		<div class="hot-place">
-			<div class="title">
-				<span>지도 순위</span>
-				<div class="sub">인기있는 지도</div>
-			</div>
-			<ul class="hot-place-list owl-carousel">
-				<c:forEach items="${Top10Places}" var="place">
-					<li><a href="#" class="content">
-							<div class="desc">
-								<div class="name">${place.place_name}</div>
-								<div class="address">${place.address_name}</div>
-							</div>
-							<div class="themes">
-								<c:forEach items="${place.themes}" var="placeBelongTheme"
-									begin="0" end="2">
-									<div class="theme">${placeBelongTheme.title}</div>
-								</c:forEach>
-							</div>
-					</a></li>
-				</c:forEach>
-			</ul>
-		</div>
-
+    </div>
 	</main>
+
 	<footer>
 		<div class="footer-link">
 			<a href="#" target="_blank">facebook</a> <a href="#" target="_blank">instagram</a>

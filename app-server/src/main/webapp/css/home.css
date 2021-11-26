@@ -97,16 +97,16 @@ main {
 }
 
 .dash-board,
-.hot-place{
-    display: flex;
-    flex-direction: column;
-    max-width: var(--max-size);
-    margin: 0 auto;
-    padding: 0 var(--font-large);
+.hot-place {
+	display: flex;
+  flex-direction: column;
+  max-width: var(--max-size);
+  margin: 0 auto;
+  padding: 0 var(--font-large);
 }
 
 .hot-place{
-	height: 250px;
+	height: 300px;
 }
 
 .dash-board .hot-curators,
