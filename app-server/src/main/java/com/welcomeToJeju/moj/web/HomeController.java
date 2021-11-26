@@ -38,8 +38,8 @@ public class HomeController {
     //    session.setAttribute("emoji5", emojiList.get(1));
 
     model.addAttribute("Top10Places",placeDao.findTop10());
-    model.addAttribute("Top10Themes", themeDao.findTop10());
-    model.addAttribute("latest10Theme", themeDao.latest10Theme());
+    model.addAttribute("Top10Themes", themeDao.themeRanking());
+    model.addAttribute("latest10Theme", themeDao.newTheme());
     model.addAttribute("Top10User", userDao.userTop10());
     model.addAttribute("allTheme", themeDao.findAllPublicTheme());
     return "home/Home";
