@@ -16,8 +16,8 @@ public interface ThemeDao {
   void delete(int themeNo) throws Exception;
   void deleteHashtag(int themeNo) throws Exception;
 
-  List<ThemeCategory> findAllCategory() throws Exception;
   ThemeCategory findCategoryByNo(int no) throws Exception;
+  List<ThemeCategory> findAllCategory() throws Exception;
 
   void deletePlaceUserTheme(int themeNo) throws Exception;  // 회의하기
 
@@ -26,13 +26,13 @@ public interface ThemeDao {
   List<Theme> findAllPublicTheme() throws Exception;
   List<Theme> findAllPublicThemeByUserNo(int userNo) throws Exception;  // 회의하기
   List<Theme> findByUserNo(int userNo) throws Exception;    // 회의하기
-  List<Theme> findAllByPlaceId(String placeId) throws Exception;
+  List<Theme> findAllByPlaceId(String placeId) throws Exception;    //회의하기
 
   // 테마 검색
   Theme findByNo(int no) throws Exception;
   Theme findByTitle(String title) throws Exception;
-  List<Theme> findByKeyword(String keyword) throws Exception;
   List<Theme> findByHashtag(String hashtag) throws Exception;
+  List<Theme> findByKeyword(String keyword) throws Exception;
 
   // 좋아하는 테마
   void insertLikedTheme(int themeNo, int userNo) throws Exception;

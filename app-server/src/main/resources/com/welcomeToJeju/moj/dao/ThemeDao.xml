@@ -74,7 +74,26 @@
     where theme_no=#{no}
   </delete>
   
-  <select id="findAll" resultMap="ThemeMap">  <!-- * -->
+  <select id="findCategoryByNo" resultMap="CategoryMap"  parameterType="int">
+    select
+      category_no,
+      name
+    from
+      jeju_theme_category
+    where
+      category_no=#{no}
+  </select>
+  
+  <select id="findAllCategory" resultMap="CategoryMap" >
+    select
+      category_no,
+      name
+    from
+      jeju_theme_category
+  </select>
+  
+  <!-- 테마 목록 -->
+  <select id="findAll" resultMap="ThemeMap">
     select
       t.theme_no,
       t.title,
@@ -94,188 +113,89 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       left join jeju_theme_hashtag h on t.theme_no=h.theme_no
       inner join jeju_user u on t.user_no=u.user_no
+    order by
+      t.theme_no
   </select>
   
 	<select id="findAllPublicTheme" resultMap="ThemeMap">
-	  select 
-	    t.theme_no,
-	    t.title,
-	    t.public,
-	    t.share,
-	    t.view_cnt,
-	    h.name hashtag_name,
-	    t.category_no,
-	    c.name category_name,
-	    t.user_no owner_no,
-	    u.nickname owner_nickname,
-	    t.emoji
-	  from jeju_theme t
-	    left join jeju_theme_hashtag h on t.theme_no = h.theme_no
-	    left join jeju_theme_category c on t.category_no = c.category_no
-	    inner join jeju_user u on u.user_no = t.user_no
-	  where
-	    public = 1
-	  order by
-	    t.theme_no
-	</select>
-	
-	 <select id="findAllPublicThemeByUserNo" resultMap="ThemeMap" parameterType = "int">
-    select 
+	  select
       t.theme_no,
       t.title,
       t.public,
       t.share,
       t.view_cnt,
-      h.name hashtag_name,
+      t.reported_cnt,
+      t.user_no owner_no,
+      u.email owner_email,
+      u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
-      t.user_no owner_no,
-      u.nickname owner_nickname,
+      h.name hashtag_name,
       t.emoji
-    from jeju_theme t
-      left join jeju_theme_hashtag h on t.theme_no = h.theme_no
-      left join jeju_theme_category c on t.category_no = c.category_no
-      inner join jeju_user u on u.user_no = t.user_no
-    where
-      public = 1 and t.user_no=#{userNo}
-    order by
-      t.theme_no 
-  </select>
-  
-  <select id="findAllCategory" resultMap="CategoryMap" >
-    select
-      category_no,
-      name
     from
-      jeju_theme_category
-  </select>
-  
-  <!-- 테마 검색 -->
-  <select id="findByTitle" resultMap="ThemeMap" parameterType="String">
-	  select
-		  t.theme_no,
-		  t.title,
-		  t.public,
-		  t.category_no,
-		  c.name,
-		  u.user_no owner_no,
-		  u.nickName owner_name,
-		  h.name hashtag_name,
-		  t.emoji
-	  from jeju_theme t
-	    inner join jeju_user u on u.user_no = t.user_no
-	    inner join jeju_theme_category c on t.category_no = c.category_no
-	    left outer join jeju_theme_hashtag h on t.theme_no = h.theme_no
+      jeju_theme t
+      left join jeju_theme_category c on t.category_no=c.category_no
+      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
+      inner join jeju_user u on t.user_no=u.user_no
 	  where
-	    title=#{title}
-  </select>
-  
-  <select id="findByNo" resultMap="ThemeMap" parameterType="int"> <!-- * -->
+	    t.public=1
+	  order by
+	    t.theme_no
+	</select>
+	
+  <select id="findAllPublicThemeByUserNo" resultMap="ThemeMap" parameterType="int">
     select
-		  t.theme_no,
-		  t.title,
-		  t.public,
-		  t.share,
-		  t.view_cnt,
-		  t.reported_cnt,
-		  t.user_no owner_no,
-		  u.email owner_email,
-		  u.nickname owner_nickname,
-		  t.category_no,
-		  c.name category_name,
-		  h.name hashtag_name,
-		  t.emoji
-		from 
-		  jeju_theme t
-		  left join jeju_theme_category c on t.category_no=c.category_no
-		  left join jeju_theme_hashtag h on t.theme_no=h.theme_no
-		  inner join jeju_user u on t.user_no=u.user_no
+      t.theme_no,
+      t.title,
+      t.public,
+      t.share,
+      t.view_cnt,
+      t.reported_cnt,
+      t.user_no owner_no,
+      u.email owner_email,
+      u.nickname owner_nickname,
+      t.category_no,
+      c.name category_name,
+      h.name hashtag_name,
+      t.emoji
+    from
+      jeju_theme t
+      left join jeju_theme_category c on t.category_no=c.category_no
+      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
+      inner join jeju_user u on t.user_no=u.user_no
     where
-      t.theme_no=#{no}
+      t.public=1 and t.user_no=#{userNo}
+    order by
+      t.theme_no
   </select>
   
   <select id="findByUserNo" resultMap="ThemeMap" parameterType="int">
-	  select
-	    t.theme_no,
-	    user_no owner_no,
-	    title,
-	    public,
-	    view_cnt,
-	    reported_cnt,
-	    c.name category_name,
-	    h.name hashtag_name,
-	    t.emoji
-	  from jeju_theme t
-	    left outer join jeju_theme_hashtag h on t.theme_no=h.theme_no
-	    join jeju_theme_category c on c.category_no=t.category_no
-	  where
-	    user_no=#{no}
-  </select>
-  
-  <!-- 
-  <select id="findByHashtag" resultMap = "ThemeMap" parameterType = "String">
     select
-      title,
-      user_no owner_no,
-      th.name hashtag_name
-    from jeju_theme t
-      join jeju_theme_hashtag th on t.theme_no=th.theme_no
-    where th.name=#{name};
-  </select>
-   -->
-   
-  <select id="findByHashtag" resultMap = "ThemeMap" parameterType = "String">
-    select 
-    t.theme_no, 
-    t.title, 
-    t.public, 
-    t.category_no,
-    c.name,
-    u.user_no owner_no,
-    u.nickname owner_name,
-    u.email owner_email,
-    h.name hashtag_name,
-    t.emoji
-    from        
-        jeju_theme t 
-    inner join
-        jeju_user u on u.user_no = t.user_no 
-    inner join
-        jeju_theme_category c on t.category_no = c.category_no
-    left outer join 
-        jeju_theme_hashtag h on t.theme_no = h.theme_no
-    where h.name = #{hashtag}
-  </select>
-  
-  <select id="findByKeyword" resultMap="ThemeMap" parameterType="String">
-  	 select
-	    t.theme_no,
-	    user_no owner_no,
-	    title,
-	    public,
-	    view_cnt,
-	    reported_cnt,
-	    c.name category_name,
-	    h.name hashtag_name,
-	    t.emoji
-	  from jeju_theme t
-	    left outer join jeju_theme_hashtag h on t.theme_no=h.theme_no
-	    join jeju_theme_category c on c.category_no=t.category_no
-	  where
-	    t.title like (concat('%',#{keyword},'%'))
-  </select>
-  
-  <select id="findCategoryByNo" resultMap="CategoryMap"  parameterType="int">
-    select
-      category_no,
-      name
+      t.theme_no,
+      t.title,
+      t.public,
+      t.share,
+      t.view_cnt,
+      t.reported_cnt,
+      t.user_no owner_no,
+      u.email owner_email,
+      u.nickname owner_nickname,
+      t.category_no,
+      c.name category_name,
+      h.name hashtag_name,
+      t.emoji
     from
-      jeju_theme_category
+      jeju_theme t
+      left join jeju_theme_category c on t.category_no=c.category_no
+      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
+      inner join jeju_user u on t.user_no=u.user_no
     where
-      category_no = #{no}
+      t.user_no=#{userNo}
+    order by
+      t.theme_no
   </select>
   
-  
+  <!-- 회의하기 -->
   <select id="findAllByPlaceId" resultMap="ThemeMap" parameterType = "String">
     select 
       t.theme_no,
@@ -301,153 +221,252 @@
       t.theme_no
   </select>
   
-  
-  <update id="updateViewCount" parameterType = "int">
-	  update jeju_theme set 
-      view_cnt= view_cnt + 1
-    where 
-      theme_no=#{themeNo}
-  </update>
-
-  <update id="updateReportedCount" >
-    update jeju_theme set 
-      reported_cnt=#{reportedCnt}
-    where 
-      theme_no=#{themeNo}
-  </update>
-  
-  <select id="themeRankingByViewCount" resultMap="ThemeMap">  <!-- * -->
-		select
-		  t.theme_no,
-		  t.title,
-		  t.public,
-		  t.share,
-		  t.view_cnt,
-		  t.reported_cnt,
-		  t.user_no owner_no,
-		  u.email owner_email,
-		  u.nickname owner_nickname,
-		  t.category_no,
-		  c.name category_name,
-		  h.name hashtag_name,
-		  t.emoji
-		from 
-		  jeju_theme t
-		  left join jeju_theme_category c on t.category_no=c.category_no
-		  left join jeju_theme_hashtag h on t.theme_no=h.theme_no
-		  inner join jeju_user u on t.user_no=u.user_no
-		order by
-		  view_cnt desc
+  <!-- 테마 검색 -->
+  <select id="findByNo" resultMap="ThemeMap" parameterType="int">
+    select
+      t.theme_no,
+      t.title,
+      t.public,
+      t.share,
+      t.view_cnt,
+      t.reported_cnt,
+      t.user_no owner_no,
+      u.email owner_email,
+      u.nickname owner_nickname,
+      t.category_no,
+      c.name category_name,
+      h.name hashtag_name,
+      t.emoji
+    from 
+      jeju_theme t
+      left join jeju_theme_category c on t.category_no=c.category_no
+      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
+      inner join jeju_user u on t.user_no=u.user_no
+    where
+      t.theme_no=#{no}
+    order by
+      t.theme_no
   </select>
+  
+  <select id="findByTitle" resultMap="ThemeMap" parameterType="String">
+	  select
+      t.theme_no,
+      t.title,
+      t.public,
+      t.share,
+      t.view_cnt,
+      t.reported_cnt,
+      t.user_no owner_no,
+      u.email owner_email,
+      u.nickname owner_nickname,
+      t.category_no,
+      c.name category_name,
+      h.name hashtag_name,
+      t.emoji
+    from 
+      jeju_theme t
+      left join jeju_theme_category c on t.category_no=c.category_no
+      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
+      inner join jeju_user u on t.user_no=u.user_no
+    where
+      t.public=1 and t.title=#{title}
+    order by
+      t.theme_no
+  </select>
+  
+  <select id="findByHashtag" resultMap="ThemeMap" parameterType="String">
+    select
+      t.theme_no,
+      t.title,
+      t.public,
+      t.share,
+      t.view_cnt,
+      t.reported_cnt,
+      t.user_no owner_no,
+      u.email owner_email,
+      u.nickname owner_nickname,
+      t.category_no,
+      c.name category_name,
+      h.name hashtag_name,
+      t.emoji
+    from 
+      jeju_theme t
+      left join jeju_theme_category c on t.category_no=c.category_no
+      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
+      inner join jeju_user u on t.user_no=u.user_no
+    where
+      t.public=1 and h.name=#{name}
+    order by
+      t.theme_no
+  </select>
+  
+  <select id="findByKeyword" resultMap="ThemeMap" parameterType="String">
+    select
+      t.theme_no,
+      t.title,
+      t.public,
+      t.share,
+      t.view_cnt,
+      t.reported_cnt,
+      t.user_no owner_no,
+      u.email owner_email,
+      u.nickname owner_nickname,
+      t.category_no,
+      c.name category_name,
+      h.name hashtag_name,
+      t.emoji
+    from 
+      jeju_theme t
+      left join jeju_theme_category c on t.category_no=c.category_no
+      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
+      inner join jeju_user u on t.user_no=u.user_no
+    where
+      t.public=1 and t.title like (concat('%',#{keyword},'%'))
+  </select>
+  
+  <!-- 좋아하는 테마 -->
+  <insert id="insertLikedTheme" >
+    Insert into jeju_liked_theme(theme_no,user_no)
+    values(#{param1},#{param2})
+  </insert>
+  
+  <delete id="deleteLikedTheme" >
+    delete from jeju_liked_theme
+    where theme_no=#{param1} and user_no=#{param2}
+  </delete>
+  
+  <delete id="deleteAllLikedThemeByThemeNo" parameterType="int">
+    delete from jeju_liked_theme
+    where theme_no=#{param1}
+  </delete>
+  
+  <delete id="deleteAllLikedThemeByUserNo" parameterType="int">
+    delete from jeju_liked_theme
+    where user_no=#{param1}
+  </delete>
+  
+  <select id="findAllLikedTheme" resultMap="ThemeMap" parameterType="int">
+    select
+      t.theme_no,
+      t.title,
+      t.public,
+      t.share,
+      t.view_cnt,
+      t.reported_cnt,
+      t.user_no owner_no,
+      u.email owner_email,
+      u.nickname owner_nickname,
+      t.category_no,
+      c.name category_name,
+      h.name hashtag_name,
+      lt.user_no,
+      t.emoji
+    from 
+      jeju_theme t
+      left join jeju_theme_category c on t.category_no=c.category_no
+      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
+      left join jeju_liked_theme lt on t.theme_no=lt.theme_no
+      inner join jeju_user u on t.user_no=u.user_no
+    where
+      lt.user_no=#{no}
+  </select>
+  
+  <!-- 순위 -->  
+  <update id="updateViewCount" parameterType="int">
+    update jeju_theme set
+      view_cnt= view_cnt + 1
+    where
+      theme_no=#{themeNo}
+  </update>
+  
+  <!-- 신고 -->
+  <update id="updateReportedCount" parameterType="int">
+    update jeju_theme set
+      reported_cnt=#{reportedCnt}
+    where
+      theme_no=#{themeNo}
+  </update>
   
   <select id="findAllReportedTheme" resultMap="ThemeMap">
     select
       t.theme_no,
       t.title,
-      user_no owner_no,
+      t.public,
+      t.share,
+      t.view_cnt,
       t.reported_cnt,
+      t.user_no owner_no,
+      u.email owner_email,
+      u.nickname owner_nickname,
+      t.category_no,
+      c.name category_name,
       h.name hashtag_name,
       t.emoji
-    from jeju_theme t
-      left outer join jeju_theme_hashtag h on t.theme_no=h.theme_no
+    from 
+      jeju_theme t
+      left join jeju_theme_category c on t.category_no=c.category_no
+      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
+      inner join jeju_user u on t.user_no=u.user_no
     where
       reported_cnt > 0
     order by
       reported_cnt desc
   </select>
   
-  <!-- 좋아하는 테마 -->
-  <insert id="insertLikedTheme" >
-	  Insert into jeju_liked_theme(theme_no,user_no)
-	  values(#{param1},#{param2})
-  </insert>
-  
-  <delete id="deleteLikedTheme" >
-	  delete from jeju_liked_theme
-	  where theme_no=#{param1} and user_no=#{param2}
-  </delete>
-  
-  <delete id="deleteAllLikedThemeByThemeNo" parameterType = "int">
-	  delete from jeju_liked_theme
-	  where theme_no=#{param1}
-  </delete>
-  
-  <delete id="deleteAllLikedThemeByUserNo" parameterType = "int">
-	  delete from jeju_liked_theme
-	  where user_no=#{param1}
-  </delete>
-  
-  <select id="findAllLikedTheme" resultMap="ThemeMap" parameterType="int">  <!-- * -->
+  <!-- 메인 -->
+  <select id="themeRanking10" resultMap="ThemeMap">
     select
-		  t.theme_no,
-		  t.title,
-		  t.public,
-		  t.share,
-		  t.view_cnt,
-		  t.reported_cnt,
-		  t.user_no owner_no,
-		  u.email owner_email,
-		  u.nickname owner_nickname,
-		  t.category_no,
-		  c.name category_name,
-		  h.name hashtag_name,
-		  lt.user_no,
-		  t.emoji
-		from 
-		  jeju_theme t
-		  left join jeju_theme_category c on t.category_no=c.category_no
-		  left join jeju_theme_hashtag h on t.theme_no=h.theme_no
-		  left join jeju_liked_theme lt on t.theme_no=lt.theme_no
-		  inner join jeju_user u on t.user_no=u.user_no
-		where
-		  lt.user_no=#{no}
+      t.theme_no,
+      t.title,
+      t.public,
+      t.share,
+      t.view_cnt,
+      t.reported_cnt,
+      t.user_no owner_no,
+      u.email owner_email,
+      u.nickname owner_nickname,
+      t.category_no,
+      c.name category_name,
+      h.name hashtag_name,
+      t.emoji
+    from 
+      jeju_theme t
+      left join jeju_theme_category c on t.category_no=c.category_no
+      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
+      inner join jeju_user u on t.user_no=u.user_no
+    where
+      t.public=1
+    order by
+      t.view_cnt desc
+      limit 10
   </select>
   
-  <select id="themeRanking" resultMap="ThemeMap">
-        select
-            t.theme_no,
-            t.title,
-            t.public,
-            t.share,
-            t.view_cnt,
-            h.name hashtag_name,
-            t.category_no,
-            c.name category_name,
-            t.user_no owner_no,
-            u.nickname owner_nickname,
-            t.emoji
-        from jeju_theme t
-                 left join jeju_theme_hashtag h on t.theme_no = h.theme_no
-                 left join jeju_theme_category c on t.category_no = c.category_no
-                 inner join jeju_user u on u.user_no = t.user_no
-        where t.public = 1
-        order by
-            t.view_cnt
-        desc
-        limit 10
-    </select>
-
-    <select id="newTheme" resultMap="ThemeMap">
-        select
-            t.theme_no,
-            t.title,
-            t.public,
-            t.share,
-            t.view_cnt,
-            h.name hashtag_name,
-            t.category_no,
-            t.created_dt,
-            t.user_no owner_no,
-            u.nickname owner_nickname,
-            t.emoji
-        from jeju_theme t
-                 left join jeju_theme_hashtag h on t.theme_no = h.theme_no
-                 left join jeju_theme_category c on t.category_no = c.category_no
-                 inner join jeju_user u on u.user_no = t.user_no
-        where t.public = 1
-        group by
-            t.created_dt desc
-        limit 10
-    </select>
+  <select id="newTheme10" resultMap="ThemeMap">
+    select
+      t.theme_no,
+      t.title,
+      t.public,
+      t.share,
+      t.view_cnt,
+      t.reported_cnt,
+      t.user_no owner_no,
+      u.email owner_email,
+      u.nickname owner_nickname,
+      t.category_no,
+      c.name category_name,
+      h.name hashtag_name,
+      t.emoji
+    from 
+      jeju_theme t
+      left join jeju_theme_category c on t.category_no=c.category_no
+      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
+      inner join jeju_user u on t.user_no=u.user_no
+    where
+      t.public=1
+    order by
+    <!-- group by -->
+      t.created_dt desc
+      limit 10
+  </select>
   
 </mapper>
