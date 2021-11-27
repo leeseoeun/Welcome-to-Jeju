@@ -1,6 +1,5 @@
 package com.welcomeToJeju.moj.web;
 
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,36 +11,20 @@ import com.welcomeToJeju.moj.dao.UserDao;
 @Controller
 public class HomeController {
 
-  @Autowired UserDao userDao;
   @Autowired ThemeDao themeDao;
+  @Autowired UserDao userDao;
   @Autowired PlaceDao placeDao;
 
   @GetMapping("/home")
-  public String home(Model model, HttpSession session) throws Exception {
+  public String home(Model model/* , HttpSession session */) throws Exception {
+    model.addAttribute("themeRanking10", themeDao.themeRanking());
+    model.addAttribute("userRanking10", userDao.userTop10());
+    model.addAttribute("placeRaking10", placeDao.findTop10());
+    model.addAttribute("newTheme10", themeDao.newTheme());
+    model.addAttribute("themeList", themeDao.findAllPublicTheme());
 
-    //    List<String> emojiList = new ArrayList<>();
-    //    emojiList.add("🏄");
-    //    emojiList.add("✈️");
-    //    emojiList.add("🌴");
-    //    emojiList.add("🍊");
-    //    emojiList.add("🌊");
-    //    emojiList.add("🥜");
-    //    emojiList.add("🛵");
-    //    emojiList.add("🥤");
-    //    emojiList.add("🌠");
-    //    Collections.shuffle(emojiList);
-    //    session.setAttribute("emojiList", emojiList);
-    //    session.setAttribute("emoji", emojiList.get(2));
-    //    session.setAttribute("emoji2", emojiList.get(3));
-    //    session.setAttribute("emoji3", emojiList.get(4));
-    //    session.setAttribute("emoji4", emojiList.get(0));
-    //    session.setAttribute("emoji5", emojiList.get(1));
-
-    model.addAttribute("Top10Places",placeDao.findTop10());
-    model.addAttribute("Top10Themes", themeDao.themeRanking());
-    model.addAttribute("latest10Theme", themeDao.newTheme());
-    model.addAttribute("Top10User", userDao.userTop10());
-    model.addAttribute("allTheme", themeDao.findAllPublicTheme());
     return "home/Home";
   }
+
+
 }

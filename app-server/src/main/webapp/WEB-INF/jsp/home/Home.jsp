@@ -53,7 +53,7 @@
 				<i class="fas fa-angle-left"></i>
 			</button>
 			<ul class="slide-theme-content">
-				<c:forEach items="${Top10Themes}" var="theme">
+				<c:forEach items="${themeList}" var="theme">
 					<li>
             <a href="place/list?no=${theme.no}" class="slide-theme-content-item">
 							<div class="icon">${theme.emoji}</div>
@@ -86,7 +86,7 @@
           <!-- <div class="sub">인기 있는 테마</div> -->
         </div>
         <ul class="hot-theme-list owl-carousel">
-          <c:forEach items="${Top10Themes}" var="theme">
+          <c:forEach items="${themeRanking10}" var="theme">
             <li>
               <a href="place/list?no=${theme.no}" class="content">
                 <div class="icon">${theme.emoji}</div>
@@ -109,7 +109,7 @@
 					<!-- <div class="sub">인기 있는 유저</div> -->
 				</div>
 				<ul class="hot-curators-list .owl-carousel2">
-					<c:forEach items="${Top10User}" var="user">
+					<c:forEach items="${userRanking10}" var="user">
 						<li>
 						  <a href="theme/userlist?no=${user.no}" class="content">
 								<div class="icon">${user.emoji}</div>
@@ -131,7 +131,7 @@
         <!-- <div class="sub">인기 있는 장소</div> -->
       </div>
       <ul class="hot-place-list owl-carousel">
-        <c:forEach items="${Top10Places}" var="place">
+        <c:forEach items="${placeRaking10}" var="place">
           <li>
             <a href="#" class="content">
               <div class="desc">
@@ -158,7 +158,7 @@
           <!-- <div class="sub">최근 테마 목록</div> -->
         </div>
         <ul class="hot-theme-list owl-carousel">
-          <c:forEach items="${latest10Theme}" var="theme">
+          <c:forEach items="${newTheme10}" var="theme">
             <li>
               <a href="place/list?no=${theme.no}" class="content">
                 <div class="icon">${theme.emoji}</div>
@@ -185,7 +185,7 @@
     <div class="container">
       <div class="main-container">
       <ul class="theme-list">
-      <c:forEach items="${allTheme}" var="theme">
+      <c:forEach items="${themeList}" var="theme">
       <a class="list-container" href="../place/list?no=${theme.no}">
         <li>
           <div class="content">
