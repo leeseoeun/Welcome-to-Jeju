@@ -76,6 +76,9 @@
 			<a href="${contextRoot}/app/ranking">
 				<li><span class="emozi">🏆</span><span class="name">순위</span></li>
 			</a>
+			<a href="${contextRoot}/app/board/list">
+        <li><span class="emozi">📋</span><span class="name">자유게시판</span></li>
+      </a>
 		</ul>
 	</div>
 
