@@ -191,7 +191,7 @@
           <div class="content">
 	          <div class="icon">${theme.emoji}</div>
 	          <div class="theme-title">${theme.title}</div>
-	          <div class="theme-count">${theme.hashtags}</div>
+	          <%-- <div class="theme-count">${theme.hashtags}</div> --%>
           </div>  <!-- .content -->
         </li>
       </a>
@@ -202,7 +202,7 @@
           <div class="content">
             <div class="icon">${theme.no}</div>
             <div class="theme-title">${theme.title}</div>
-            <!-- <div class="theme-count">#${theme.hashtags}</div> -->
+            <%-- <div class="theme-count">${theme.hashtags}</div> --%>
           </div>  <!-- .content -->
         </li>
       </a>
@@ -212,17 +212,14 @@
       </div>  <!-- .container -->
 	</main>
 
-	<footer>
-		<div class="footer-link">
-			<a href="#" target="_blank">facebook</a> <a href="#" target="_blank">instagram</a>
-			<a href="#">e-mail</a>
-		</div>
-		<div>* SNS를 통해 업데이트 소식을 알려드립니다</div>
-		<br>
+  <footer>
+    <div class="footer-link">
+      <a href="#">사용자 피드백 🌴 신고 및 의견은 여기에</a>
+    </div>
 		<div>
-			<a href="#">개인정보처리방침</a>
+		  <a href="#">개인 정보 처리 방침</a>
 		</div>
-
+		<br>
 	</footer>
 
 	<script>
