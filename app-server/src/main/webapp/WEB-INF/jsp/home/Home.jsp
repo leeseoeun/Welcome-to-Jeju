@@ -227,46 +227,46 @@
 
 	<script>
 	$(document).ready(function() {
-	 var owl = $('.owl-carousel');
-	 
-	 owl.owlCarousel({
-		 items: 3,  // 한번에 보여 줄 아이템 수
-		 loop: true,  // 반복 여부
-		 margin: 35,  // 오른쪽 간격
-		 autoplay: false, // 자동 재생 여부
-		 autoplayTimeout: 1800, // 재생 간격
-		 autoplayHoverPause: true // 마우스 hover 시 멈출지 여부
-	});
-	 
-	$('.customNextBtn').click(function() {
-		owl.trigger('next.owl.carousel');
-	})
-	
-	$('.customPrevBtn').click(function() {
-		owl.trigger('prev.owl.carousel', [ 300 ]);
+		var owl = $('.owl-carousel');
+		
+		owl.owlCarousel({
+			items: 3,  // 한번에 보여 줄 아이템 수
+			loop: true,  // 반복 여부
+			margin: 35,  // 오른쪽 간격
+			autoplay: false, // 자동 재생 여부
+			autoplayTimeout: 1800, // 재생 간격
+			autoplayHoverPause: true // 마우스 hover 시 멈출지 여부
+		});
+		
+		$('.customNextBtn').click(function() {
+			owl.trigger('next.owl.carousel');
 		})
+		
+		$('.customPrevBtn').click(function() {
+			owl.trigger('prev.owl.carousel', [ 300 ]);
+			})
 	});
-	
+		
 	$(document).ready(function() {
 		var owl = $('.owl-carousel2');
 		
 		owl.owlCarousel({
 			items: 7,  // 한번에 보여 줄 아이템 수
-		  loop: true,  // 반복 여부
-		  margin: 35,  // 오른쪽 간격
-		  autoplay: false, // 자동 재생 여부
-		  autoplayTimeout: 1800, // 재생 간격
-		  autoplayHoverPause: true // 마우스 hover 시 멈출지 여부
+			loop: true,  // 반복 여부
+			margin: 35,  // 오른쪽 간격
+			autoplay: false, // 자동 재생 여부
+			autoplayTimeout: 1800, // 재생 간격
+			autoplayHoverPause: true // 마우스 hover 시 멈출지 여부
 		});
 		
 		$('.customNextBtn').click(function() {
 			owl.trigger('next.owl.carousel');
-			})
-			
+		})
+		
 		$('.customPrevBtn').click(function() {
 			owl.trigger('prev.owl.carousel', [ 300 ]);
-			})
-		});
+		})
+	});
 	</script>
 
 </body>
