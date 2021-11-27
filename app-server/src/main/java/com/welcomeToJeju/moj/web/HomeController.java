@@ -17,10 +17,10 @@ public class HomeController {
 
   @GetMapping("/home")
   public String home(Model model/* , HttpSession session */) throws Exception {
-    model.addAttribute("themeRanking10", themeDao.themeRanking());
+    model.addAttribute("themeRanking10", themeDao.themeRanking10());
     model.addAttribute("userRanking10", userDao.userTop10());
     model.addAttribute("placeRaking10", placeDao.findTop10());
-    model.addAttribute("newTheme10", themeDao.newTheme());
+    model.addAttribute("newTheme10", themeDao.newTheme10());
     model.addAttribute("themeList", themeDao.findAllPublicTheme());
 
     return "home/Home";
