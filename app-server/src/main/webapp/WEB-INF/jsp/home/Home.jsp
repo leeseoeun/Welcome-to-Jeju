@@ -1,19 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set scope="page" var="contextRoot" value="${pageContext.servletContext.contextPath}" />
+
+<!-- 전체 테마 -->
 <c:set scope="page" var="contextRoot2" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html>
 <title>제주 옵서예</title>
 
-<jsp:include page="../template_head.jsp" />
+<jsp:include page="../template_head.jsp"/>
 <link rel="stylesheet" href="${contextRoot}/css/home.css?ver=1">
-<link rel="stylesheet" href="${contextRoot2}/css/theme_list.css">
 <script defer src="${contextRoot}/javascript/home.js"></script>
+
+<!-- 전체 테마 -->
+<link rel="stylesheet" href="${contextRoot2}/css/theme_list.css">
 
 <style>
 .owl-dots {
@@ -174,21 +178,7 @@
       <div class="hot-theme">
         <div class="title">
           <span>🌟 전체 테마</span>
-          <!-- <div class="sub">전체 테마 목록</div> -->
         </div>
-        <%-- <ul class="hot-theme-list">
-          <c:forEach items="${allTheme}" var="theme">
-            <li>
-              <a href="place/list?no=${theme.no}" class="content">
-                <div class="icon">${theme.emoji}</div>
-                <div class="theme-content">
-                  <div class="theme-title">${theme.title}</div>
-                  <div class="curators">${theme.hashtags}</div>
-                </div>
-              </a>
-            </li>
-          </c:forEach>
-        </ul> --%>
       </div>  <!-- .hot-theme -->
     </div>  <!-- .dash-board -->
     
@@ -206,21 +196,20 @@
         </li>
       </a>
       </c:forEach>  
-<c:forEach begin="0" end="${3-(fn:length(allTheme)%3)-1}">
-    <a class="list-container" style=visibility:hidden;>
-      <li>
-        <div class="content">
-          <div class="icon">${theme.no}</div>
-          <div class="theme-title">${theme.title}</div>
-          <!-- <div class="theme-count">#${theme.hashtags}</div> -->
-        </div>  <!-- .content -->
-      </li>
-    </a>
-</c:forEach>
-</ul>
-</div>  <!-- .main-container -->
-</div>  <!-- .container -->
-    
+      <c:forEach begin="0" end="${3-(fn:length(allTheme)%3)-1}">
+      <a class="list-container" style=visibility:hidden;>
+        <li>
+          <div class="content">
+            <div class="icon">${theme.no}</div>
+            <div class="theme-title">${theme.title}</div>
+            <!-- <div class="theme-count">#${theme.hashtags}</div> -->
+          </div>  <!-- .content -->
+        </li>
+      </a>
+      </c:forEach>
+      </ul>
+      </div>  <!-- .main-container -->
+      </div>  <!-- .container -->
 	</main>
 
 	<footer>
@@ -236,48 +225,46 @@
 
 	</footer>
 
-
 	<script>
-		$(document).ready(function() {
-			var owl = $('.owl-carousel');
-
-			owl.owlCarousel({
-				items : 3, // 한번에 보여줄 아이템 수
-				loop : true, // 반복여부
-				margin : 35, // 오른쪽 간격
-				autoplay : false, // 자동재생 여부
-				autoplayTimeout : 1800, // 재생간격
-				autoplayHoverPause : true
-			//마우스오버시 멈출지 여부
-			});
-
-			$('.customNextBtn').click(function() {
-				owl.trigger('next.owl.carousel');
-			})
-
-			$('.customPrevBtn').click(function() {
-				owl.trigger('prev.owl.carousel', [ 300 ]);
-			})
+	$(document).ready(function() {
+	 var owl = $('.owl-carousel');
+	 
+	 owl.owlCarousel({
+		 items: 3,  // 한번에 보여 줄 아이템 수
+		 loop: true,  // 반복 여부
+		 margin: 35,  // 오른쪽 간격
+		 autoplay: false, // 자동 재생 여부
+		 autoplayTimeout: 1800, // 재생 간격
+		 autoplayHoverPause: true // 마우스 hover 시 멈출지 여부
+	});
+	 
+	$('.customNextBtn').click(function() {
+		owl.trigger('next.owl.carousel');
+	})
+	
+	$('.customPrevBtn').click(function() {
+		owl.trigger('prev.owl.carousel', [ 300 ]);
+		})
+	});
+	
+	$(document).ready(function() {
+		var owl = $('.owl-carousel2');
+		
+		owl.owlCarousel({
+			items: 7,  // 한번에 보여 줄 아이템 수
+		  loop: true,  // 반복 여부
+		  margin: 35,  // 오른쪽 간격
+		  autoplay: false, // 자동 재생 여부
+		  autoplayTimeout: 1800, // 재생 간격
+		  autoplayHoverPause: true // 마우스 hover 시 멈출지 여부
 		});
-		$(document).ready(function() {
-			var owl = $('.owl-carousel2');
-
-			owl.owlCarousel({
-				items : 7, // 한번에 보여줄 아이템 수
-				loop : true, // 반복여부
-				margin : 35, // 오른쪽 간격
-				autoplay : false, // 자동재생 여부
-				autoplayTimeout : 1800, // 재생간격
-				autoplayHoverPause : true
-			//마우스오버시 멈출지 여부
-			});
-
-			$('.customNextBtn').click(function() {
-				owl.trigger('next.owl.carousel');
+		
+		$('.customNextBtn').click(function() {
+			owl.trigger('next.owl.carousel');
 			})
-
-			$('.customPrevBtn').click(function() {
-				owl.trigger('prev.owl.carousel', [ 300 ]);
+			
+		$('.customPrevBtn').click(function() {
+			owl.trigger('prev.owl.carousel', [ 300 ]);
 			})
 		});
 	</script>
