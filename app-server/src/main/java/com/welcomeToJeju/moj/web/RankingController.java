@@ -19,7 +19,7 @@ public class RankingController {
   @GetMapping("/ranking")
   public ModelAndView ranking() throws Exception {
 
-    Collection<Theme> themeList = themeDao.themeRankingByViewCount();
+    Collection<Theme> themeList = themeDao.themeRanking10();
     Collection<User> userList = userDao.userRankingByViewCount();
 
     ModelAndView mv = new ModelAndView();
