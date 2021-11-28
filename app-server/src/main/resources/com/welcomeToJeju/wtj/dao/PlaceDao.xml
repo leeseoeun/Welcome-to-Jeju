@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.welcomeToJeju.moj.dao.PlaceDao">
+<mapper namespace="com.welcomeToJeju.wtj.dao.PlaceDao">
   
   <resultMap type="Place" id="PlaceMap">
     <id column="place_id" property="id"/> 

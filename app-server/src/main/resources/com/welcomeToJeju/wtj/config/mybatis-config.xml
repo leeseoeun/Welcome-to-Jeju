@@ -4,12 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-  <properties resource="com/welcomeToJeju/moj/conf/jdbc.properties"></properties>
+  <properties resource="com/welcomeToJeju/wtj/conf/jdbc.properties"></properties>
 
   <typeAliases>
     <!-- 패키지에 소속된 모든 클래스에 대해 별명을 자동으로 부여할 수 있다.
          클래스 이름이 별명으로 설정된다.-->
-    <package name="com.welcomeToJeju.moj.domain"/>
+    <package name="com.welcomeToJeju.wtj.domain"/>
   </typeAliases>
 
   <environments default="development">
@@ -25,6 +25,6 @@
   </environments>
   
   <mappers>
-  <package name = "com.welcomeToJeju.moj.dao"/>  
+  <package name = "com.welcomeToJeju.wtj.dao"/>  
   </mappers>
 </configuration>

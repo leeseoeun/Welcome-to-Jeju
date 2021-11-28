@@ -1,7 +1,6 @@
 package com.welcomeToJeju.wtj.config;
 
 import javax.sql.DataSource;
-
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -11,27 +10,27 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.context.annotation.PropertySource;
 
 @ComponentScan(
-		basePackages = "com.welcomeToJeju.moj",
-		excludeFilters = {
-				@Filter(type = FilterType.REGEX, pattern = "com.welcomeToJeju.moj.web.*")
-		})
+    basePackages = "com.welcomeToJeju.wtj",
+    excludeFilters = {
+        @Filter(type = FilterType.REGEX, pattern = "com.welcomeToJeju.wtj.web.*")
+    })
 
-@PropertySource("classpath:com/welcomeToJeju/moj/config/jdbc.properties")
+@PropertySource("classpath:com/welcomeToJeju/wtj/config/jdbc.properties")
 @EnableTransactionManagement
-@MapperScan("com.welcomeToJeju.moj.dao")
+@MapperScan("com.welcomeToJeju.wtj.dao")
 
 // 모든 공유 하는 객체들은 여기서 관리해야된다
 public class RootConfig {
 
-	@Bean
+  @Bean
   public DataSource dataSource(
       @Value("${jdbc.driver}") String jdbcDriver,
       @Value("${jdbc.url}") String jdbcUrl,
@@ -71,9 +70,9 @@ public class RootConfig {
     // mybatis 설정 파일을 XML 파일로 따로 두지 말고,
     // 다음과 같이 자바 코드로 설정하면 편하다.
     // 
-    sqlSessionFactoryBean.setTypeAliasesPackage("com.welcomeToJeju.moj.domain");
+    sqlSessionFactoryBean.setTypeAliasesPackage("com.welcomeToJeju.wtj.domain");
     sqlSessionFactoryBean.setMapperLocations(
-        appCtx.getResources("classpath:com/welcomeToJeju/moj/dao/*Dao.xml"));
+        appCtx.getResources("classpath:com/welcomeToJeju/wtj/dao/*Dao.xml"));
     return sqlSessionFactoryBean.getObject();
   }
 }
