@@ -1,4 +1,4 @@
-package com.welcomeToJeju.moj.handler;
+package com.welcomeToJeJu.moj.handler;
 
 public class RequestDispatcher {
 

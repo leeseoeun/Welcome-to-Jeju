@@ -1,4 +1,4 @@
-package com.welcomeToJeju.moj.handler;
+package com.welcomeToJeJu.moj.handler;
 
 import java.sql.Date;
 import java.util.List;

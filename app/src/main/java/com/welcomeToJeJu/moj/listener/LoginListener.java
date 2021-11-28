@@ -1,4 +1,4 @@
-package com.welcomeToJeju.moj.listener;
+package com.welcomeToJeJu.moj.listener;
 
 import java.util.Map;
 import com.welcomeToJeju.context.UserContextListener;

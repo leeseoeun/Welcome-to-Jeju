@@ -1,4 +1,4 @@
-package com.welcomeToJeju.moj;
+package com.welcomeToJeJu.moj;
 
 import java.util.ArrayList;
 import java.util.HashMap;

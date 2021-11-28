@@ -1,4 +1,4 @@
-package com.welcomeToJeju.moj.domain;
+package com.welcomeToJeJu.moj.domain;
 
 public class ReportUser extends Report{
   User reportedUser;

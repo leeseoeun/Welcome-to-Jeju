@@ -1,4 +1,4 @@
-package com.welcomeToJeju.moj.domain;
+package com.welcomeToJeJu.moj.domain;
 
 public class ReportTheme extends Report{
   Theme reportedTheme;

@@ -15,9 +15,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
-import com.welcomeToJeju.moj.domain.Report;
-import com.welcomeToJeju.moj.domain.ReportTheme;
-import com.welcomeToJeju.moj.domain.ReportUser;
+import com.welcomeToJeju.wtj.domain.Report;
+import com.welcomeToJeju.wtj.domain.ReportTheme;
+import com.welcomeToJeju.wtj.domain.ReportUser;
 
 public class RequestAgent {
 

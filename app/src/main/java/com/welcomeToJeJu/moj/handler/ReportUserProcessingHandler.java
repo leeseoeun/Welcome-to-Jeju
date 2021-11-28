@@ -1,4 +1,4 @@
-package com.welcomeToJeju.moj.handler;
+package com.welcomeToJeJu.moj.handler;
 
 import java.util.ArrayList;
 import java.util.Collections;

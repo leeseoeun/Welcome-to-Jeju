@@ -1,4 +1,4 @@
-package com.welcomeToJeju.moj.domain;
+package com.welcomeToJeJu.moj.domain;
 
 import java.sql.Date;
 import java.util.ArrayList;

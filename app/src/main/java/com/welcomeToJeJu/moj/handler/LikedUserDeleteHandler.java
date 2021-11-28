@@ -1,4 +1,4 @@
-package com.welcomeToJeju.moj.handler;
+package com.welcomeToJeJu.moj.handler;
 
 import com.welcomeToJeju.moj.domain.User;
 import com.welcomeToJeju.util.Prompt;
