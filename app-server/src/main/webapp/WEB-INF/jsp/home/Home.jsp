@@ -139,7 +139,7 @@
                 <div class="address">${place.address_name}</div>
               </div>
               <div class="themes">
-                <c:forEach items="${place.themes}" var="placeBelongTheme"
+                <c:forEach items="${place.themeList}" var="placeBelongTheme"
                   begin="0" end="2">
                   <div class="theme">${placeBelongTheme.title}</div>
                 </c:forEach>
