@@ -15,22 +15,22 @@ import com.welcomeToJeju.wtj.domain.ThemeCategory;
 import com.welcomeToJeju.wtj.domain.User;
 
 @Controller
-public class MyThemeController {
+public class ShareThemeController {
 
   @Autowired ThemeDao themeDao;
   @Autowired UserDao userDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
-  @GetMapping("/mytheme/addform")
+  @GetMapping("/sharetheme/addform")
   public ModelAndView addform() {
     ModelAndView mv = new ModelAndView();
-    mv.addObject("pageTitle", "나의 테마 만들기");
-    mv.addObject("contentUrl", "theme/myTheme/MyThemeAddForm.jsp");
+    mv.addObject("pageTitle", "참여 테마 만들기");
+    mv.addObject("contentUrl", "theme/shareTheme/ShareThemeAddForm.jsp");
     mv.setViewName("template_main");
     return mv;
   }
 
-  @PostMapping("/mytheme/add")
+  @PostMapping("/sharetheme/add")
   public String add(HttpSession session, 
       String title, 
       String category,
@@ -54,7 +54,7 @@ public class MyThemeController {
     return "redirect:list?no=" + user.getNo();
   }
 
-  @GetMapping("/mytheme/list")
+  @GetMapping("/sharetheme/list")
   public ModelAndView list(int no) throws Exception {
     Collection<Theme> themeList = themeDao.findAllByUserNo(no);
 
@@ -67,7 +67,7 @@ public class MyThemeController {
   }
 
   // 테스트!!
-  @PostMapping("/mytheme/update")
+  @PostMapping("/sharetheme/update")
   public ModelAndView update(Theme theme, int category) throws Exception {
     //    Theme oldTheme = themeDao.findByNo(theme.getNo());
     //
@@ -87,7 +87,7 @@ public class MyThemeController {
   }
 
   // 테스트!!
-  @GetMapping("/mytheme/delete")
+  @GetMapping("/sharetheme/delete")
   public ModelAndView delete(HttpSession session, int no) throws Exception {
     User user = (User) session.getAttribute("loginUser");
 
