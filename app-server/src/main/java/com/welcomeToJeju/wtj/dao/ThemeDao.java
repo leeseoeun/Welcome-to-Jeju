@@ -1,6 +1,5 @@
 package com.welcomeToJeju.wtj.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.ThemeCategory;
@@ -19,14 +18,15 @@ public interface ThemeDao {
   ThemeCategory findCategoryByNo(int no) throws Exception;
   List<ThemeCategory> findAllCategory() throws Exception;
 
-  void deletePlaceUserTheme(int themeNo) throws Exception;  // 회의하기
-
-  // 테마 목록
+  // 테마 목록: 관리자
   List<Theme> findAll() throws Exception;
+  List<Theme> findAllByUserNo(int userNo) throws Exception;
+
+  // 테마 목록: 유저
   List<Theme> findAllPublicTheme() throws Exception;
-  List<Theme> findAllPublicThemeByUserNo(int userNo) throws Exception;  // 회의하기
-  List<Theme> findByUserNo(int userNo) throws Exception;    // 회의하기
-  List<Theme> findAllByPlaceId(String placeId) throws Exception;    //회의하기
+  List<Theme> findAllPublicThemeByUserNo(int userNo) throws Exception;
+
+  List<Theme> findAllPublicThemeByPlaceId(String placeId) throws Exception;
 
   // 테마 검색
   Theme findByNo(int no) throws Exception;
@@ -43,10 +43,6 @@ public interface ThemeDao {
 
   // 순위
   void updateViewCount(int themeNo) throws Exception;
-
-  // 신고
-  void updateReportedCount(HashMap<String,Object> params) throws Exception;
-  List<Theme> findAllReportedTheme() throws Exception;
 
   // 메인
   List<Theme> themeRanking10() throws Exception;
