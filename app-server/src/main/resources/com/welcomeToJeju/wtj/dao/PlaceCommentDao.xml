@@ -20,12 +20,12 @@
   
   </resultMap>
   
-  <insert id="insertComment" parameterType="Map">
+  <insert id="insert" parameterType="Map">
     insert into jeju_place_comment(place_id,comment,user_no)
     values(#{placeId},#{comment},#{userNo})
   </insert>
   
-  <delete id="deleteComment" parameterType="String">
+  <delete id="delete" parameterType="String">
     delete from jeju_place_comment
     where place_id=#{id}
   </delete>

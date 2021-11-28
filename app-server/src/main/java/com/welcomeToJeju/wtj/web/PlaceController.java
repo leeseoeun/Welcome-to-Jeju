@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
+import com.welcomeToJeju.wtj.dao.PlaceCommentDao;
 import com.welcomeToJeju.wtj.dao.PlaceDao;
+import com.welcomeToJeju.wtj.dao.PlacePhotoDao;
 import com.welcomeToJeju.wtj.dao.ThemeDao;
 import com.welcomeToJeju.wtj.domain.Place;
 import com.welcomeToJeju.wtj.domain.Theme;
@@ -32,6 +34,8 @@ public class PlaceController {
   @Autowired SqlSessionFactory sqlSessionFactory;
   @Autowired ServletContext sc;
   @Autowired PlaceDao placeDao;
+  @Autowired PlaceCommentDao placeCommentDao;
+  @Autowired PlacePhotoDao placePhotoDao;
   @Autowired ThemeDao themeDao;  
   int themeNo = 0;
 
@@ -77,7 +81,7 @@ public class PlaceController {
     param1.put("placeId", place.getId());
     param1.put("userNo", user.getNo());
     param1.put("comment", comment);
-    placeDao.insertComment(param1);
+    placeCommentDao.insert(param1);
 
 
     for(Part p : photoFile) {
@@ -112,7 +116,7 @@ public class PlaceController {
       param2.put("filePath", filename);
 
 
-      placeDao.insertPhoto(param2);
+      placePhotoDao.insert(param2);
     }
     sqlSessionFactory.openSession().commit();
 

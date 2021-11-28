@@ -20,12 +20,12 @@
   
   </resultMap>
   
-  <insert id="insertPhoto" parameterType="Map">
+  <insert id="insert" parameterType="Map">
     insert into jeju_place_photo(place_id,file_path,user_no)
     values(#{placeId},#{filePath},#{userNo})
   </insert>
 
-  <delete id="deletePhoto" parameterType="String">
+  <delete id="delete" parameterType="String">
     delete from jeju_place_photo
     where place_id=#{id}
   </delete>
