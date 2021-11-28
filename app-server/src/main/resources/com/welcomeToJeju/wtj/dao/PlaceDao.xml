@@ -12,22 +12,6 @@
     <result column="x_coord" property="x"/>
     <result column="y_coord" property="y"/>
     
-    <!--  
-    <collection property="photos" ofType="PlacePhoto">
-      <id column="place_photo_no" property="no"/>
-      <result column="place_id" property="place"/>
-      <result column="user_no" property="writer"/>
-      <result column="file_path" property="filePath"/>
-    </collection>
-
-    <collection property="comments" ofType="PlaceComment">
-      <id column="place_comment_no" property="no"/>
-      <result column="place_id" property="place"/>
-      <result column="user_no" property="writer"/>
-      <result column="comment" property="comment"/>
-    </collection>
-    -->
-    
     <collection property="themeList" javaType="Theme">
       <id column="theme_no" property="no"/>
       <result column="title" property="title"/>
@@ -91,7 +75,7 @@
     where p.place_id=#{id}
   </select>
 
-	<select id="findTop10" resultMap="PlaceMap">
+	<select id="placeRanking10" resultMap="PlaceMap">
        select
            p.place_id,
            p.place_name,

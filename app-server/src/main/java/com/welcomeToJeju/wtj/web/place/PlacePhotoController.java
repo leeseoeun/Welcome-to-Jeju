@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.welcomeToJeju.wtj.dao.PlaceDao;
+import com.welcomeToJeju.wtj.dao.PlacePhotoDao;
 import com.welcomeToJeju.wtj.domain.PlacePhoto;
 import com.welcomeToJeju.wtj.domain.User;
 import net.coobird.thumbnailator.ThumbnailParameter;
@@ -21,7 +21,7 @@ import net.coobird.thumbnailator.name.Rename;
 @Controller
 public class PlacePhotoController {
 
-  @Autowired PlaceDao placeDao;
+  @Autowired PlacePhotoDao placePhotoDao;
   @Autowired ServletContext sc;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
@@ -64,7 +64,7 @@ public class PlacePhotoController {
     //    param.put("placeId", place.getId());
     param.put("placeId", id);
 
-    placeDao.insertPhoto(param);
+    placePhotoDao.insert(param);
     sqlSessionFactory.openSession().commit();
 
     ModelAndView mv = new ModelAndView();

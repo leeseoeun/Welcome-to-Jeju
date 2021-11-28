@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.welcomeToJeju.wtj.dao.PlaceDao;
+import com.welcomeToJeju.wtj.dao.PlaceCommentDao;
 import com.welcomeToJeju.wtj.domain.PlaceComment;
 import com.welcomeToJeju.wtj.domain.User;
 
 @Controller
 public class PlaceCommentController {
 
-  @Autowired PlaceDao placeDao;
+  @Autowired PlaceCommentDao placeCommentDao;
   @Autowired ServletContext sc;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
@@ -30,7 +30,7 @@ public class PlaceCommentController {
     //    param.put("placeId", place.getId());
     param.put("placeId", id);
 
-    placeDao.insertComment(param);
+    placeCommentDao.insert(param);
     sqlSessionFactory.openSession().commit();
 
     ModelAndView mv = new ModelAndView();
