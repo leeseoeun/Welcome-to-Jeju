@@ -11,18 +11,19 @@ public class Place {
 
   private List<PlacePhoto> photos = new ArrayList<>();
   private List<PlaceComment> comments = new ArrayList<>();
-  private List<Theme> themes = new ArrayList<>();
+  private List<Theme> themeList = new ArrayList<>();
 
   private String x;
   private String y;
 
   @Override
-	public String toString() {
-		return "Place [id=" + id + ", place_name=" + place_name + ", address_name=" + address_name + ", photos=" + photos
-				+ ", comments=" + comments + ", themes=" + themes + ", x=" + x + ", y=" + y + "]";
-	}
+  public String toString() {
+    return "Place [id=" + id + ", place_name=" + place_name + ", address_name=" + address_name
+        + ", photos=" + photos + ", comments=" + comments + ", themeList=" + themeList + ", x=" + x
+        + ", y=" + y + "]";
+  }
 
-	public String getId() {
+  public String getId() {
     return id;
   }
 
@@ -30,40 +31,23 @@ public class Place {
     this.id = id;
   }
 
-  
   public String getPlace_name() {
-		return place_name;
-	}
+    return place_name;
+  }
 
-	public void setPlace_name(String place_name) {
-		this.place_name = place_name;
-	}
+  public void setPlace_name(String place_name) {
+    this.place_name = place_name;
+  }
 
-	public String getAddress_name() {
-		return address_name;
-	}
+  public String getAddress_name() {
+    return address_name;
+  }
 
-	public void setAddress_name(String address_name) {
-		this.address_name = address_name;
-	}
+  public void setAddress_name(String address_name) {
+    this.address_name = address_name;
+  }
 
-	public String getX() {
-		return x;
-	}
-
-	public void setX(String x) {
-		this.x = x;
-	}
-
-	public String getY() {
-		return y;
-	}
-
-	public void setY(String y) {
-		this.y = y;
-	}
-
-	public List<PlacePhoto> getPhotos() {
+  public List<PlacePhoto> getPhotos() {
     return photos;
   }
 
@@ -79,12 +63,29 @@ public class Place {
     this.comments = comments;
   }
 
-	public List<Theme> getThemes() {
-		return themes;
-	}
+  public List<Theme> getThemeList() {
+    return themeList;
+  }
 
-	public void setThemes(List<Theme> themes) {
-		this.themes = themes;
-	}
+  public void setThemeList(List<Theme> themeList) {
+    this.themeList = themeList;
+  }
+
+  public String getX() {
+    return x;
+  }
+
+  public void setX(String x) {
+    this.x = x;
+  }
+
+  public String getY() {
+    return y;
+  }
+
+  public void setY(String y) {
+    this.y = y;
+  }
+
 
 }

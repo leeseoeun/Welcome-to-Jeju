@@ -15,7 +15,6 @@ public class Theme implements Comparable<Theme> {
   private String emoji;
 
   private int viewCount;
-  private int reportedCount;
 
   private List<Place> placeList = new ArrayList<>();
   private List<String> hashtags = new ArrayList<>();
@@ -23,17 +22,8 @@ public class Theme implements Comparable<Theme> {
   @Override
   public String toString() {
     return "Theme [no=" + no + ", title=" + title + ", owner=" + owner + ", category=" + category
-        + ", isPublic=" + isPublic + ", isShare=" + isShare + ", viewCount=" + viewCount
-        + ", reportedCount=" + reportedCount + ", placeList=" + placeList + ", hashtags=" + hashtags
-        + "]";
-  }
-
-  public String getEmoji() {
-    return emoji;
-  }
-
-  public void setEmoji(String emoji) {
-    this.emoji = emoji;
+        + ", isPublic=" + isPublic + ", isShare=" + isShare + ", emoji=" + emoji + ", viewCount="
+        + viewCount + ", placeList=" + placeList + ", hashtags=" + hashtags + "]";
   }
 
   public int getNo() {
@@ -84,20 +74,20 @@ public class Theme implements Comparable<Theme> {
     this.isShare = isShare;
   }
 
+  public String getEmoji() {
+    return emoji;
+  }
+
+  public void setEmoji(String emoji) {
+    this.emoji = emoji;
+  }
+
   public int getViewCount() {
     return viewCount;
   }
 
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
-  }
-
-  public int getReportedCount() {
-    return reportedCount;
-  }
-
-  public void setReportedCount(int reportedCount) {
-    this.reportedCount = reportedCount;
   }
 
   public List<Place> getPlaceList() {

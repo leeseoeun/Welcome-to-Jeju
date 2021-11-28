@@ -4,17 +4,16 @@ import java.sql.Date;
 
 public class BoardComment {
 
-  int no;
-  String comment;
+  private int no;
+  private Board board;
+  private User writer;
+  private String comment;
   private Date registeredDate;
-
-  int boardNo;
-  int userNo;   // 작성자
 
   @Override
   public String toString() {
-    return "BoardComment [no=" + no + ", comment=" + comment + ", registeredDate=" + registeredDate
-        + ", boardNo=" + boardNo + ", userNo=" + userNo + "]";
+    return "BoardComment [no=" + no + ", board=" + board + ", writer=" + writer + ", comment="
+        + comment + ", registeredDate=" + registeredDate + "]";
   }
 
   public int getNo() {
@@ -23,6 +22,22 @@ public class BoardComment {
 
   public void setNo(int no) {
     this.no = no;
+  }
+
+  public Board getBoard() {
+    return board;
+  }
+
+  public void setBoard(Board board) {
+    this.board = board;
+  }
+
+  public User getWriter() {
+    return writer;
+  }
+
+  public void setWriter(User writer) {
+    this.writer = writer;
   }
 
   public String getComment() {
@@ -39,22 +54,6 @@ public class BoardComment {
 
   public void setRegisteredDate(Date registeredDate) {
     this.registeredDate = registeredDate;
-  }
-
-  public int getBoardNo() {
-    return boardNo;
-  }
-
-  public void setBoardNo(int boardNo) {
-    this.boardNo = boardNo;
-  }
-
-  public int getUserNo() {
-    return userNo;
-  }
-
-  public void setUserNo(int userNo) {
-    this.userNo = userNo;
   }
 
 

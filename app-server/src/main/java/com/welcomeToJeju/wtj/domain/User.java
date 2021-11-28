@@ -13,24 +13,13 @@ public class User implements Comparable<User> {
   private String emoji;
 
   private int viewCount;
-  private int reportedCount;
-  private int warningCount;
   private int active;
 
   @Override
   public String toString() {
     return "User [no=" + no + ", email=" + email + ", password=" + password + ", nickname="
-        + nickname + ", registeredDate=" + registeredDate + ", viewCount=" + viewCount
-        + ", reportedCount=" + reportedCount + ", warningCount=" + warningCount + ", active="
-        + active + "]";
-  }
-
-  public String getEmoji() {
-    return emoji;
-  }
-
-  public void setEmoji(String emoji) {
-    this.emoji = emoji;
+        + nickname + ", registeredDate=" + registeredDate + ", emoji=" + emoji + ", viewCount="
+        + viewCount + ", active=" + active + "]";
   }
 
   public int getNo() {
@@ -73,28 +62,20 @@ public class User implements Comparable<User> {
     this.registeredDate = registeredDate;
   }
 
+  public String getEmoji() {
+    return emoji;
+  }
+
+  public void setEmoji(String emoji) {
+    this.emoji = emoji;
+  }
+
   public int getViewCount() {
     return viewCount;
   }
 
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
-  }
-
-  public int getReportedCount() {
-    return reportedCount;
-  }
-
-  public void setReportedCount(int reportedCount) {
-    this.reportedCount = reportedCount;
-  }
-
-  public int getWarningCount() {
-    return warningCount;
-  }
-
-  public void setWarningCount(int warningCount) {
-    this.warningCount = warningCount;
   }
 
   public int getActive() {

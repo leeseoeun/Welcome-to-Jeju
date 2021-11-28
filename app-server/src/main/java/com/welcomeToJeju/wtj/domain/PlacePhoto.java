@@ -2,16 +2,15 @@ package com.welcomeToJeju.wtj.domain;
 
 public class PlacePhoto {
 
-  int no;
-  String filePath;
-
-  int userNo;
-  String placeId;
+  private int no;
+  private Place place;
+  private User writer;
+  private String filePath;
 
   @Override
   public String toString() {
-    return "Photo [no=" + no + ", filePath=" + filePath + ", userNo=" + userNo + ", placeId="
-        + placeId + "]";
+    return "PlacePhoto [no=" + no + ", place=" + place + ", writer=" + writer + ", filePath="
+        + filePath + "]";
   }
 
   public int getNo() {
@@ -22,28 +21,28 @@ public class PlacePhoto {
     this.no = no;
   }
 
+  public Place getPlace() {
+    return place;
+  }
+
+  public void setPlace(Place place) {
+    this.place = place;
+  }
+
+  public User getWriter() {
+    return writer;
+  }
+
+  public void setWriter(User writer) {
+    this.writer = writer;
+  }
+
   public String getFilePath() {
     return filePath;
   }
 
   public void setFilePath(String filePath) {
     this.filePath = filePath;
-  }
-
-  public int getUserNo() {
-    return userNo;
-  }
-
-  public void setUserNo(int userNo) {
-    this.userNo = userNo;
-  }
-
-  public String getPlaceId() {
-    return placeId;
-  }
-
-  public void setPlaceId(String placeId) {
-    this.placeId = placeId;
   }
 
 
