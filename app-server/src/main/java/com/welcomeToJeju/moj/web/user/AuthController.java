@@ -87,7 +87,7 @@ public class AuthController {
   public ModelAndView userinfo() {
     ModelAndView mv = new ModelAndView();
     mv.addObject("pageTitle", "회원 상세 보기");
-    mv.addObject("contentUrl", "user/AuthUserInfo2.jsp");
+    mv.addObject("contentUrl", "user/AuthUserInfo.jsp");
     mv.setViewName("template_main");
 
     return mv;

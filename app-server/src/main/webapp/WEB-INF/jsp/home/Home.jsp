@@ -58,7 +58,7 @@
             <a href="place/list?no=${theme.no}" class="slide-theme-content-item">
 							<div class="icon">${theme.emoji}</div>
 							<div class="theme-title">${theme.title}</div>
-							<div class="curators">${theme.hashtags}</div>
+							<%-- <div class="curators">${theme.hashtags}</div> --%>
             </a>
 				  </li>
 				</c:forEach>
@@ -196,7 +196,7 @@
         </li>
       </a>
       </c:forEach>  
-      <c:forEach begin="0" end="${3-(fn:length(allTheme)%3)-1}">
+      <c:forEach begin="0" end="${3-(fn:length(themeList)%3)-1}">
       <a class="list-container" style=visibility:hidden;>
         <li>
           <div class="content">
