@@ -12,8 +12,6 @@
     <result column="nickname" property="nickname"/>
     <result column="created_dt" property="registeredDate"/>
     <result column="view_cnt" property="viewCount"/>
-    <result column="reported_cnt" property="reportedCount"/>
-    <result column="warned_cnt" property="warningCount"/>
     <result column="active" property="active"/>
     
     <result column="emoji" property="emoji"/>

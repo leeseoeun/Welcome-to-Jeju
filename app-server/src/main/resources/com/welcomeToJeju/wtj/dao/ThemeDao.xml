@@ -11,7 +11,6 @@
     <result column="public" property="isPublic"/>
     <result column="share" property="isShare"/>
     <result column="view_cnt" property="viewCount"/>
-    <result column="reported_cnt" property="reportedCount"/>
     
     <result column="emoji" property="emoji"/>
     
