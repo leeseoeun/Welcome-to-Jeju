@@ -11,7 +11,7 @@
 <div class="main-container">
 
 <br>
-<h1 style=text-align:center;>나의 테마 목록 보기</h1>
+<h1 style=text-align:center;>참여 테마 목록 보기</h1>
 <br>
 
 <ul class="theme-list">
@@ -19,13 +19,13 @@
 	  <li>
 	  <div class="content">
 	  <div class="icon">➕</div>
-	  <div class="theme-title">나의 테마 만들기</div>
+	  <div class="theme-title">참여 테마 만들기</div>
 	  </div>  <!-- .content -->
 	  </li>
 </a>
 </ul>
 
-<h4>공개 테마</h4>
+<h4>참여 테마</h4>
 <ul class="theme-list">
 <c:forEach items="${themeList}" var="theme">
 	<c:choose>
@@ -54,36 +54,6 @@
 	  </a>
 </c:forEach>
 
-</ul>
-
-<h4>비공개 테마</h4>
-<ul class="theme-list">
-<c:forEach items="${themeList}" var="theme">
-  <c:choose>
-  <c:when test="${theme.isPublic eq '0'}">
-    <a class="list-container" href="../place/list?no=${theme.no}">
-      <li>
-      <div class="content">
-	      <div class="icon">${theme.emoji}</div>
-      <div class="theme-title">${theme.title}</div>
-      <div class="theme-count">#${theme.hashtags}</div>
-      </div>  <!-- .content -->
-      </li>
-    </a>
-  </c:when>
-  </c:choose>
-</c:forEach>
-<c:forEach begin="0" end="${3-(fn:length(themeList)%3)-1}">
-		<a class="list-container" style=visibility:hidden;>
-      <li>
-		    <div class="content">
-					<div class="icon">${theme.emoji}</div>
-					<div class="theme-title">${theme.title}</div>
-					<div class="theme-count">#${theme.hashtags}</div>
-				</div>  <!-- .content -->
-			</li>
-	  </a>
-</c:forEach>
 </ul>
 
 </div>  <!-- .main-container -->

@@ -54,16 +54,6 @@
 </select>
 </div>
 
-<div>
-<h5>공개 / 비공개</h5>
-<select class="form-select" aria-label="f-isPublic" id="f-isPublic" name ="isPublic" >
-  <option selected value="1">공개</option>
-  <option value="0">비공개</option>
-  <!-- <option selected>👇</option> -->
-  <!-- <option value="1">공개</option> -->
-</select>
-</div>
-
 <!-- 
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" value ="1" id="f-isPublic" name="isPublic">
