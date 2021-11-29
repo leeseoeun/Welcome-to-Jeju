@@ -10,13 +10,11 @@
     <result column="title" property="title"/>
     <result column="public" property="isPublic"/>
     <result column="share" property="isShare"/>
-    <result column="view_cnt" property="viewCount"/>
-    
     <result column="emoji" property="emoji"/>
+    <result column="view_cnt" property="viewCount"/>
     
     <association property="owner" javaType="User">
       <id column="owner_no" property="no"/>
-      <result column="owner_email" property="email"/>
       <result column="owner_nickname" property="nickname"/>
     </association>
     
@@ -39,8 +37,8 @@
   <!-- 테마 -->
   <insert id="insert" parameterType="Theme"
     useGeneratedKeys="true" keyColumn="theme_no" keyProperty="no">
-    insert into jeju_theme(title,public,share,category_no,user_no) 
-    values(#{title},#{isPublic},#{isShare},#{category.no},#{owner.no})
+    insert into jeju_theme(title,public,share,category_no,user_no,emoji) 
+    values(#{title},#{isPublic},#{isShare},#{category.no},#{owner.no},#{emoji})
   </insert>
   
   <insert id="insertHashtag" >
@@ -101,7 +99,6 @@
       t.view_cnt,
       t.reported_cnt,
       t.user_no owner_no,
-      u.email owner_email,
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
@@ -125,7 +122,6 @@
       t.view_cnt,
       t.reported_cnt,
       t.user_no owner_no,
-      u.email owner_email,
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
@@ -152,7 +148,6 @@
       t.view_cnt,
       t.reported_cnt,
       t.user_no owner_no,
-      u.email owner_email,
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
@@ -178,7 +173,6 @@
       t.view_cnt,
       t.reported_cnt,
       t.user_no owner_no,
-      u.email owner_email,
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
@@ -231,7 +225,6 @@
       t.view_cnt,
       t.reported_cnt,
       t.user_no owner_no,
-      u.email owner_email,
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
@@ -257,7 +250,6 @@
       t.view_cnt,
       t.reported_cnt,
       t.user_no owner_no,
-      u.email owner_email,
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
@@ -283,7 +275,6 @@
       t.view_cnt,
       t.reported_cnt,
       t.user_no owner_no,
-      u.email owner_email,
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
@@ -309,7 +300,6 @@
       t.view_cnt,
       t.reported_cnt,
       t.user_no owner_no,
-      u.email owner_email,
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
@@ -354,7 +344,6 @@
       t.view_cnt,
       t.reported_cnt,
       t.user_no owner_no,
-      u.email owner_email,
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
@@ -368,7 +357,7 @@
       left join jeju_liked_theme lt on t.theme_no=lt.theme_no
       inner join jeju_user u on t.user_no=u.user_no
     where
-      lt.user_no=#{no}
+      t.public=1 and lt.user_no=#{no}
   </select>
   
   <!-- 순위 -->  
@@ -389,7 +378,6 @@
       t.view_cnt,
       t.reported_cnt,
       t.user_no owner_no,
-      u.email owner_email,
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
@@ -416,7 +404,6 @@
       t.view_cnt,
       t.reported_cnt,
       t.user_no owner_no,
-      u.email owner_email,
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,

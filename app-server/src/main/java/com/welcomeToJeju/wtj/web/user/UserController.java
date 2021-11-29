@@ -96,7 +96,7 @@ public class UserController {
     user.setNo(oldUser.getNo());
     user.setEmail(oldUser.getEmail());
     user.setRegisteredDate(oldUser.getRegisteredDate());
-    user.setReportedCount(oldUser.getReportedCount());
+    //    user.setReportedCount(oldUser.getReportedCount());
     user.setViewCount(oldUser.getViewCount());
 
     userDao.update(user);

@@ -20,7 +20,7 @@ public class RankingController {
   public ModelAndView ranking() throws Exception {
 
     Collection<Theme> themeList = themeDao.themeRanking10();
-    Collection<User> userList = userDao.userRankingByViewCount();
+    Collection<User> userList = userDao.userRanking10();
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("themeList", themeList);

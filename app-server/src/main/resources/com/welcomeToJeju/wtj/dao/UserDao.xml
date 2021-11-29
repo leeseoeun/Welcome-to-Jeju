@@ -11,16 +11,15 @@
     <result column="password" property="password"/>
     <result column="nickname" property="nickname"/>
     <result column="created_dt" property="registeredDate"/>
+    <result column="emoji" property="emoji"/>
     <result column="view_cnt" property="viewCount"/>
     <result column="active" property="active"/>
-    
-    <result column="emoji" property="emoji"/>
-    
   </resultMap>
   
+  <!-- 유저 -->
   <insert id="insert" parameterType="User">
-    insert into jeju_user(email,password,nickname)
-    values(#{email},password(#{password}),#{nickname})
+    insert into jeju_user(email,password,nickname,emoji)
+    values(#{email},password(#{password}),#{nickname},#{emoji})
   </insert>
   
   <update id="update" parameterType="User">
@@ -37,6 +36,31 @@
     where user_no=#{no}
   </delete>
   
+  <!-- 로그인 -->
+  <select id="findByEmailAndPassword" resultMap="UserMap">
+    select
+      user_no,
+      email,
+      nickname,
+      created_dt,
+      view_cnt,
+      active,
+      emoji
+    from
+      jeju_user
+    where
+      active=1 and email=#{email} and password=password(#{password})
+  </select>
+  
+  <!-- 탈퇴 -->
+  <update id="updateActive" parameterType="int">
+    update jeju_user set
+      active = 0
+    where
+      user_no=#{userNo}
+  </update>
+  
+  <!-- 유저 목록 -->
   <select id="findAll" resultMap="UserMap">
     select
       user_no,
@@ -44,32 +68,42 @@
       nickname,
       created_dt,
       view_cnt,
-      reported_cnt,
-      warned_cnt,
       active,
       emoji
     from
       jeju_user
     order by
-      user_no
+      user_no desc
   </select>
   
-  <select id="userTop10" resultMap="UserMap">
-        select
-            user_no,
-            email,
-            nickname,
-            created_dt,
-            view_cnt,
-            reported_cnt,
-            warned_cnt,
-            active,
-            emoji
-        from
-            jeju_user
-        order by
-            view_cnt desc
-    </select>
+  <!-- 유저 검색 -->
+  <select id="findByNo" resultMap="UserMap" parameterType="int">
+    select
+      user_no,
+      email,
+      nickname,
+      created_dt,
+      view_cnt,
+      emoji
+    from
+      jeju_user
+    where
+      user_no=#{no}
+  </select>
+  
+  <select id="findByEmail" resultMap="UserMap" parameterType="String">
+	  select
+	    user_no,
+	    email,
+	    nickname,
+	    created_dt,
+	    view_cnt,
+	    emoji
+	  from
+	    jeju_user
+	  where
+	    active=1 and email=#{email}
+  </select>
   
   <select id="findByNickname" resultMap="UserMap" parameterType="String">
     select
@@ -78,170 +112,78 @@
       nickname,
       created_dt,
       view_cnt,
-      reported_cnt,
-      warned_cnt,
       emoji
     from
       jeju_user
     where
-      nickname=#{nickname}
+      active=1 and nickname=#{nickname}
   </select>
   
-    <select id="findByEmail" resultMap="UserMap" parameterType="String">
+  <select id="findByKeyword" resultMap="UserMap" parameterType="String">
     select
       user_no,
       email,
       nickname,
       created_dt,
       view_cnt,
-      reported_cnt,
-      warned_cnt,
-      emoji
-    from
-      jeju_user
-    where
-      email=#{email}
-  </select>
-  
-  <select id="findByNo" resultMap="UserMap" parameterType="int">
-    select
-      user_no,
-      email,
-      nickname,
-      created_dt,
-      view_cnt,
-      reported_cnt,
-      warned_cnt,
-      emoji
-    from
-      jeju_user
-    where
-      user_no=#{no}
-  </select>
-  
-  <select id="findByEmailAndPassword" resultMap="UserMap">
-    select
-      user_no,
-      email,
-      nickname,
-      created_dt,
-      view_cnt,
-      reported_cnt,
-      warned_cnt,
-      active,
-      emoji
-      from
-        jeju_user
-      where 
-        email=#{email} and password=password(#{password}) and active=1
-  </select>
-  
-  <select id="findByKeyword" resultMap = "UserMap" parameterType = "string">
-    select
-      user_no,
-      email,
-      nickname,
-      created_dt,
-      view_cnt,
-      reported_cnt,
-      warned_cnt,
       active,
       emoji
     from
       jeju_user
     where
-      nickname like(concat('%',#{keyword},'%')) and active=1
-   </select>
-   
-   <insert id="insertLikedUser">
-    insert into jeju_liked_user(user_no,user_no2)
+      active=1 and nickname like(concat('%',#{keyword},'%'))
+  </select>
+  
+  <!-- 좋아하는 유저 -->
+  <insert id="insertLikedUser">
+    insert into jeju_liked_user(user_no,liked_user_no)
     values(#{loginUserNo},#{likedUserNo})
-   </insert>
-   
-   <delete id="deleteLikedUser">
+  </insert>
+  
+  <delete id="deleteLikedUser">
     delete from jeju_liked_user
-    where user_no=#{loginUserNo} and user_no2=#{likedUserNo}
-   </delete>
-   
-   <select id="findAllLikedUser" resultMap="UserMap" parameterType="int">
+    where user_no=#{loginUserNo} and liked_user_no=#{likedUserNo}
+  </delete>
+  
+  <delete id="deleteAllLikedUser" parameterType="int">
+    delete from jeju_liked_user 
+    where user_no=#{loginUserNo}
+  </delete>
+  
+  <select id="findAllLikedUser" resultMap="UserMap" parameterType="int">
     select
       u.user_no,
-      nickname,
+      u.nickname,
       u.emoji
     from
       jeju_user u
-      inner join jeju_liked_user lu on u.user_no=lu.user_no2
+      inner join jeju_liked_user lu on u.user_no=lu.liked_user_no
     where
-      lu.user_no=#{no} and active=1
-   </select>
-   
-   <update id="updateViewCount" parameterType="int">
-    update 
-      jeju_user 
-    set 
+      u.active=1 and lu.user_no=#{no}
+  </select>
+  
+  <!-- 순위 -->
+  <update id="updateViewCount" parameterType="int">
+    update jeju_user set
       view_cnt= view_cnt + 1
-    where 
+    where
       user_no=#{userNo}
   </update>
   
-  <update id="updateReportedCount" parameterType="map">
-    update 
-      jeju_user 
-    set 
-      reported_cnt=#{reportedCnt}
-    where 
-      user_no=#{userNo}
-  </update>
-  
-  <update id="updateWarnedCount" parameterType="map">
-    update 
-      jeju_user
-    set 
-      warned_cnt=#{warnedCnt}
-    where 
-      user_no=#{userNo}
-  </update>
-  
-  <update id="updateActive" parameterType="int">
-    update 
-      jeju_user 
-    set 
-      active=0
-    where 
-      user_no=#{userNo}
-  </update>
-  
-  <select id="userRankingByViewCount" resultMap="UserMap">
+  <!-- 메인 -->
+  <select id="userRanking10" resultMap="UserMap">
     select
       user_no,
+      email,
       nickname,
+      created_dt,
       view_cnt,
+      active,
       emoji
     from
       jeju_user
-    where
-      active=1
-    order by view_cnt desc
+    order by
+      view_cnt desc
   </select>
   
-  <select id="findAllReportedUser" resultMap="UserMap">
-    select
-      user_no,
-      nickname,
-      reported_cnt,
-      emoji 
-    from
-      jeju_user
-    where
-      reported_cnt > 0
-    order by reported_cnt desc
-  </select>
-  
-  <delete id="deleteAllLikedUser" parameterType="int">
-    delete from 
-      jeju_liked_user 
-    where 
-      user_no=#{loginUserNo}
-  </delete>
-   
 </mapper>
