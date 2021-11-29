@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.ThemeDao;
-import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.ThemeCategory;
 import com.welcomeToJeju.wtj.domain.User;
@@ -20,7 +19,6 @@ public class MyThemeController {
 
   @Autowired ThemeDao themeDao;
   @Autowired PublicThemeDao publicThemeDao;
-  @Autowired UserDao userDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @GetMapping("/mytheme/addform")
