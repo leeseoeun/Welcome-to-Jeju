@@ -18,7 +18,7 @@ public class AdminThemeController {
   @Autowired PlaceDao placeDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
-  @GetMapping("/admin/themelist")
+  @GetMapping("/admin/themelist")   //
   public ModelAndView list() throws Exception {
     Collection<Theme> themeList = publicThemeDao.findAll();
 

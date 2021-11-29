@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.welcomeToJeju.wtj.dao.PublicThemeDao;
+import com.welcomeToJeju.wtj.dao.ShareThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.ThemeCategory;
@@ -17,12 +17,13 @@ import com.welcomeToJeju.wtj.domain.User;
 @Controller
 public class ShareThemeController {
 
-  @Autowired PublicThemeDao publicThemeDao;
+  @Autowired ShareThemeDao shareThemeDao;
   @Autowired UserDao userDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @GetMapping("/sharetheme/addform")
-  public ModelAndView addform() {
+  public ModelAndView addform(HttpSession session) {
+    User user = (User) session.getAttribute("loginUser");
     ModelAndView mv = new ModelAndView();
     mv.addObject("pageTitle", "참여 테마 만들기");
     mv.addObject("contentUrl", "theme/shareTheme/ShareThemeAddForm.jsp");
@@ -34,20 +35,24 @@ public class ShareThemeController {
   public String add(HttpSession session, 
       String title, 
       String category,
-      String isPublic,
       String hashtags) throws Exception {
+
     User user = (User) session.getAttribute("loginUser");
+
     Theme theme = new Theme();
     theme.setTitle(title);
     theme.setOwner(user);
     String[] hashtagArr = hashtags.split("#");
 
-    ThemeCategory c = publicThemeDao.findCategoryByNo(Integer.parseInt(category));
+    ThemeCategory c = shareThemeDao.findCategoryByNo(Integer.parseInt(category));
     theme.setCategory(c);
-    publicThemeDao.insert(theme);
+    theme.setIsShare(1);
+    theme.setIsPublic(1);
+
+    shareThemeDao.insert(theme);
     for (String hashtag : hashtagArr) {
       if(hashtag.length()==0) continue;
-      publicThemeDao.insertHashtag(theme.getNo(), hashtag);
+      shareThemeDao.insertHashtag(theme.getNo(), hashtag);
     }
     sqlSessionFactory.openSession().commit();
     return "redirect:list?no=" + user.getNo();
@@ -55,12 +60,12 @@ public class ShareThemeController {
 
   @GetMapping("/sharetheme/list")
   public ModelAndView list(int no) throws Exception {
-    Collection<Theme> themeList = publicThemeDao.findAllByUserNo(no);
+    Collection<Theme> themeList = shareThemeDao.findAllByUserNo(no);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("themeList", themeList);
-    mv.addObject("pageTitle", "나의 테마 목록 보기");
-    mv.addObject("contentUrl", "theme/myTheme/MyThemeList.jsp");
+    mv.addObject("pageTitle", "참여 테마 목록 보기");
+    mv.addObject("contentUrl", "theme/shareTheme/ShareThemeList.jsp");
     mv.setViewName("template_main");
     return mv;
   }
@@ -90,7 +95,7 @@ public class ShareThemeController {
   public ModelAndView delete(HttpSession session, int no) throws Exception {
     User user = (User) session.getAttribute("loginUser");
 
-    publicThemeDao.delete(no);
+    shareThemeDao.delete(no);
     sqlSessionFactory.openSession().commit();
 
     ModelAndView mv = new ModelAndView();

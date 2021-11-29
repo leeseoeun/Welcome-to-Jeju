@@ -42,10 +42,10 @@
 					<li><span class="emozi">👩‍</span><span class="name">나의
 							테마</span></li>
 				</a>
-
+        <a href="${contextRoot}/app/sharetheme/list?no=${loginUser.no}">
 				<li><span class="emozi">👫</span><span class="name">참여
 						테마</span></li>
-
+        </a>
         <!-- Single button -->
         <div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle"
