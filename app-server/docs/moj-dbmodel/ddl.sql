@@ -247,6 +247,9 @@ ALTER TABLE jeju_board
       board_no -- 게시글번호
     );
 
+ALTER TABLE jeju_board
+  MODIFY COLUMN board_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '게시글번호';
+
 -- 게시판댓글
 CREATE TABLE jeju_board_comment (
   board_comment_no INTEGER  NOT NULL COMMENT '게시글댓글번호', -- 게시글댓글번호
@@ -263,6 +266,9 @@ ALTER TABLE jeju_board_comment
     PRIMARY KEY (
       board_comment_no -- 게시글댓글번호
     );
+
+ALTER TABLE jeju_board_comment
+  MODIFY COLUMN board_comment_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '게시글댓글번호';
 
 -- 테마
 ALTER TABLE jeju_theme
