@@ -1,0 +1,94 @@
+
+.dash-board .hot-curators,
+.dash-board .hot-theme {
+  margin: var(--font-large) 0;
+  padding: var(--font-medium) 0;
+  overflow: hidden;
+}
+
+.dash-board .hot-curators .title,
+.dash-board .hot-theme .title,
+.hot-place .title {
+  margin-bottom: var(--font-medium);
+}
+
+.dash-board .hot-curators .title span,
+.dash-board .hot-theme .title span,
+.hot-place .title span {
+  font-size: var(--font-large);
+  margin: var(--font-micro);
+}
+
+.dash-board .hot-curators .title .sub,
+.dash-board .hot-theme .title .sub,
+.hot-place .title .sub {
+  font-size: var(--font-medium);
+  color: var(--black-light-color);
+  margin: var(--font-micro);
+}
+
+.dash-board .hot-curators .hot-curators-list,
+.dash-board .hot-theme .hot-theme-list,
+.hot-place .hot-place-list {
+  display: flex;
+  height: 138px;
+  margin: var(--font-micro);
+}
+
+.dash-board .hot-curators .hot-curators-list li,
+.dash-board .hot-theme .hot-theme-list li,
+.hot-place .hot-place-list li {
+  padding-right: var(--font-medium);
+}
+
+.dash-board .hot-curators .hot-curators-list .content:hover,
+.dash-board .hot-theme .hot-theme-list .content:hover,
+.hot-place .hot-place-list li .content:hover {
+  background-color: var(--green-color);
+}
+
+.dash-board .hot-curators .hot-curators-list li .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white-bg-color);
+  border-radius: 12px;
+  padding: var(--font-medium);
+  box-shadow: 2px 2px;
+  height: 152px;
+}
+
+.dash-board .hot-curators .hot-curators-list li .content:hover {
+  cursor: pointer;
+}
+
+.dash-board .hot-curators .hot-curators-list li .content div {
+  padding : var(--font-micro);
+}
+
+.dash-board .hot-curators .hot-curators-list li .content .icon {
+  font-size: var(--font-huge);
+  margin: var(--font-small);
+}
+
+.dash-board .hot-curators .hot-curators-list li .content .theme-title {
+  font-size: var(--font-medium);
+}
+.dash-board .hot-curators .hot-curators-list li .content .theme-count {
+  font-size: var(--font-small);
+  color: var(--black-light-color);
+}
+
+/* hot-theme-list */
+.dash-board .hot-theme .hot-theme-list li .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 350px;
+  background-color: var(--white-bg-color);
+  border-radius: 12px;
+  padding: var(--font-medium);
+  box-shadow: 2px 2px;
+  min-height: 100px;
+}

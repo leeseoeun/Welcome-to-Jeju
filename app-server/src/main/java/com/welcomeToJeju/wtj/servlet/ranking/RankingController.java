@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.User;
@@ -18,13 +18,13 @@ import com.welcomeToJeju.wtj.domain.User;
 public class RankingController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  ThemeDao themeDao;
+  PublicThemeDao publicThemeDao;
   UserDao userDao;
 
   @Override
   public void init(ServletConfig config) throws ServletException {
     ServletContext 웹애플리케이션공용저장소 = config.getServletContext();
-    themeDao = (ThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
+    publicThemeDao = (PublicThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
     userDao = (UserDao) 웹애플리케이션공용저장소.getAttribute("userDao");
   }
 
@@ -33,7 +33,7 @@ public class RankingController extends HttpServlet {
       throws ServletException, IOException {
 
     try {
-      Collection<Theme> themeList = themeDao.themeRankingByViewCount();
+      Collection<Theme> themeList = publicThemeDao.themeRankingByViewCount();
       Collection<User> userList = userDao.userRankingByViewCount();
 
       request.setAttribute("themeList", themeList);

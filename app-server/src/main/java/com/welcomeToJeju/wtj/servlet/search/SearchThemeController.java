@@ -9,19 +9,19 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 
 @WebServlet("/search/theme")
 public class SearchThemeController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  ThemeDao themeDao;
+  PublicThemeDao publicThemeDao;
 
   @Override
   public void init(ServletConfig config) throws ServletException {
     ServletContext 웹애플리케이션공용저장소 = config.getServletContext();
-    themeDao = (ThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
+    publicThemeDao = (PublicThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
   }
 
   @Override
@@ -33,7 +33,7 @@ public class SearchThemeController extends HttpServlet {
     // request.getParameter("keyword");
 
     try {
-      Collection<Theme> themeList = themeDao.findByKeyword(keyword);
+      Collection<Theme> themeList = publicThemeDao.findByKeyword(keyword);
 
       request.setAttribute("themeList", themeList);
       request.setAttribute("keyword", keyword);

@@ -3,18 +3,18 @@ package com.welcomeToJeju.wtj.servlet.admin;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 
 //@Controller
 public class AdminAllThemeListController {
 
-  @Autowired ThemeDao themeDao;
+  @Autowired PublicThemeDao publicThemeDao;
 
   //@GetMapping("/admin/alltheme")
   public ModelAndView list() throws Exception {
 
-    Collection<Theme> themeList = themeDao.findAll();
+    Collection<Theme> themeList = publicThemeDao.findAll();
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("allThemeList", themeList);

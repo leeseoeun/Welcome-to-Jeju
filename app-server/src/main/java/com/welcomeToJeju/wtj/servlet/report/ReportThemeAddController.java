@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import com.welcomeToJeju.wtj.dao.ReportDao;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.domain.ReportTheme;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.User;
@@ -20,14 +20,14 @@ public class ReportThemeAddController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   ReportDao reportDao;
-  ThemeDao themeDao;
+  PublicThemeDao publicThemeDao;
   SqlSession sqlSession;
 
   @Override
   public void init(ServletConfig config) throws ServletException {
     ServletContext 웹애플리케이션공용저장소 = config.getServletContext();
     reportDao = (ReportDao) 웹애플리케이션공용저장소.getAttribute("reportDao");
-    themeDao = (ThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
+    publicThemeDao = (PublicThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
     sqlSession = (SqlSession) 웹애플리케이션공용저장소.getAttribute("sqlSession");
   }
 
@@ -38,7 +38,7 @@ public class ReportThemeAddController extends HttpServlet {
     try {
       //
       int no = Integer.parseInt(request.getParameter("no"));
-      Theme theme = themeDao.findByNo(no);
+      Theme theme = publicThemeDao.findByNo(no);
 
       System.out.println(theme);
 

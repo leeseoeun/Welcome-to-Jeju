@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.ThemeCategory;
@@ -20,14 +20,14 @@ public class MyThemeAddController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   SqlSession sqlSession;
-  ThemeDao themeDao;
+  PublicThemeDao publicThemeDao;
   UserDao userDao;
 
   @Override
   public void init(ServletConfig config) throws ServletException {
     ServletContext 웹애플리케이션공용저장소 = config.getServletContext();
     sqlSession = (SqlSession) 웹애플리케이션공용저장소.getAttribute("sqlSession");
-    themeDao = (ThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
+    publicThemeDao = (PublicThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
     userDao = (UserDao) 웹애플리케이션공용저장소.getAttribute("userDao");
   }
 
@@ -41,7 +41,7 @@ public class MyThemeAddController extends HttpServlet {
 
       theme.setTitle(request.getParameter("title"));
 
-      ThemeCategory category = themeDao.findCategoryByNo(
+      ThemeCategory category = publicThemeDao.findCategoryByNo(
           Integer.valueOf(request.getParameter("category")));
       // 카테고리
       theme.setCategory(category);
@@ -56,9 +56,9 @@ public class MyThemeAddController extends HttpServlet {
       User loginUser = (User) request.getSession(true).getAttribute("loginUser");
       theme.setOwner(loginUser);
 
-      themeDao.insert(theme);
+      publicThemeDao.insert(theme);
       for (String hashtag : theme.getHashtags()) {
-        themeDao.insertHashtag(theme.getNo(), hashtag);
+        publicThemeDao.insertHashtag(theme.getNo(), hashtag);
       }
       sqlSession.commit();
 

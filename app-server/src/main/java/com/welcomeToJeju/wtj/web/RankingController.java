@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.User;
@@ -13,13 +13,13 @@ import com.welcomeToJeju.wtj.domain.User;
 @Controller
 public class RankingController {
 
-  @Autowired ThemeDao themeDao;
+  @Autowired PublicThemeDao publicThemeDao;
   @Autowired UserDao userDao;
 
   @GetMapping("/ranking")
   public ModelAndView ranking() throws Exception {
 
-    Collection<Theme> themeList = themeDao.themeRanking10();
+    Collection<Theme> themeList = publicThemeDao.themeRanking10();
     Collection<User> userList = userDao.userRanking10();
 
     ModelAndView mv = new ModelAndView();

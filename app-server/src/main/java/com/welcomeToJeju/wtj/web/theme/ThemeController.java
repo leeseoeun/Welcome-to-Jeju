@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.User;
@@ -14,13 +14,13 @@ import com.welcomeToJeju.wtj.domain.User;
 @Controller
 public class ThemeController {
 
-  @Autowired ThemeDao themeDao;
+  @Autowired PublicThemeDao publicThemeDao;
   @Autowired UserDao userDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @GetMapping("/theme/list")
   public ModelAndView allThemeList() throws Exception {
-    Collection<Theme> themeList = themeDao.findAllPublicTheme();
+    Collection<Theme> themeList = publicThemeDao.findAllPublicTheme();
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("themeList", themeList);
@@ -33,7 +33,7 @@ public class ThemeController {
 
   @GetMapping("/theme/userlist")
   public ModelAndView userThemeList(int no) throws Exception {
-    Collection<Theme> themeList = themeDao.findAllPublicThemeByUserNo(no);
+    Collection<Theme> themeList = publicThemeDao.findAllPublicThemeByUserNo(no);
     User user = userDao.findByNo(no);
 
     userDao.updateViewCount(no);

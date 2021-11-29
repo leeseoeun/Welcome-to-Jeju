@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.User;
@@ -18,12 +18,12 @@ public class SearchController {
   @Autowired SqlSessionFactory sqlSessionFactory;
   @Autowired UserDao userDao;
   @Autowired ServletContext sc;
-  @Autowired ThemeDao themeDao;
+  @Autowired PublicThemeDao publicThemeDao;
 
   @GetMapping("/search/hashtag")
   public ModelAndView searchHashtag(String keyword) throws Exception {
 
-    Collection<Theme> themeList = themeDao.findByHashtag(keyword);
+    Collection<Theme> themeList = publicThemeDao.findByHashtag(keyword);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("themeList", themeList);
@@ -37,7 +37,7 @@ public class SearchController {
   @GetMapping("/search/theme")
   public ModelAndView searchTheme(String keyword) throws Exception {
 
-    Collection<Theme> themeList = themeDao.findByKeyword(keyword);
+    Collection<Theme> themeList = publicThemeDao.findByKeyword(keyword);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("themeList", themeList);
@@ -68,8 +68,8 @@ public class SearchController {
   public ModelAndView searchAll(String option, String keyword) throws Exception {
 
     Collection<User> userList = userDao.findByKeyword(keyword);
-    Collection<Theme> themeList = themeDao.findByKeyword(keyword);
-    Collection<Theme> hashtagList = themeDao.findByHashtag(keyword);
+    Collection<Theme> themeList = publicThemeDao.findByKeyword(keyword);
+    Collection<Theme> hashtagList = publicThemeDao.findByHashtag(keyword);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("userList", userList);
@@ -102,8 +102,8 @@ public class SearchController {
   public ModelAndView searchSidebar(String keyword) throws Exception {
 
     Collection<User> userList = userDao.findByKeyword(keyword);
-    Collection<Theme> themeList = themeDao.findByKeyword(keyword);
-    Collection<Theme> hashtagList = themeDao.findByHashtag(keyword);
+    Collection<Theme> themeList = publicThemeDao.findByKeyword(keyword);
+    Collection<Theme> hashtagList = publicThemeDao.findByHashtag(keyword);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("userList", userList);
@@ -122,8 +122,8 @@ public class SearchController {
   public ModelAndView searchmain(String keyword) throws Exception {
 
     Collection<User> userList = userDao.findByKeyword(keyword);
-    Collection<Theme> themeList = themeDao.findByKeyword(keyword);
-    Collection<Theme> hashtagList = themeDao.findByHashtag(keyword);
+    Collection<Theme> themeList = publicThemeDao.findByKeyword(keyword);
+    Collection<Theme> hashtagList = publicThemeDao.findByHashtag(keyword);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("userList", userList);

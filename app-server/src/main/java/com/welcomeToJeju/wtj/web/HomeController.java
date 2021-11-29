@@ -5,23 +5,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.welcomeToJeju.wtj.dao.PlaceDao;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 
 @Controller
 public class HomeController {
 
-  @Autowired ThemeDao themeDao;
+  @Autowired PublicThemeDao publicThemeDao;
   @Autowired UserDao userDao;
   @Autowired PlaceDao placeDao;
 
   @GetMapping("/home")
   public String home(Model model/* , HttpSession session */) throws Exception {
-    model.addAttribute("themeRanking10", themeDao.themeRanking10());
+    model.addAttribute("themeRanking10", publicThemeDao.themeRanking10());
     model.addAttribute("userRanking10", userDao.userRanking10());
     model.addAttribute("placeRaking10", placeDao.placeRanking10());
-    model.addAttribute("newTheme10", themeDao.newTheme10());
-    model.addAttribute("themeList", themeDao.findAllPublicTheme());
+    model.addAttribute("newTheme10", publicThemeDao.newTheme10());
+    model.addAttribute("themeList", publicThemeDao.findAllPublicTheme());
 
     return "home/Home";
   }

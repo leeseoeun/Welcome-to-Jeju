@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.User;
 
@@ -17,12 +17,12 @@ import com.welcomeToJeju.wtj.domain.User;
 public class LikedThemeListController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  ThemeDao themeDao;
+  PublicThemeDao publicThemeDao;
 
   @Override
   public void init(ServletConfig config) throws ServletException {
     ServletContext 웹애플리케이션공용저장소 = config.getServletContext();
-    themeDao = (ThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
+    publicThemeDao = (PublicThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
   }
 
   @Override 
@@ -32,7 +32,7 @@ public class LikedThemeListController extends HttpServlet {
     try {
       User loginUser = (User) request.getSession(true).getAttribute("loginUser");
 
-      Collection<Theme> themeList = themeDao.findAllLikedTheme(loginUser.getNo());
+      Collection<Theme> themeList = publicThemeDao.findAllLikedTheme(loginUser.getNo());
 
       request.setAttribute("themeList", themeList);
 

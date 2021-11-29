@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.User;
 
@@ -15,7 +15,7 @@ import com.welcomeToJeju.wtj.domain.User;
 public class AdminUserController {
 
   @Autowired UserDao userDao;
-  @Autowired ThemeDao themeDao;
+  @Autowired PublicThemeDao publicThemeDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @GetMapping("/admin/userlist")
@@ -48,7 +48,7 @@ public class AdminUserController {
   public ModelAndView delete(int no) throws Exception {
     User user = userDao.findByNo(no);
 
-    themeDao.deleteAllLikedThemeByUserNo(user.getNo());
+    publicThemeDao.deleteAllLikedThemeByUserNo(user.getNo());
     userDao.deleteAllLikedUser(user.getNo());
     userDao.updateActive(user.getNo());
     sqlSessionFactory.openSession().commit();

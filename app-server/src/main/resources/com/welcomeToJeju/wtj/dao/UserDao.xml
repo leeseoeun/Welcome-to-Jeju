@@ -159,7 +159,7 @@
       jeju_user u
       inner join jeju_liked_user lu on u.user_no=lu.liked_user_no
     where
-      u.active=1 and lu.user_no=#{no}
+      u.active=1 and lu.user_no=#{loginUserNo}
   </select>
   
   <!-- 순위 -->

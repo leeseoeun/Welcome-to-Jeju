@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.User;
 
@@ -16,7 +16,7 @@ public class LikedUserController {
 
   @Autowired SqlSessionFactory sqlSessionFactory;
   @Autowired UserDao userDao;
-  @Autowired ThemeDao themeDao;
+  @Autowired PublicThemeDao publicThemeDao;
 
   @GetMapping("/likeduser/add")
   public String add(int userNo, int themeNo, HttpSession session) throws Exception {
