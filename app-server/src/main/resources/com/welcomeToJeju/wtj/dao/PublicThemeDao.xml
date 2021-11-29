@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.welcomeToJeju.wtj.dao.ThemeDao">
+<mapper namespace="com.welcomeToJeju.wtj.dao.PublicThemeDao">
   
-  <resultMap type="Theme" id="ThemeMap">
+  <resultMap type="Theme" id="PublicThemeMap">
     <id column="theme_no" property="no"/> 
     <result column="title" property="title"/>
     <result column="public" property="isPublic"/>
@@ -90,7 +90,7 @@
   </select>
   
   <!-- 테마 목록: 관리자 -->
-  <select id="findAll" resultMap="ThemeMap">
+  <select id="findAll" resultMap="PublicThemeMap">
     select
       t.theme_no,
       t.title,
@@ -113,7 +113,7 @@
       t.theme_no
   </select>
   
-  <select id="findAllByUserNo" resultMap="ThemeMap" parameterType="int">
+  <select id="findAllByUserNo" resultMap="PublicThemeMap" parameterType="int">
     select
       t.theme_no,
       t.title,
@@ -139,7 +139,7 @@
   </select>
   
   <!-- 테마 목록: 유저 -->
-	<select id="findAllPublicTheme" resultMap="ThemeMap">
+	<select id="findAllPublicTheme" resultMap="PublicThemeMap">
 	  select
       t.theme_no,
       t.title,
@@ -164,7 +164,7 @@
 	    t.theme_no
 	</select>
 	
-  <select id="findAllPublicThemeByUserNo" resultMap="ThemeMap" parameterType="int">
+  <select id="findAllPublicThemeByUserNo" resultMap="PublicThemeMap" parameterType="int">
     select
       t.theme_no,
       t.title,
@@ -190,7 +190,7 @@
   </select>
   
   <!-- 회의하기 -->
-  <select id="findAllPublicThemeByPlaceId" resultMap="ThemeMap" parameterType = "String">
+  <select id="findAllPublicThemeByPlaceId" resultMap="PublicThemeMap" parameterType = "String">
     select 
       t.theme_no,
       t.title,
@@ -216,7 +216,7 @@
   </select>
   
   <!-- 테마 검색 -->
-  <select id="findByNo" resultMap="ThemeMap" parameterType="int">
+  <select id="findByNo" resultMap="PublicThemeMap" parameterType="int">
     select
       t.theme_no,
       t.title,
@@ -241,7 +241,7 @@
       t.theme_no
   </select>
   
-  <select id="findByTitle" resultMap="ThemeMap" parameterType="String">
+  <select id="findByTitle" resultMap="PublicThemeMap" parameterType="String">
 	  select
       t.theme_no,
       t.title,
@@ -266,7 +266,7 @@
       t.theme_no
   </select>
   
-  <select id="findByHashtag" resultMap="ThemeMap" parameterType="String">
+  <select id="findByHashtag" resultMap="PublicThemeMap" parameterType="String">
     select
       t.theme_no,
       t.title,
@@ -291,7 +291,7 @@
       t.theme_no
   </select>
   
-  <select id="findByKeyword" resultMap="ThemeMap" parameterType="String">
+  <select id="findByKeyword" resultMap="PublicThemeMap" parameterType="String">
     select
       t.theme_no,
       t.title,
@@ -335,7 +335,7 @@
     where user_no=#{param1}
   </delete>
   
-  <select id="findAllLikedTheme" resultMap="ThemeMap" parameterType="int">
+  <select id="findAllLikedTheme" resultMap="PublicThemeMap" parameterType="int">
     select
       t.theme_no,
       t.title,
@@ -369,7 +369,7 @@
   </update>
   
   <!-- 메인 -->
-  <select id="themeRanking10" resultMap="ThemeMap">
+  <select id="themeRanking10" resultMap="PublicThemeMap">
     select
       t.theme_no,
       t.title,
@@ -395,7 +395,7 @@
       limit 10
   </select>
   
-  <select id="newTheme10" resultMap="ThemeMap">
+  <select id="newTheme10" resultMap="PublicThemeMap">
     select
       t.theme_no,
       t.title,
