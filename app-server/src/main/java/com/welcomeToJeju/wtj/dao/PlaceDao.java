@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import com.welcomeToJeju.wtj.domain.Place;
 
-public interface PlaceDao {
+public interface PlaceDao { //
 
   void insert(Place place) throws Exception;
   void insertPlaceUserTheme(HashMap<String,Object> param) throws Exception;

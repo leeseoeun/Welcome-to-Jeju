@@ -16,14 +16,14 @@ public class Theme implements Comparable<Theme> {
 
   private int viewCount;
 
-  private List<Place> placeList = new ArrayList<>();
   private List<String> hashtags = new ArrayList<>();
+  private List<Place> placeList = new ArrayList<>();
 
   @Override
   public String toString() {
     return "Theme [no=" + no + ", title=" + title + ", owner=" + owner + ", category=" + category
         + ", isPublic=" + isPublic + ", isShare=" + isShare + ", emoji=" + emoji + ", viewCount="
-        + viewCount + ", placeList=" + placeList + ", hashtags=" + hashtags + "]";
+        + viewCount + ", hashtags=" + hashtags + ", placeList=" + placeList + "]";
   }
 
   public int getNo() {
@@ -90,20 +90,20 @@ public class Theme implements Comparable<Theme> {
     this.viewCount = viewCount;
   }
 
-  public List<Place> getPlaceList() {
-    return placeList;
-  }
-
-  public void setPlaceList(List<Place> placeList) {
-    this.placeList = placeList;
-  }
-
   public List<String> getHashtags() {
     return hashtags;
   }
 
   public void setHashtags(List<String> hashtags) {
     this.hashtags = hashtags;
+  }
+
+  public List<Place> getPlaceList() {
+    return placeList;
+  }
+
+  public void setPlaceList(List<Place> placeList) {
+    this.placeList = placeList;
   }
 
   @Override
