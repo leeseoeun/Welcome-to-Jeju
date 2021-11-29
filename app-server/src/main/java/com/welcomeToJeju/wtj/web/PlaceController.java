@@ -20,7 +20,6 @@ import com.welcomeToJeju.wtj.dao.PlaceDao;
 import com.welcomeToJeju.wtj.dao.PlacePhotoDao;
 import com.welcomeToJeju.wtj.dao.ThemeDao;
 import com.welcomeToJeju.wtj.domain.Place;
-import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.User;
 import net.coobird.thumbnailator.ThumbnailParameter;
 import net.coobird.thumbnailator.Thumbnails;
@@ -37,14 +36,12 @@ public class PlaceController {
   @Autowired PlaceCommentDao placeCommentDao;
   @Autowired PlacePhotoDao placePhotoDao;
   @Autowired ThemeDao themeDao;  
-  int themeNo = 0;
+  int themeNo;
 
   @GetMapping("list")
   public ModelAndView list(String no) throws Exception{
     ModelAndView mv = new ModelAndView();
-    themeNo = Integer.parseInt(no);
-    Theme theme = themeDao.findByNo(themeNo);
-    mv.addObject(theme);
+    mv.addObject(themeDao.findByNo(Integer.parseInt(no)));
     mv.setViewName("place/PlaceList3");
     return mv;
   }
@@ -83,13 +80,10 @@ public class PlaceController {
     param1.put("comment", comment);
     placeCommentDao.insert(param1);
 
-
     for(Part p : photoFile) {
       param2.put("placeId", place.getId());
       param2.put("userNo", user.getNo());
-      System.out.println(p);
       String filename = UUID.randomUUID().toString();
-      System.out.println(filename);
       p.write(sc.getRealPath("/upload/place") + "/" + filename);
 
       Thumbnails.of(sc.getRealPath("/upload/place") + "/" + filename)
@@ -113,14 +107,15 @@ public class PlaceController {
           return name + "_100x100";
         }
       });
-      param2.put("filePath", filename);
 
+      param2.put("filePath", filename);
 
       placePhotoDao.insert(param2);
     }
+
     sqlSessionFactory.openSession().commit();
 
     return "redirect:list?no="+themeNo;
-
   }
+
 }

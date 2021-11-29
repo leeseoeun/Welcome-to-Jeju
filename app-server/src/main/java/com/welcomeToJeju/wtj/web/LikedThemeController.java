@@ -1,7 +1,6 @@
 package com.welcomeToJeju.wtj.web;
 
 import java.util.Collection;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +17,12 @@ public class LikedThemeController {
 
   @Autowired SqlSessionFactory sqlSessionFactory;
   @Autowired UserDao userDao;
-  @Autowired ServletContext sc;
   @Autowired ThemeDao themeDao;
 
   @GetMapping("/likedtheme/add")
   public String add(int themeNo, int userNo) throws Exception {
-
     themeDao.insertLikedTheme(themeNo, userNo);
     sqlSessionFactory.openSession().commit();
-
     return "redirect:../place/list?no=" + themeNo;
   }
 
@@ -49,7 +45,7 @@ public class LikedThemeController {
 
     themeDao.deleteLikedTheme(themeNo, ((User)session.getAttribute("loginUser")).getNo());
     sqlSessionFactory.openSession().commit();
-
     return "redirect:list";
   }
+
 }

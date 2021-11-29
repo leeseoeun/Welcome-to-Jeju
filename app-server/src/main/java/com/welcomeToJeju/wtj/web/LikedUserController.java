@@ -1,7 +1,6 @@
 package com.welcomeToJeju.wtj.web;
 
 import java.util.Collection;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ public class LikedUserController {
 
   @Autowired SqlSessionFactory sqlSessionFactory;
   @Autowired UserDao userDao;
-  @Autowired ServletContext sc;
   @Autowired ThemeDao themeDao;
 
   @GetMapping("/likeduser/add")
