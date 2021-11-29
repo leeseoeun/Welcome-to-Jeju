@@ -13,7 +13,7 @@ import com.welcomeToJeju.wtj.domain.PlaceComment;
 import com.welcomeToJeju.wtj.domain.User;
 
 @Controller
-public class PlaceCommentController {
+public class PlaceCommentController {   //
 
   @Autowired PlaceCommentDao placeCommentDao;
   @Autowired ServletContext sc;

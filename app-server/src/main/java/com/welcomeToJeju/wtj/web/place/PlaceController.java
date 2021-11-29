@@ -1,4 +1,4 @@
-package com.welcomeToJeju.wtj.web;
+package com.welcomeToJeju.wtj.web.place;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -28,7 +28,7 @@ import net.coobird.thumbnailator.name.Rename;
 
 @Controller
 @RequestMapping("/place")
-public class PlaceController {
+public class PlaceController {  //
 
   @Autowired SqlSessionFactory sqlSessionFactory;
   @Autowired ServletContext sc;

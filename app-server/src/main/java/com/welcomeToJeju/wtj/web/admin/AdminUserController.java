@@ -5,7 +5,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.welcomeToJeju.wtj.dao.ThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
@@ -44,21 +43,6 @@ public class AdminUserController {
     return mv;
   }
 
-  @GetMapping("/admin/userdelete")
-  public ModelAndView delete(int no) throws Exception {
-    User user = userDao.findByNo(no);
-
-    themeDao.deleteAllLikedThemeByUserNo(user.getNo());
-    userDao.deleteAllLikedUser(user.getNo());
-    userDao.updateActive(user.getNo());
-    sqlSessionFactory.openSession().commit();
-
-    ModelAndView mv = new ModelAndView();
-    mv.setViewName("redirect:userlist");
-
-    return mv;
-  }
-
   @PostMapping("/admin/userupdate")
   public ModelAndView update(int no, User user) throws Exception {
     User oldUser = userDao.findByNo(no);
@@ -70,6 +54,21 @@ public class AdminUserController {
     user.setViewCount(oldUser.getViewCount());
     user.setActive(oldUser.getActive());
     userDao.update(user);
+    sqlSessionFactory.openSession().commit();
+
+    ModelAndView mv = new ModelAndView();
+    mv.setViewName("redirect:userlist");
+
+    return mv;
+  }
+
+  @GetMapping("/admin/userdelete")
+  public ModelAndView delete(int no) throws Exception {
+    User user = userDao.findByNo(no);
+
+    themeDao.deleteAllLikedThemeByUserNo(user.getNo());
+    userDao.deleteAllLikedUser(user.getNo());
+    userDao.updateActive(user.getNo());
     sqlSessionFactory.openSession().commit();
 
     ModelAndView mv = new ModelAndView();
