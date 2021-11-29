@@ -23,4 +23,19 @@
     values(#{title},#{content},#{writer.no})
   </insert>
   
+  <select id="findAll" resultMap="BoardMap">
+    select
+      b.board_no,
+      b.title,
+      b.created_dt,
+      b.view_cnt,
+      u.user_no,
+      u.nickname
+    from
+      jeju_board b
+      inner join jeju_user u on b.user_no=u.user_no
+    order by 
+      b.board_no desc
+  </select>
+  
 </mapper>

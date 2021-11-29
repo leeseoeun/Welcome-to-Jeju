@@ -19,6 +19,19 @@ values(9, '&#128511;');
 insert into emoji(emoji_no, emoji)
 values(10, '&#127776;');
 
+insert into jeju_board(board_no,title,content,user_no) 
+values(1,'제목1', '내용1', 1);
+insert into jeju_board(board_no,title,content,user_no) 
+values(2,'제목2', '내용2', 2);
+insert into jeju_board(board_no,title,content,user_no) 
+values(3,'제목3', '내용3', 3);
+insert into jeju_board(board_no,title,content,user_no) 
+values(4,'제목4', '내용4', 4);
+insert into jeju_board(board_no,title,content,user_no) 
+values(5,'제목5', '내용5', 5);
+insert into jeju_board(board_no,title,content,user_no) 
+values(6,'제목6', '내용6', 6);
+
 -- 회원
 insert into jeju_user(user_no, email, password, nickname, emoji)
 values(1, 'aaa@test.com', password('1111'), '감귤밭떼기', '&#9992;');
@@ -78,15 +91,15 @@ insert into jeju_place(place_id, place_name, place_address,x_coord,y_coord) valu
 insert into jeju_place(place_id, place_name, place_address,x_coord,y_coord) values('27525363', '깡촌흑돼지', '제주특별자치도 제주시 조천읍 함덕리 1001', 126.667135470078, 33.541274383213);
 
 -- 후기
-insert into jeju_place_comment(comment_no, place_id, comment, user_no) values(1, '1261877281', '새우집인데 조개가 존맛 ㅠㅠ', 1);
-insert into jeju_place_comment(comment_no, place_id, comment, user_no) values(2, '1641211499', '귀여운 양', 1);
+insert into jeju_place_comment(place_comment_no, place_id, comment, user_no) values(1, '1261877281', '새우집인데 조개가 존맛 ㅠㅠ', 1);
+insert into jeju_place_comment(place_comment_no, place_id, comment, user_no) values(2, '1641211499', '귀여운 양', 1);
 
-insert into jeju_place_comment(comment_no, place_id, comment, user_no) values(3, '1261877281', '새우가 맛있음!!', 4);
-insert into jeju_place_comment(comment_no, place_id, comment, user_no) values(4, '269602057', '분위기가 너무 좋다.', 4);
-
-insert into jeju_place_comment(comment_no, place_id, comment, user_no) values(5, '27525363', '흑돼지 존맛집!!', 2);
-insert into jeju_place_comment(comment_no, place_id, comment, user_no) values(6, '27525363', '현지인들도 매일 가는 맛집', 5);
-insert into jeju_place_comment(comment_no, place_id, comment, user_no) values(7, '27525363', '주차장이 넓은 삼겹살맛집', 3);
+insert into jeju_place_comment(place_comment_no, place_id, comment, user_no) values(3, '1261877281', '새우가 맛있음!!', 4);
+insert into jeju_place_comment(place_comment_no, place_id, comment, user_no) values(4, '269602057', '분위기가 너무 좋다.', 4);
+                               
+insert into jeju_place_comment(place_comment_no, place_id, comment, user_no) values(5, '27525363', '흑돼지 존맛집!!', 2);
+insert into jeju_place_comment(place_comment_no, place_id, comment, user_no) values(6, '27525363', '현지인들도 매일 가는 맛집', 5);
+insert into jeju_place_comment(place_comment_no, place_id, comment, user_no) values(7, '27525363', '주차장이 넓은 삼겹살맛집', 3);
 
 -- 사진
 insert into jeju_place_photo(place_photo_no, place_id, file_path, user_no) values(1, '1261877281',  '조개.gif', 1);
@@ -100,14 +113,14 @@ insert into jeju_place_photo(place_photo_no, place_id, file_path, user_no) value
 insert into jeju_place_photo(place_photo_no, place_id, file_path, user_no) values(7, '27525363', '삼겹살.gif', 3);
 
 -- 좋아하는 유저
-Insert into jeju_liked_user(user_no, user_no2) values(1, 2);
-Insert into jeju_liked_user(user_no, user_no2) values(4, 3);
-Insert into jeju_liked_user(user_no, user_no2) values(1, 4);
-Insert into jeju_liked_user(user_no, user_no2) values(2, 5);
-Insert into jeju_liked_user(user_no, user_no2) values(2, 6);
-Insert into jeju_liked_user(user_no, user_no2) values(6, 1);
-Insert into jeju_liked_user(user_no, user_no2) values(3, 6);
-Insert into jeju_liked_user(user_no, user_no2) values(3, 5);
+Insert into jeju_liked_user(user_no, liked_user_no) values(1, 2);
+Insert into jeju_liked_user(user_no, liked_user_no) values(4, 3);
+Insert into jeju_liked_user(user_no, liked_user_no) values(1, 4);
+Insert into jeju_liked_user(user_no, liked_user_no) values(2, 5);
+Insert into jeju_liked_user(user_no, liked_user_no) values(2, 6);
+Insert into jeju_liked_user(user_no, liked_user_no) values(6, 1);
+Insert into jeju_liked_user(user_no, liked_user_no) values(3, 6);
+Insert into jeju_liked_user(user_no, liked_user_no) values(3, 5);
 
 -- 해시태그
 Insert into jeju_theme_hashtag(hashtag_no, theme_no, name) value(1, 1, '양들이랑');
@@ -184,30 +197,6 @@ Insert into jeju_liked_theme(user_no, theme_no) values(2, 13);
 Insert into jeju_liked_theme(user_no, theme_no) values(3, 3);
 Insert into jeju_liked_theme(user_no, theme_no) values(3, 10);
 Insert into jeju_liked_theme(user_no, theme_no) values(3, 15);
-
--- 신고 상태
-Insert into jeju_report_status(report_status_no, title) values(0, '확인중');
-Insert into jeju_report_status(report_status_no, title) values(1, '완료');
-
--- 유저 신고
-Insert into jeju_report_user(user_no, user_no2, content, report_status_no)
-values(3, 2, '댓글테러를 일삼음', 0);
-
-Insert into jeju_report_user(user_no, user_no2, content, report_status_no)
-values(2, 4, '누가봐도알바', 0);
-
-Insert into jeju_report_user(user_no, user_no2, content, report_status_no)
-values(1, 5, '후기에 욕을..', 1);
-
--- 테마 신고
-Insert into jeju_report_theme(user_no, theme_no, content, report_status_no)
-values(2, 1, '겹치는 테마', 0);
-
-Insert into jeju_report_theme(user_no, theme_no, content, report_status_no)
-values(5, 2, '조개집이 아니고 고기집인데요', 1);
-
-Insert into jeju_report_theme(user_no, theme_no, content, report_status_no)
-values(3, 19, '미성년자에게 술강요', 1);
 
 -- 장소_유저_테마
 Insert into jeju_place_user_theme(place_id, user_no, theme_no) 

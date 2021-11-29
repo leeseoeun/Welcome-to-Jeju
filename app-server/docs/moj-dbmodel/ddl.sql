@@ -7,20 +7,11 @@ DROP TABLE IF EXISTS jeju_theme RESTRICT;
 -- 장소
 DROP TABLE IF EXISTS jeju_place RESTRICT;
 
--- 신고상태
-DROP TABLE IF EXISTS jeju_report_status RESTRICT;
-
 -- 좋아하는유저
 DROP TABLE IF EXISTS jeju_liked_user RESTRICT;
 
 -- 좋아하는테마
 DROP TABLE IF EXISTS jeju_liked_theme RESTRICT;
-
--- 유저신고
-DROP TABLE IF EXISTS jeju_report_user RESTRICT;
-
--- 테마신고
-DROP TABLE IF EXISTS jeju_report_theme RESTRICT;
 
 -- 해시태그
 DROP TABLE IF EXISTS jeju_theme_hashtag RESTRICT;
@@ -37,21 +28,22 @@ DROP TABLE IF EXISTS jeju_theme_category RESTRICT;
 -- 장소_유저_테마
 DROP TABLE IF EXISTS jeju_place_user_theme RESTRICT;
 
--- 이모지
-DROP TABLE IF EXISTS emoji RESTRICT;
+-- 게시판
+DROP TABLE IF EXISTS jeju_board RESTRICT;
+
+-- 게시판댓글
+DROP TABLE IF EXISTS jeju_board_comment RESTRICT;
 
 -- 유저
 CREATE TABLE jeju_user (
-  user_no      INTEGER      NOT NULL COMMENT '유저번호', -- 유저번호
-  email        VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
-  password     VARCHAR(100) NOT NULL COMMENT '비밀번호', -- 비밀번호
-  nickname     VARCHAR(30)  NOT NULL COMMENT '닉네임', -- 닉네임
-  created_dt   DATE         NOT NULL DEFAULT curdate() COMMENT '등록일', -- 등록일
-  view_cnt     INTEGER      NULL     DEFAULT 0 COMMENT '조회수', -- 조회수
-  reported_cnt INTEGER      NULL     DEFAULT 0 COMMENT '신고수', -- 신고수
-  warned_cnt   INTEGER      NULL     DEFAULT 0 COMMENT '경고수', -- 경고수
-  active       INTEGER      NULL     DEFAULT 1 COMMENT '탈퇴', -- 탈퇴
-  emoji        VARCHAR(255) NULL     COMMENT '이모지' -- 이모지
+  user_no    INTEGER      NOT NULL COMMENT '유저번호', -- 유저번호
+  email      VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
+  password   VARCHAR(100) NOT NULL COMMENT '비밀번호', -- 비밀번호
+  nickname   VARCHAR(30)  NOT NULL COMMENT '닉네임', -- 닉네임
+  created_dt DATE         NOT NULL DEFAULT curdate() COMMENT '등록일', -- 등록일
+  view_cnt   INTEGER      NULL     DEFAULT 0 COMMENT '조회수', -- 조회수
+  active     INTEGER      NULL     DEFAULT 1 COMMENT '탈퇴', -- 탈퇴
+  emoji      VARCHAR(255) NOT NULL COMMENT '이모지' -- 이모지
 )
 COMMENT '유저';
 
@@ -74,16 +66,15 @@ ALTER TABLE jeju_user
 
 -- 테마
 CREATE TABLE jeju_theme (
-  theme_no     INTEGER      NOT NULL COMMENT '테마번호', -- 테마번호
-  user_no      INTEGER      NOT NULL COMMENT '유저번호', -- 유저번호
-  category_no  INTEGER      NOT NULL COMMENT '카테고리번호', -- 카테고리번호
-  title        VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
-  public       INTEGER      NOT NULL DEFAULT 1 COMMENT '공개여부', -- 공개여부
-  share        INTEGER      NOT NULL COMMENT '공유여부', -- 공유여부
-  view_cnt     INTEGER      NULL     DEFAULT 0 COMMENT '조회수', -- 조회수
-  reported_cnt INTEGER      NULL     DEFAULT 0 COMMENT '신고수', -- 신고수
-  created_dt   DATE         NOT NULL DEFAULT curdate() COMMENT '등록일', -- 등록일
-  emoji        VARCHAR(255) NULL     COMMENT '이모지' -- 이모지
+  theme_no    INTEGER      NOT NULL COMMENT '테마번호', -- 테마번호
+  user_no     INTEGER      NOT NULL COMMENT '유저번호', -- 유저번호
+  category_no INTEGER      NOT NULL COMMENT '카테고리번호', -- 카테고리번호
+  title       VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+  public      INTEGER      NOT NULL DEFAULT 1 COMMENT '공개여부', -- 공개여부
+  share       INTEGER      NOT NULL COMMENT '공유여부', -- 공유여부
+  created_dt  DATE         NOT NULL DEFAULT curdate() COMMENT '등록일', -- 등록일
+  view_cnt    INTEGER      NULL     DEFAULT 0 COMMENT '조회수', -- 조회수
+  emoji       VARCHAR(255) NOT NULL COMMENT '이모지' -- 이모지
 )
 COMMENT '테마';
 
@@ -94,12 +85,6 @@ ALTER TABLE jeju_theme
       theme_no -- 테마번호
     );
 
--- 테마 유니크 인덱스
-CREATE UNIQUE INDEX UIX_jeju_theme
-  ON jeju_theme ( -- 테마
-    title ASC -- 제목
-  );
-
 ALTER TABLE jeju_theme
   MODIFY COLUMN theme_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '테마번호';
 
@@ -108,8 +93,8 @@ CREATE TABLE jeju_place (
   place_id      VARCHAR(255) NOT NULL COMMENT '장소번호', -- 장소번호
   place_name    VARCHAR(50)  NOT NULL COMMENT '장소이름', -- 장소이름
   place_address VARCHAR(255) NOT NULL COMMENT '장소주소', -- 장소주소
-  y_coord       DOUBLE       NOT NULL COMMENT '경도', -- 경도
-  x_coord       DOUBLE       NOT NULL COMMENT '위도' -- 위도
+  x_coord       DOUBLE       NOT NULL COMMENT '위도', -- 위도
+  y_coord       DOUBLE       NOT NULL COMMENT '경도' -- 경도
 )
 COMMENT '장소';
 
@@ -120,24 +105,10 @@ ALTER TABLE jeju_place
       place_id -- 장소번호
     );
 
--- 신고상태
-CREATE TABLE jeju_report_status (
-  report_status_no INTEGER     NOT NULL DEFAULT 0 COMMENT '신고상태번호', -- 신고상태번호
-  title            VARCHAR(50) NOT NULL COMMENT '상태명' -- 상태명
-)
-COMMENT '신고상태';
-
--- 신고상태
-ALTER TABLE jeju_report_status
-  ADD CONSTRAINT PK_jeju_report_status -- 신고상태 기본키
-    PRIMARY KEY (
-      report_status_no -- 신고상태번호
-    );
-
 -- 좋아하는유저
 CREATE TABLE jeju_liked_user (
-  user_no  INTEGER NOT NULL COMMENT '유저번호', -- 유저번호
-  user_no2 INTEGER NOT NULL COMMENT '팔로잉' -- 팔로잉
+  user_no       INTEGER NOT NULL COMMENT '유저번호', -- 유저번호
+  liked_user_no INTEGER NOT NULL COMMENT '좋아하는유저' -- 좋아하는유저
 )
 COMMENT '좋아하는유저';
 
@@ -145,15 +116,15 @@ COMMENT '좋아하는유저';
 ALTER TABLE jeju_liked_user
   ADD CONSTRAINT PK_jeju_liked_user -- 좋아하는유저 기본키
     PRIMARY KEY (
-      user_no,  -- 유저번호
-      liked_user_no  -- 팔로잉
+      user_no,       -- 유저번호
+      liked_user_no  -- 좋아하는유저
     );
 
 -- 좋아하는유저 유니크 인덱스
 CREATE UNIQUE INDEX UIX_jeju_liked_user
   ON jeju_liked_user ( -- 좋아하는유저
-    user_no ASC,  -- 유저번호
-    user_no2 ASC  -- 팔로잉
+    user_no ASC,       -- 유저번호
+    liked_user_no ASC  -- 좋아하는유저
   );
 
 -- 좋아하는테마
@@ -171,67 +142,11 @@ ALTER TABLE jeju_liked_theme
       user_no   -- 유저번호
     );
 
--- 유저신고
-CREATE TABLE jeju_report_user (
-  report_user_no   INTEGER NOT NULL COMMENT '유저신고번호', -- 유저신고번호
-  user_no          INTEGER NOT NULL COMMENT '신고자', -- 신고자
-  user_no2         INTEGER NOT NULL COMMENT '피신고자', -- 피신고자
-  report_status_no INTEGER NOT NULL COMMENT '신고상태번호', -- 신고상태번호
-  content          TEXT    NOT NULL COMMENT '내용', -- 내용
-  created_dt       DATE    NOT NULL DEFAULT curdate() COMMENT '신고일' -- 신고일
-)
-COMMENT '유저신고';
-
--- 유저신고
-ALTER TABLE jeju_report_user
-  ADD CONSTRAINT PK_jeju_report_user -- 유저신고 기본키
-    PRIMARY KEY (
-      report_user_no -- 유저신고번호
-    );
-
--- 유저신고 유니크 인덱스
-CREATE UNIQUE INDEX UIX_jeju_report_user
-  ON jeju_report_user ( -- 유저신고
-    user_no ASC,  -- 신고자
-    user_no2 ASC  -- 피신고자
-  );
-
-ALTER TABLE jeju_report_user
-  MODIFY COLUMN report_user_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '유저신고번호';
-
--- 테마신고
-CREATE TABLE jeju_report_theme (
-  report_theme_no  INTEGER NOT NULL COMMENT '테마신고번호', -- 테마신고번호
-  theme_no         INTEGER NOT NULL COMMENT '테마번호', -- 테마번호
-  user_no          INTEGER NOT NULL COMMENT '유저번호', -- 유저번호
-  report_status_no INTEGER NOT NULL COMMENT '신고상태번호', -- 신고상태번호
-  content          TEXT    NOT NULL COMMENT '내용', -- 내용
-  created_dt       DATE    NOT NULL DEFAULT curdate() COMMENT '신고일' -- 신고일
-)
-COMMENT '테마신고';
-
--- 테마신고
-ALTER TABLE jeju_report_theme
-  ADD CONSTRAINT PK_jeju_report_theme -- 테마신고 기본키
-    PRIMARY KEY (
-      report_theme_no -- 테마신고번호
-    );
-
--- 테마신고 유니크 인덱스
-CREATE UNIQUE INDEX UIX_jeju_report_theme
-  ON jeju_report_theme ( -- 테마신고
-    user_no ASC,  -- 유저번호
-    theme_no ASC  -- 테마번호
-  );
-
-ALTER TABLE jeju_report_theme
-  MODIFY COLUMN report_theme_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '테마신고번호';
-
 -- 해시태그
 CREATE TABLE jeju_theme_hashtag (
   hashtag_no INTEGER     NOT NULL COMMENT '해시태그번호', -- 해시태그번호
   theme_no   INTEGER     NOT NULL COMMENT '테마번호', -- 테마번호
-  name       VARCHAR(50) NOT NULL COMMENT '해시태그명' -- 해시태그명
+  name       VARCHAR(50) NOT NULL COMMENT '해시태그' -- 해시태그
 )
 COMMENT '해시태그';
 
@@ -266,10 +181,10 @@ ALTER TABLE jeju_place_photo
 
 -- 장소후기
 CREATE TABLE jeju_place_comment (
-  comment_no INTEGER      NOT NULL COMMENT '후기번호', -- 후기번호
-  place_id   VARCHAR(255) NOT NULL COMMENT '장소번호', -- 장소번호
-  user_no    INTEGER      NOT NULL COMMENT '유저번호', -- 유저번호
-  comment    TEXT         NOT NULL COMMENT '장소후기' -- 장소후기
+  place_comment_no INTEGER      NOT NULL COMMENT '후기번호', -- 후기번호
+  place_id         VARCHAR(255) NOT NULL COMMENT '장소번호', -- 장소번호
+  user_no          INTEGER      NOT NULL COMMENT '유저번호', -- 유저번호
+  comment          TEXT         NOT NULL COMMENT '장소후기' -- 장소후기
 )
 COMMENT '장소후기';
 
@@ -277,16 +192,16 @@ COMMENT '장소후기';
 ALTER TABLE jeju_place_comment
   ADD CONSTRAINT PK_jeju_place_comment -- 장소후기 기본키
     PRIMARY KEY (
-      comment_no -- 후기번호
+      place_comment_no -- 후기번호
     );
 
 ALTER TABLE jeju_place_comment
-  MODIFY COLUMN comment_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '후기번호';
+  MODIFY COLUMN place_comment_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '후기번호';
 
 -- 카테고리
 CREATE TABLE jeju_theme_category (
   category_no INTEGER     NOT NULL COMMENT '카테고리번호', -- 카테고리번호
-  name        VARCHAR(50) NOT NULL COMMENT '카테고리명' -- 카테고리명
+  name        VARCHAR(50) NOT NULL COMMENT '카테고리' -- 카테고리
 )
 COMMENT '카테고리';
 
@@ -314,28 +229,39 @@ ALTER TABLE jeju_place_user_theme
       theme_no  -- 테마번호
     );
 
--- 이모지
-CREATE TABLE emoji (
-  emoji    VARCHAR(255) NOT NULL COMMENT '이모지', -- 이모지
-  emoji_no INTEGER      NOT NULL COMMENT '이모지번호' -- 이모지번호
+-- 게시판
+CREATE TABLE jeju_board (
+  board_no   INTEGER      NOT NULL COMMENT '게시글번호', -- 게시글번호
+  user_no    INTEGER      NOT NULL COMMENT '유저번호', -- 유저번호
+  title      VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+  content    TEXT         NOT NULL COMMENT '내용', -- 내용
+  created_dt DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
+  view_cnt   INTEGER      NULL     DEFAULT 0 COMMENT '조회수' -- 조회수
 )
-COMMENT '이모지';
+COMMENT '게시판';
 
--- 이모지
-ALTER TABLE emoji
-  ADD CONSTRAINT PK_emoji -- 이모지 기본키
+-- 게시판
+ALTER TABLE jeju_board
+  ADD CONSTRAINT PK_jeju_board -- 게시판 기본키
     PRIMARY KEY (
-      emoji -- 이모지
+      board_no -- 게시글번호
     );
 
--- 유저
-ALTER TABLE jeju_user
-  ADD CONSTRAINT FK_emoji_TO_jeju_user -- 이모지 -> 유저
-    FOREIGN KEY (
-      emoji -- 이모지
-    )
-    REFERENCES emoji ( -- 이모지
-      emoji -- 이모지
+-- 게시판댓글
+CREATE TABLE jeju_board_comment (
+  board_comment_no INTEGER  NOT NULL COMMENT '게시글댓글번호', -- 게시글댓글번호
+  board_no         INTEGER  NOT NULL COMMENT '게시글번호', -- 게시글번호
+  user_no          INTEGER  NOT NULL COMMENT '유저번호', -- 유저번호
+  content          TEXT     NOT NULL COMMENT '내용', -- 내용
+  created_dt       DATETIME NOT NULL DEFAULT now() COMMENT '작성일' -- 작성일
+)
+COMMENT '게시판댓글';
+
+-- 게시판댓글
+ALTER TABLE jeju_board_comment
+  ADD CONSTRAINT PK_jeju_board_comment -- 게시판댓글 기본키
+    PRIMARY KEY (
+      board_comment_no -- 게시글댓글번호
     );
 
 -- 테마
@@ -358,16 +284,6 @@ ALTER TABLE jeju_theme
       category_no -- 카테고리번호
     );
 
--- 테마
-ALTER TABLE jeju_theme
-  ADD CONSTRAINT FK_emoji_TO_jeju_theme -- 이모지 -> 테마
-    FOREIGN KEY (
-      emoji -- 이모지
-    )
-    REFERENCES emoji ( -- 이모지
-      emoji -- 이모지
-    );
-
 -- 좋아하는유저
 ALTER TABLE jeju_liked_user
   ADD CONSTRAINT FK_jeju_user_TO_jeju_liked_user -- 유저 -> 좋아하는유저
@@ -382,7 +298,7 @@ ALTER TABLE jeju_liked_user
 ALTER TABLE jeju_liked_user
   ADD CONSTRAINT FK_jeju_user_TO_jeju_liked_user2 -- 유저 -> 좋아하는유저2
     FOREIGN KEY (
-      user_no2 -- 팔로잉
+      liked_user_no -- 좋아하는유저
     )
     REFERENCES jeju_user ( -- 유저
       user_no -- 유저번호
@@ -406,66 +322,6 @@ ALTER TABLE jeju_liked_theme
     )
     REFERENCES jeju_theme ( -- 테마
       theme_no -- 테마번호
-    );
-
--- 유저신고
-ALTER TABLE jeju_report_user
-  ADD CONSTRAINT FK_jeju_user_TO_jeju_report_user -- 유저 -> 유저신고
-    FOREIGN KEY (
-      user_no -- 신고자
-    )
-    REFERENCES jeju_user ( -- 유저
-      user_no -- 유저번호
-    );
-
--- 유저신고
-ALTER TABLE jeju_report_user
-  ADD CONSTRAINT FK_jeju_user_TO_jeju_report_user2 -- 유저 -> 유저신고2
-    FOREIGN KEY (
-      user_no2 -- 피신고자
-    )
-    REFERENCES jeju_user ( -- 유저
-      user_no -- 유저번호
-    );
-
--- 유저신고
-ALTER TABLE jeju_report_user
-  ADD CONSTRAINT FK_jeju_report_status_TO_jeju_report_user -- 신고상태 -> 유저신고
-    FOREIGN KEY (
-      report_status_no -- 신고상태번호
-    )
-    REFERENCES jeju_report_status ( -- 신고상태
-      report_status_no -- 신고상태번호
-    );
-
--- 테마신고
-ALTER TABLE jeju_report_theme
-  ADD CONSTRAINT FK_jeju_user_TO_jeju_report_theme -- 유저 -> 테마신고
-    FOREIGN KEY (
-      user_no -- 유저번호
-    )
-    REFERENCES jeju_user ( -- 유저
-      user_no -- 유저번호
-    );
-
--- 테마신고
-ALTER TABLE jeju_report_theme
-  ADD CONSTRAINT FK_jeju_theme_TO_jeju_report_theme -- 테마 -> 테마신고
-    FOREIGN KEY (
-      theme_no -- 테마번호
-    )
-    REFERENCES jeju_theme ( -- 테마
-      theme_no -- 테마번호
-    );
-
--- 테마신고
-ALTER TABLE jeju_report_theme
-  ADD CONSTRAINT FK_jeju_report_status_TO_jeju_report_theme -- 신고상태 -> 테마신고
-    FOREIGN KEY (
-      report_status_no -- 신고상태번호
-    )
-    REFERENCES jeju_report_status ( -- 신고상태
-      report_status_no -- 신고상태번호
     );
 
 -- 해시태그
@@ -546,4 +402,34 @@ ALTER TABLE jeju_place_user_theme
     )
     REFERENCES jeju_user ( -- 유저
       user_no -- 유저번호
+    );
+
+-- 게시판
+ALTER TABLE jeju_board
+  ADD CONSTRAINT FK_jeju_user_TO_jeju_board -- 유저 -> 게시판
+    FOREIGN KEY (
+      user_no -- 유저번호
+    )
+    REFERENCES jeju_user ( -- 유저
+      user_no -- 유저번호
+    );
+
+-- 게시판댓글
+ALTER TABLE jeju_board_comment
+  ADD CONSTRAINT FK_jeju_user_TO_jeju_board_comment -- 유저 -> 게시판댓글
+    FOREIGN KEY (
+      user_no -- 유저번호
+    )
+    REFERENCES jeju_user ( -- 유저
+      user_no -- 유저번호
+    );
+
+-- 게시판댓글
+ALTER TABLE jeju_board_comment
+  ADD CONSTRAINT FK_jeju_board_TO_jeju_board_comment -- 게시판 -> 게시판댓글
+    FOREIGN KEY (
+      board_no -- 게시글번호
+    )
+    REFERENCES jeju_board ( -- 게시판
+      board_no -- 게시글번호
     );
