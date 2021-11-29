@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.welcomeToJeju.wtj.dao.BoardDao">
+  
+  <resultMap type="Board" id="BoardMap">
+    <id column="board_no" property="no"/> 
+    <result column="title" property="title"/>
+    <result column="content" property="content"/>
+    <result column="created_dt" property="registeredDate"/>
+    <result column="view_cnt" property="viewCount"/>
+    
+    <association property="writer" javaType="user">
+      <id column="user_no" property="no"/>
+      <result column="nickname" property="nickname"/>
+    </association>
+  </resultMap>
+  
+  <insert id="insert" parameterType="board">
+    insert into jeju_board(title,content,user_no) 
+    values(#{title},#{content},#{writer.no})
+  </insert>
+  
+</mapper>
