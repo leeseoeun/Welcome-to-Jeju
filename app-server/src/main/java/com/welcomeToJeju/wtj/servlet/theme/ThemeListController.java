@@ -10,7 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import org.apache.ibatis.session.SqlSession;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 
@@ -18,7 +18,7 @@ import com.welcomeToJeju.wtj.domain.Theme;
 public class ThemeListController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  ThemeDao themeDao;
+  PublicThemeDao publicThemeDao;
   UserDao userDao;
   SqlSession sqlSession;
 
@@ -26,7 +26,7 @@ public class ThemeListController extends HttpServlet {
   @Override
   public void init(ServletConfig config) throws ServletException {
     ServletContext 웹애플리케이션공용저장소 = config.getServletContext();
-    themeDao = (ThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
+    publicThemeDao = (PublicThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
     userDao = (UserDao) 웹애플리케이션공용저장소.getAttribute("userDao");
     sqlSession = (SqlSession) 웹애플리케이션공용저장소.getAttribute("sqlSession");
   }
@@ -38,7 +38,7 @@ public class ThemeListController extends HttpServlet {
 
       int no = Integer.valueOf(request.getParameter("no"));
 
-      Collection<Theme> themeList = themeDao.findAllPublicThemeByUserNo(no);
+      Collection<Theme> themeList = publicThemeDao.findAllPublicThemeByUserNo(no);
       userDao.updateViewCount(no);
 
       sqlSession.commit();

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.User;
@@ -20,13 +20,13 @@ public class MyThemeListController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   HttpSession httpSession;
-  ThemeDao themeDao;
+  PublicThemeDao publicThemeDao;
   UserDao userDao;
 
   @Override
   public void init(ServletConfig config) throws ServletException {
     ServletContext 웹애플리케이션공용저장소 = config.getServletContext();
-    themeDao = (ThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
+    publicThemeDao = (PublicThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
     userDao = (UserDao) 웹애플리케이션공용저장소.getAttribute("userDao");
   }
 
@@ -43,7 +43,7 @@ public class MyThemeListController extends HttpServlet {
 
     try {
 
-      Collection<Theme> themeList = themeDao.findByUserNo(loginUser.getNo());
+      Collection<Theme> themeList = publicThemeDao.findByUserNo(loginUser.getNo());
 
       request.setAttribute("myThemeList", themeList);
       request.setAttribute("pageTitle", "나의 테마 목록보기");

@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 import com.welcomeToJeju.wtj.dao.PlaceCommentDao;
 import com.welcomeToJeju.wtj.dao.PlaceDao;
 import com.welcomeToJeju.wtj.dao.PlacePhotoDao;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.domain.Place;
 import com.welcomeToJeju.wtj.domain.User;
 import net.coobird.thumbnailator.ThumbnailParameter;
@@ -35,13 +35,13 @@ public class PlaceController {
   @Autowired PlaceDao placeDao;
   @Autowired PlaceCommentDao placeCommentDao;
   @Autowired PlacePhotoDao placePhotoDao;
-  @Autowired ThemeDao themeDao;  
+  @Autowired PublicThemeDao publicThemeDao;  
   int themeNo;
 
   @GetMapping("list")
   public ModelAndView list(String no) throws Exception{
     ModelAndView mv = new ModelAndView();
-    mv.addObject(themeDao.findByNo(Integer.parseInt(no)));
+    mv.addObject(publicThemeDao.findByNo(Integer.parseInt(no)));
     mv.setViewName("place/PlaceList3");
     return mv;
   }

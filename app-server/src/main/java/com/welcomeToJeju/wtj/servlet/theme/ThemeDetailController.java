@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import com.welcomeToJeju.wtj.dao.PlaceDao;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.domain.Place;
 import com.welcomeToJeju.wtj.domain.Theme;
 
@@ -19,7 +19,7 @@ import com.welcomeToJeju.wtj.domain.Theme;
 public class ThemeDetailController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  ThemeDao themeDao;
+  PublicThemeDao publicThemeDao;
   //  UserDao userDao;
   PlaceDao placeDao;
   SqlSession sqlSession;
@@ -27,7 +27,7 @@ public class ThemeDetailController extends HttpServlet {
   @Override
   public void init(ServletConfig config) throws ServletException {
     ServletContext 웹애플리케이션공용저장소 = config.getServletContext();
-    themeDao = (ThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
+    publicThemeDao = (PublicThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
     sqlSession = (SqlSession) 웹애플리케이션공용저장소.getAttribute("sqlSession");
     //    userDao = (UserDao) 웹애플리케이션공용저장소.getAttribute("userDao");
     placeDao = (PlaceDao) 웹애플리케이션공용저장소.getAttribute("placeDao");
@@ -40,8 +40,8 @@ public class ThemeDetailController extends HttpServlet {
     try {
       int no = Integer.parseInt(request.getParameter("no"));
 
-      Theme theme = themeDao.findByNo(no);
-      themeDao.updateViewCount(theme.getNo());
+      Theme theme = publicThemeDao.findByNo(no);
+      publicThemeDao.updateViewCount(theme.getNo());
 
       sqlSession.commit();
 

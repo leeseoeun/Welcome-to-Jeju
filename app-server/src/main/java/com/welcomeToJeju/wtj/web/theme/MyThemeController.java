@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.ThemeCategory;
@@ -17,7 +17,7 @@ import com.welcomeToJeju.wtj.domain.User;
 @Controller
 public class MyThemeController {
 
-  @Autowired ThemeDao themeDao;
+  @Autowired PublicThemeDao publicThemeDao;
   @Autowired UserDao userDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
@@ -43,12 +43,12 @@ public class MyThemeController {
     theme.setOwner(user);
     String[] hashtagArr = hashtags.split("#");
 
-    ThemeCategory c = themeDao.findCategoryByNo(Integer.parseInt(category));
+    ThemeCategory c = publicThemeDao.findCategoryByNo(Integer.parseInt(category));
     theme.setCategory(c);
-    themeDao.insert(theme);
+    publicThemeDao.insert(theme);
     for (String hashtag : hashtagArr) {
       if(hashtag.length()==0) continue;
-      themeDao.insertHashtag(theme.getNo(), hashtag);
+      publicThemeDao.insertHashtag(theme.getNo(), hashtag);
     }
     sqlSessionFactory.openSession().commit();
     return "redirect:list?no=" + user.getNo();
@@ -56,7 +56,7 @@ public class MyThemeController {
 
   @GetMapping("/mytheme/list")
   public ModelAndView list(int no) throws Exception {
-    Collection<Theme> themeList = themeDao.findAllByUserNo(no);
+    Collection<Theme> themeList = publicThemeDao.findAllByUserNo(no);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("themeList", themeList);
@@ -91,7 +91,7 @@ public class MyThemeController {
   public ModelAndView delete(HttpSession session, int no) throws Exception {
     User user = (User) session.getAttribute("loginUser");
 
-    themeDao.delete(no);
+    publicThemeDao.delete(no);
     sqlSessionFactory.openSession().commit();
 
     ModelAndView mv = new ModelAndView();

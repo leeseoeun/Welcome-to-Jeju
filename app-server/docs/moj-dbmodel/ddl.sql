@@ -146,7 +146,7 @@ ALTER TABLE jeju_liked_user
   ADD CONSTRAINT PK_jeju_liked_user -- 좋아하는유저 기본키
     PRIMARY KEY (
       user_no,  -- 유저번호
-      user_no2  -- 팔로잉
+      liked_user_no  -- 팔로잉
     );
 
 -- 좋아하는유저 유니크 인덱스

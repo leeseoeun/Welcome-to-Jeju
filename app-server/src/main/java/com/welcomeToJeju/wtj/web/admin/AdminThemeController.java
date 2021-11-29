@@ -7,20 +7,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.welcomeToJeju.wtj.dao.PlaceDao;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.domain.Place;
 import com.welcomeToJeju.wtj.domain.Theme;
 
 @Controller
 public class AdminThemeController {
 
-  @Autowired ThemeDao themeDao;
+  @Autowired PublicThemeDao publicThemeDao;
   @Autowired PlaceDao placeDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @GetMapping("/admin/themelist")
   public ModelAndView list() throws Exception {
-    Collection<Theme> themeList = themeDao.findAll();
+    Collection<Theme> themeList = publicThemeDao.findAll();
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("themeList", themeList);
@@ -33,7 +33,7 @@ public class AdminThemeController {
 
   @GetMapping("/admin/themedetail")
   public ModelAndView detail(int no) throws Exception {
-    Theme theme = themeDao.findByNo(no);
+    Theme theme = publicThemeDao.findByNo(no);
     Collection<Place> placeList = placeDao.findAllByThemeNo(no);
 
     ModelAndView mv = new ModelAndView();
@@ -49,12 +49,12 @@ public class AdminThemeController {
 
   @GetMapping("/admin/themedelete")
   public ModelAndView delete(int no) throws Exception {
-    Theme theme = themeDao.findByNo(no);
+    Theme theme = publicThemeDao.findByNo(no);
 
-    themeDao.deleteAllLikedThemeByThemeNo(theme.getNo());
-    themeDao.deleteHashtag(theme.getNo());
-    themeDao.deletePlaceUserTheme(theme.getNo());
-    themeDao.delete(theme.getNo());
+    publicThemeDao.deleteAllLikedThemeByThemeNo(theme.getNo());
+    publicThemeDao.deleteHashtag(theme.getNo());
+    publicThemeDao.deletePlaceUserTheme(theme.getNo());
+    publicThemeDao.delete(theme.getNo());
     sqlSessionFactory.openSession().commit();
 
     ModelAndView mv = new ModelAndView();

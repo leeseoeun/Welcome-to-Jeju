@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.domain.User;
 
 @WebServlet("/likedtheme/add")
 public class LikedThemeAddController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  ThemeDao themeDao;
+  PublicThemeDao publicThemeDao;
   SqlSession sqlSession;
 
   @Override
   public void init(ServletConfig config) throws ServletException {
     ServletContext 웹애플리케이션공용저장소 = config.getServletContext();
-    themeDao = (ThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
+    publicThemeDao = (PublicThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
     sqlSession = (SqlSession) 웹애플리케이션공용저장소.getAttribute("sqlSession");
   }
 
@@ -34,7 +34,7 @@ public class LikedThemeAddController extends HttpServlet {
       User loginUser = (User) request.getSession(true).getAttribute("loginUser");
       int no = Integer.parseInt(request.getParameter("no"));
 
-      themeDao.insertLikedTheme(no, loginUser.getNo());
+      publicThemeDao.insertLikedTheme(no, loginUser.getNo());
       sqlSession.commit();
 
       response.sendRedirect("../theme/detail?no=" + no);

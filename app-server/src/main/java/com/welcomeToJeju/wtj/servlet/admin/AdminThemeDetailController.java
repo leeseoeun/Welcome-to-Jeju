@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.welcomeToJeju.wtj.dao.PlaceDao;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.domain.Place;
 import com.welcomeToJeju.wtj.domain.Theme;
 
@@ -18,14 +18,14 @@ import com.welcomeToJeju.wtj.domain.Theme;
 public class AdminThemeDetailController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  ThemeDao themeDao;
+  PublicThemeDao publicThemeDao;
   //  UserDao userDao;
   PlaceDao placeDao;
 
   @Override
   public void init(ServletConfig config) throws ServletException {
     ServletContext 웹애플리케이션공용저장소 = config.getServletContext();
-    themeDao = (ThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
+    publicThemeDao = (PublicThemeDao) 웹애플리케이션공용저장소.getAttribute("themeDao");
     //    userDao = (UserDao) 웹애플리케이션공용저장소.getAttribute("userDao");
     placeDao = (PlaceDao) 웹애플리케이션공용저장소.getAttribute("placeDao");
   }
@@ -37,7 +37,7 @@ public class AdminThemeDetailController extends HttpServlet {
     try {
       int no = Integer.parseInt(request.getParameter("no"));
 
-      Theme theme = themeDao.findByNo(no);
+      Theme theme = publicThemeDao.findByNo(no);
       //      theme.setCategory(themeDao.findCategoryByNo(theme.getCategory().getNo()));
       //      theme.setOwner(userDao.findByNo(theme.getOwner().getNo()));
       Collection<Place> placeList = placeDao.findAllByThemeNo(no);
