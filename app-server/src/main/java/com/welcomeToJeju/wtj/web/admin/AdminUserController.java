@@ -66,7 +66,9 @@ public class AdminUserController {
     user.setNo(oldUser.getNo());
     user.setEmail(oldUser.getEmail());
     user.setRegisteredDate(oldUser.getRegisteredDate());
+    user.setEmoji(oldUser.getEmoji());
     user.setViewCount(oldUser.getViewCount());
+    user.setActive(oldUser.getActive());
     userDao.update(user);
     sqlSessionFactory.openSession().commit();
 
