@@ -39,7 +39,15 @@
 <h5>닉네임</h5>
   <!-- <label for='f-owner' class="col-sm-2 col-form-label form-control-lg">닉네임</label> -->
   <div class = "col-sm-16">
-  <input id='f-owner' type='text' class="form-control" value="${loginUser.nickname}" readonly>
+  <input id='f-nickname' type='text' class="form-control" value="${loginUser.nickname}" readonly>
+  </div>
+</div>
+
+<div class="mb-3 row">
+<h5>테마 이모지</h5>
+  <!-- <label for='f-owner' class="col-sm-2 col-form-label form-control-lg">닉네임</label> -->
+  <div class = "col-sm-16">
+  <input id='f-emoji' type='text' class="form-control" value="&#127796;" name='emoji'>
   </div>
 </div>
 

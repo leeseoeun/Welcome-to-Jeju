@@ -78,21 +78,44 @@
 			</div>
 		</form>
 		
-    <!-- 테마 순위 -->
+    <!-- 공개 테마 순위 -->
 		<div class="dash-board">
       <div class="hot-theme">
         <div class="title">
-          <span>🥇 🔥 🎖️ 테마 순위</span>
+          <span>🥇 🔥 🎖️ 공개 테마 순위</span>
           <!-- <div class="sub">인기 있는 테마</div> -->
         </div>
         <ul class="hot-theme-list owl-carousel">
-          <c:forEach items="${themeRanking10}" var="theme">
+          <c:forEach items="${publicThemeRanking10}" var="theme">
             <li>
               <a href="place/list?no=${theme.no}" class="content">
                 <div class="icon">${theme.emoji}</div>
                 <div class="theme-content">
 	                <div class="theme-title">${theme.title}</div>
 	                <%-- <div class="curators">${theme.hashtags}</div> --%>
+                </div>
+              </a>
+            </li>
+          </c:forEach>
+        </ul>
+      </div>  <!-- .hot-theme -->
+    </div>  <!-- .dash-board -->
+    
+        <!--참여 테마 순위 -->
+    <div class="dash-board">
+      <div class="hot-theme">
+        <div class="title">
+          <span>🥇 🔥 🎖️ 참여 테마 순위</span>
+          <!-- <div class="sub">인기 있는 테마</div> -->
+        </div>
+        <ul class="hot-theme-list owl-carousel">
+          <c:forEach items="${shareThemeRanking10}" var="theme">
+            <li>
+              <a href="place/list?no=${theme.no}" class="content">
+                <div class="icon">${theme.emoji}</div>
+                <div class="theme-content">
+                  <div class="theme-title">${theme.title}</div>
+                  <%-- <div class="curators">${theme.hashtags}</div> --%>
                 </div>
               </a>
             </li>

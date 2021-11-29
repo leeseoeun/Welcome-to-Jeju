@@ -33,7 +33,8 @@ public class ShareThemeController {
 
   @PostMapping("/sharetheme/add")
   public String add(HttpSession session, 
-      String title, 
+      String title,
+      String emoji,
       String category,
       String hashtags) throws Exception {
 
@@ -41,6 +42,7 @@ public class ShareThemeController {
 
     Theme theme = new Theme();
     theme.setTitle(title);
+    theme.setEmoji(emoji);
     theme.setOwner(user);
     String[] hashtagArr = hashtags.split("#");
 
