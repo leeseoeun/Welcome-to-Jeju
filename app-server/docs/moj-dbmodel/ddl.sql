@@ -13,9 +13,6 @@ DROP TABLE IF EXISTS jeju_liked_user RESTRICT;
 -- 좋아하는테마
 DROP TABLE IF EXISTS jeju_liked_theme RESTRICT;
 
--- 해시태그
-DROP TABLE IF EXISTS jeju_theme_hashtag RESTRICT;
-
 -- 장소사진
 DROP TABLE IF EXISTS jeju_place_photo RESTRICT;
 
@@ -141,24 +138,6 @@ ALTER TABLE jeju_liked_theme
       theme_no, -- 테마번호
       user_no   -- 유저번호
     );
-
--- 해시태그
-CREATE TABLE jeju_theme_hashtag (
-  hashtag_no INTEGER     NOT NULL COMMENT '해시태그번호', -- 해시태그번호
-  theme_no   INTEGER     NOT NULL COMMENT '테마번호', -- 테마번호
-  name       VARCHAR(50) NOT NULL COMMENT '해시태그' -- 해시태그
-)
-COMMENT '해시태그';
-
--- 해시태그
-ALTER TABLE jeju_theme_hashtag
-  ADD CONSTRAINT PK_jeju_theme_hashtag -- 해시태그 기본키
-    PRIMARY KEY (
-      hashtag_no -- 해시태그번호
-    );
-
-ALTER TABLE jeju_theme_hashtag
-  MODIFY COLUMN hashtag_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '해시태그번호';
 
 -- 장소사진
 CREATE TABLE jeju_place_photo (
@@ -323,16 +302,6 @@ ALTER TABLE jeju_liked_theme
 -- 좋아하는테마
 ALTER TABLE jeju_liked_theme
   ADD CONSTRAINT FK_jeju_theme_TO_jeju_liked_theme -- 테마 -> 좋아하는테마
-    FOREIGN KEY (
-      theme_no -- 테마번호
-    )
-    REFERENCES jeju_theme ( -- 테마
-      theme_no -- 테마번호
-    );
-
--- 해시태그
-ALTER TABLE jeju_theme_hashtag
-  ADD CONSTRAINT FK_jeju_theme_TO_jeju_theme_hashtag -- 테마 -> 해시태그
     FOREIGN KEY (
       theme_no -- 테마번호
     )
