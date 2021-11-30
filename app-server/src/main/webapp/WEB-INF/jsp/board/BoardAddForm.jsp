@@ -46,7 +46,7 @@
 <div class="mb-3 row">
 <h5>내용</h5>
   <div class="col-sm-16">
-  <input id='f-content' type='text' name='content' class="form-control" >
+  <textarea id='f-content' name='content' class="form-control" rows="5" >${board.content}</textarea>
   </div>
 </div>
 
