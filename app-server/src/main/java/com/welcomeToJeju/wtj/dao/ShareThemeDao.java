@@ -8,12 +8,8 @@ public interface ShareThemeDao {
 
   // 테마
   void insert(Theme theme) throws Exception;
-  void insertHashtag(int themeNo, String hashtag) throws Exception;
-
   void update(Theme theme) throws Exception;
-
   void delete(int themeNo) throws Exception;
-  void deleteHashtag(int themeNo) throws Exception;
 
   ThemeCategory findCategoryByNo(int no) throws Exception;
   List<ThemeCategory> findAllCategory() throws Exception;
@@ -31,7 +27,6 @@ public interface ShareThemeDao {
   // 테마 검색
   Theme findByNo(int no) throws Exception;
   Theme findByTitle(String title) throws Exception;
-  List<Theme> findByHashtag(String hashtag) throws Exception;
   List<Theme> findByKeyword(String keyword) throws Exception;
 
   // 순위

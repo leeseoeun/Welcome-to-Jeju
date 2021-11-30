@@ -22,11 +22,6 @@
       <id column="category_no" property="no"/>
       <result column="category_name" property="name"/>
     </association>
-
-	  <collection property="hashtags" ofType="String">
-	    <!-- <id column="hashtag_no"/> -->
-	    <result column="hashtag_name"/>
-	  </collection>
   </resultMap>
   
   <resultMap type="ThemeCategory" id="CategoryMap">
@@ -42,7 +37,6 @@
       t.public,
       t.share,
       t.view_cnt,
-      h.name hashtag_name,
       t.category_no,
       c.name category_name,
       t.user_no owner_no,
@@ -50,7 +44,6 @@
       jput.place_id,
       t.emoji
     from jeju_theme t
-      left join jeju_theme_hashtag h on t.theme_no = h.theme_no
       left join jeju_theme_category c on t.category_no = c.category_no
       inner join jeju_user u on u.user_no = t.user_no
       inner join jeju_place_user_theme jput on jput.theme_no = t.theme_no
@@ -72,12 +65,10 @@
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
-      h.name hashtag_name,
       t.emoji
     from 
       jeju_theme t
       left join jeju_theme_category c on t.category_no=c.category_no
-      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
       inner join jeju_user u on t.user_no=u.user_no
     where
       t.theme_no=#{no}
@@ -96,43 +87,17 @@
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
-      h.name hashtag_name,
       t.emoji
     from 
       jeju_theme t
       left join jeju_theme_category c on t.category_no=c.category_no
-      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
       inner join jeju_user u on t.user_no=u.user_no
     where
       t.public=1 and t.title=#{title}
     order by
       t.theme_no
   </select>
-  
-  <select id="findByHashtag" resultMap="ThemeMap" parameterType="String">
-    select
-      t.theme_no,
-      t.title,
-      t.public,
-      t.share,
-      t.view_cnt,
-      t.user_no owner_no,
-      u.nickname owner_nickname,
-      t.category_no,
-      c.name category_name,
-      h.name hashtag_name,
-      t.emoji
-    from 
-      jeju_theme t
-      left join jeju_theme_category c on t.category_no=c.category_no
-      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
-      inner join jeju_user u on t.user_no=u.user_no
-    where
-      t.public=1 and h.name=#{name}
-    order by
-      t.theme_no
-  </select>
-  
+    
   <select id="findByKeyword" resultMap="ThemeMap" parameterType="String">
     select
       t.theme_no,
@@ -144,12 +109,10 @@
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
-      h.name hashtag_name,
       t.emoji
     from 
       jeju_theme t
       left join jeju_theme_category c on t.category_no=c.category_no
-      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
       inner join jeju_user u on t.user_no=u.user_no
     where
       t.public=1 and t.title like (concat('%',#{keyword},'%'))
@@ -187,13 +150,11 @@
       u.nickname owner_nickname,
       t.category_no,
       c.name category_name,
-      h.name hashtag_name,
       lt.user_no,
       t.emoji
     from 
       jeju_theme t
       left join jeju_theme_category c on t.category_no=c.category_no
-      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
       left join jeju_liked_theme lt on t.theme_no=lt.theme_no
       inner join jeju_user u on t.user_no=u.user_no
     where
