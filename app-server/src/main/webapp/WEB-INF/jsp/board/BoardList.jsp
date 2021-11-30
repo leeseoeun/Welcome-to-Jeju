@@ -14,6 +14,8 @@
 <h1 style=text-align:center;>게시글 목록 보기</h1>
 <br>
 
+<c:choose>
+<c:when test="${loginUser ne null}">
 <ul class="theme-list">
 <a class="list-container" href="addform">
 	  <li>
@@ -24,6 +26,8 @@
 	  </li>
 </a>
 </ul>
+</c:when>
+</c:choose>
 
 <ul class="theme-list">
 <c:forEach items="${boardList}" var="board">
