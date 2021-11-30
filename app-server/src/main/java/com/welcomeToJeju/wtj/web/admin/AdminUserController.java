@@ -43,25 +43,6 @@ public class AdminUserController {
     return mv;
   }
 
-  @PostMapping("/admin/userupdate")
-  public ModelAndView update(int no, User user) throws Exception {
-    User oldUser = userDao.findByNo(no);
-
-    user.setNo(oldUser.getNo());
-    user.setEmail(oldUser.getEmail());
-    user.setRegisteredDate(oldUser.getRegisteredDate());
-    user.setEmoji(oldUser.getEmoji());
-    user.setViewCount(oldUser.getViewCount());
-    user.setActive(oldUser.getActive());
-    userDao.update(user);
-    sqlSessionFactory.openSession().commit();
-
-    ModelAndView mv = new ModelAndView();
-    mv.setViewName("redirect:userlist");
-
-    return mv;
-  }
-
   @GetMapping("/admin/userdelete")
   public ModelAndView delete(int no) throws Exception {
     User user = userDao.findByNo(no);

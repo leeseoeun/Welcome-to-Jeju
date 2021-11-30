@@ -8,7 +8,6 @@ public interface ThemeDao {
   // 테마 검색
   Theme findByNo(int no) throws Exception;
   Theme findByTitle(String title) throws Exception;
-  List<Theme> findByHashtag(String hashtag) throws Exception;
   List<Theme> findByKeyword(String keyword) throws Exception;
 
   // 좋아하는 테마
