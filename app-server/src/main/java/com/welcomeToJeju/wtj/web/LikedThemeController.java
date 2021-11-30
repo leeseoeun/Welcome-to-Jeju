@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.welcomeToJeju.wtj.dao.PublicThemeDao;
+import com.welcomeToJeju.wtj.dao.ThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.User;
@@ -17,11 +17,11 @@ public class LikedThemeController {
 
   @Autowired SqlSessionFactory sqlSessionFactory;
   @Autowired UserDao userDao;
-  @Autowired PublicThemeDao publicThemeDao;
+  @Autowired ThemeDao themeDao;
 
   @GetMapping("/likedtheme/add")
   public String add(int themeNo, int userNo) throws Exception {
-    publicThemeDao.insertLikedTheme(themeNo, userNo);
+    themeDao.insertLikedTheme(themeNo, userNo);
     sqlSessionFactory.openSession().commit();
     return "redirect:../place/list?no=" + themeNo;
   }
@@ -29,7 +29,7 @@ public class LikedThemeController {
   @GetMapping("/likedtheme/list")
   public ModelAndView list(HttpSession session) throws Exception {
 
-    Collection<Theme> themeList = publicThemeDao.findAllLikedTheme(((User) session.getAttribute("loginUser")).getNo());
+    Collection<Theme> themeList = themeDao.findAllLikedTheme(((User) session.getAttribute("loginUser")).getNo());
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("themeList", themeList);
@@ -43,7 +43,7 @@ public class LikedThemeController {
   @GetMapping("/likedtheme/delete")
   public String delete(int themeNo, HttpSession session) throws Exception {
 
-    publicThemeDao.deleteLikedTheme(themeNo, ((User)session.getAttribute("loginUser")).getNo());
+    themeDao.deleteLikedTheme(themeNo, ((User)session.getAttribute("loginUser")).getNo());
     sqlSessionFactory.openSession().commit();
     return "redirect:list";
   }
