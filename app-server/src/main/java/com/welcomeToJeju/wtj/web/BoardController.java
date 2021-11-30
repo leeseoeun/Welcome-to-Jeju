@@ -62,12 +62,13 @@ public class BoardController {
     mv.addObject("board", board);
     mv.addObject("pageTitle", "게시글 상세보기");
 
-    if (board.getWriter().getNo() == ((User) session.getAttribute("loginUser")).getNo()) {
-      mv.addObject("contentUrl", "board/MyBoardDetail.jsp");
-
-    } else {
+    if (((User) session.getAttribute("loginUser")) == null || ((User) session.getAttribute("loginUser")).getNo() != board.getWriter().getNo()) {
       mv.addObject("contentUrl", "board/BoardDetail.jsp");
+
+    } else if (board.getWriter().getNo() == ((User) session.getAttribute("loginUser")).getNo()) {
+      mv.addObject("contentUrl", "board/MyBoardDetail.jsp");
     } 
+
     mv.setViewName("template_main");
     return mv;
   }
