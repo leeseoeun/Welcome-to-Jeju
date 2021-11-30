@@ -19,7 +19,7 @@ import net.coobird.thumbnailator.geometry.Positions;
 import net.coobird.thumbnailator.name.Rename;
 
 @Controller
-public class PlacePhotoController {
+public class PlacePhotoController { //
 
   @Autowired PlacePhotoDao placePhotoDao;
   @Autowired ServletContext sc;

@@ -306,51 +306,6 @@
       t.public=1 and t.title like (concat('%',#{keyword},'%'))
   </select>
   
-  <!-- 좋아하는 테마 -->
-  <insert id="insertLikedTheme" >
-    Insert into jeju_liked_theme(theme_no,user_no)
-    values(#{param1},#{param2})
-  </insert>
-  
-  <delete id="deleteLikedTheme" >
-    delete from jeju_liked_theme
-    where theme_no=#{param1} and user_no=#{param2}
-  </delete>
-  
-  <delete id="deleteAllLikedThemeByThemeNo" parameterType="int">
-    delete from jeju_liked_theme
-    where theme_no=#{param1}
-  </delete>
-  
-  <delete id="deleteAllLikedThemeByUserNo" parameterType="int">
-    delete from jeju_liked_theme
-    where user_no=#{param1}
-  </delete>
-  
-  <select id="findAllLikedTheme" resultMap="PublicThemeMap" parameterType="int">
-    select
-      t.theme_no,
-      t.title,
-      t.public,
-      t.share,
-      t.view_cnt,
-      t.user_no owner_no,
-      u.nickname owner_nickname,
-      t.category_no,
-      c.name category_name,
-      h.name hashtag_name,
-      lt.user_no,
-      t.emoji
-    from 
-      jeju_theme t
-      left join jeju_theme_category c on t.category_no=c.category_no
-      left join jeju_theme_hashtag h on t.theme_no=h.theme_no
-      left join jeju_liked_theme lt on t.theme_no=lt.theme_no
-      inner join jeju_user u on t.user_no=u.user_no
-    where
-      t.public=1 and lt.user_no=#{no}
-  </select>
-  
   <!-- 순위 -->  
   <update id="updateViewCount" parameterType="int">
     update jeju_theme set

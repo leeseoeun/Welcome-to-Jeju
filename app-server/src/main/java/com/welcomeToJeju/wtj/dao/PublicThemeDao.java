@@ -34,13 +34,6 @@ public interface PublicThemeDao {
   List<Theme> findByHashtag(String hashtag) throws Exception;
   List<Theme> findByKeyword(String keyword) throws Exception;
 
-  // 좋아하는 테마
-  void insertLikedTheme(int themeNo, int userNo) throws Exception;
-  void deleteLikedTheme(int themeNo, int userNo) throws Exception;
-  void deleteAllLikedThemeByThemeNo(int themeNo) throws Exception;
-  void deleteAllLikedThemeByUserNo(int userNo) throws Exception;
-  List<Theme> findAllLikedTheme(int userNo) throws Exception;
-
   // 순위
   void updateViewCount(int themeNo) throws Exception;
 

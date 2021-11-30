@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.welcomeToJeju.wtj.dao.PublicThemeDao;
-import com.welcomeToJeju.wtj.dao.UserDao;
+import com.welcomeToJeju.wtj.dao.ThemeDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.ThemeCategory;
 import com.welcomeToJeju.wtj.domain.User;
@@ -17,8 +17,8 @@ import com.welcomeToJeju.wtj.domain.User;
 @Controller
 public class MyThemeController {
 
+  @Autowired ThemeDao themeDao;
   @Autowired PublicThemeDao publicThemeDao;
-  @Autowired UserDao userDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @GetMapping("/mytheme/addform")
@@ -35,22 +35,31 @@ public class MyThemeController {
       String title, 
       String category,
       String isPublic,
+      String emoji,
       String hashtags) throws Exception {
+
     User user = (User) session.getAttribute("loginUser");
+
     Theme theme = new Theme();
     theme.setTitle(title);
-    theme.setIsPublic(Integer.parseInt(isPublic));
     theme.setOwner(user);
-    String[] hashtagArr = hashtags.split("#");
 
-    ThemeCategory c = publicThemeDao.findCategoryByNo(Integer.parseInt(category));
-    theme.setCategory(c);
+    ThemeCategory themeCategory = publicThemeDao.findCategoryByNo(Integer.parseInt(category));
+    theme.setCategory(themeCategory);
+
+    theme.setIsPublic(Integer.parseInt(isPublic));
+    theme.setEmoji(emoji);
     publicThemeDao.insert(theme);
+
+    String[] hashtagArr = hashtags.split("#");
     for (String hashtag : hashtagArr) {
-      if(hashtag.length()==0) continue;
+      if (hashtag.length() == 0) {
+        continue;
+      }
       publicThemeDao.insertHashtag(theme.getNo(), hashtag);
     }
     sqlSessionFactory.openSession().commit();
+
     return "redirect:list?no=" + user.getNo();
   }
 
@@ -63,26 +72,42 @@ public class MyThemeController {
     mv.addObject("pageTitle", "나의 테마 목록 보기");
     mv.addObject("contentUrl", "theme/myTheme/MyThemeList.jsp");
     mv.setViewName("template_main");
+
     return mv;
   }
 
   // 테스트!!
   @PostMapping("/mytheme/update")
-  public ModelAndView update(Theme theme, int category) throws Exception {
-    //    Theme oldTheme = themeDao.findByNo(theme.getNo());
-    //
-    //    if (oldTheme == null) {
-    //      throw new Exception("..");
+  public ModelAndView update(Theme theme,
+      String title, 
+      String category,
+      String isPublic/*
+       * , String hashtags
+       */) throws Exception {
+
+    Theme oldTheme = publicThemeDao.findByNo(theme.getNo());
+    theme.setTitle(title);
+    theme.setOwner(oldTheme.getOwner());
+
+    ThemeCategory themeCategory = publicThemeDao.findCategoryByNo(Integer.parseInt(category));
+    theme.setCategory(themeCategory);
+
+    theme.setIsPublic(Integer.parseInt(isPublic));
+    theme.setEmoji(oldTheme.getEmoji());
+    publicThemeDao.update(theme);
+
+    //    String[] hashtagArr = hashtags.split("#");
+    //    for (String hashtag : hashtagArr) {
+    //      if (hashtag.length() == 0) {
+    //        continue;
+    //      }
+    //      publicThemeDao.insertHashtag(theme.getNo(), hashtag);
     //    }
-    //
-    //    Category c = themeDao.findCategoryByNo(category);
-    //    theme.setCategory(c);
-    //
-    //    themeDao.update(theme);
-    //    sqlSessionFactory.openSession().commit();
-    //
+    sqlSessionFactory.openSession().commit();
+
     ModelAndView mv = new ModelAndView();
-    //    mv.setViewName("redirect:detail?no=" + theme.getNo());
+    mv.setViewName("redirect:detail?no=" + theme.getNo());
+
     return mv;
   }
 
@@ -91,6 +116,9 @@ public class MyThemeController {
   public ModelAndView delete(HttpSession session, int no) throws Exception {
     User user = (User) session.getAttribute("loginUser");
 
+    themeDao.deleteAllLikedThemeByThemeNo(no);
+    publicThemeDao.deleteHashtag(no);
+    //    ?themeDao.deletePlaceUserTheme(no);
     publicThemeDao.delete(no);
     sqlSessionFactory.openSession().commit();
 

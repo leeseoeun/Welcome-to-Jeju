@@ -22,8 +22,6 @@
 	<th>이메일</th>
 	<th>등록일</th>
 	<th>조회수</th>
-	<th>경고수</th>
-	<th>신고수</th>
 	<th>상태</th>
 </tr>
 </thead>
@@ -38,8 +36,6 @@
     <td>${user.email}</td>
     <td>${user.registeredDate}</td>
     <td>${user.viewCount}</td>
-    <td>${user.warningCount}</td>
-    <td>${user.reportedCount}</td>
     <td>회원</td>    
 </tr>
 </c:when>
@@ -57,8 +53,6 @@
   <th>이메일</th>
   <th>등록일</th>
   <th>조회수</th>
-  <th>경고수</th>
-  <th>신고수</th>
   <th>상태</th>
 </tr>
 </thead>
@@ -73,8 +67,6 @@
     <td>${user.email}</td>
     <td>${user.registeredDate}</td>
     <td>${user.viewCount}</td>
-    <td>${user.warningCount}</td>
-    <td>${user.reportedCount}</td>
     <td>탈퇴</td>    
 </tr>
 </c:when>

@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @MapperScan("com.welcomeToJeju.wtj.dao")
 
-// 모든 공유 하는 객체들은 여기서 관리해야된다
+// 모든 공유하는 객체들은 여기서 관리해야 된다
 public class RootConfig {
 
   @Bean
@@ -36,7 +36,6 @@ public class RootConfig {
       @Value("${jdbc.url}") String jdbcUrl,
       @Value("${jdbc.username}") String jdbcUsername,
       @Value("${jdbc.password}") String jdbcPassword) {
-
 
     DriverManagerDataSource ds = new DriverManagerDataSource();
     ds.setDriverClassName(jdbcDriver);
@@ -47,7 +46,7 @@ public class RootConfig {
   }
 
   // 6) 트랜잭션 관리자 생성
-  // => commit/rollback 을 다룬다.
+  // => commit/rollback을 다룬다.
   @Bean 
   public PlatformTransactionManager transactionManager(DataSource dataSource) {
     return new DataSourceTransactionManager(dataSource);
@@ -56,23 +55,24 @@ public class RootConfig {
   // 7) SqlSessionFactory 객체 생성
   @Bean
   public SqlSessionFactory sqlSessionFactory(
-      DataSource dataSource, // DB 커넥션풀
+      DataSource dataSource,    // DB 커넥션풀
       ApplicationContext appCtx // Spring IoC 컨테이너
       ) throws Exception {
 
-    // Log4J2 기능 활성화시키기
+    // Log4j2 기능 활성화시키기
     // => 로그 출력 형식은 .properties 파일이나 .xml 파일로 설정한다.
     LogFactory.useLog4J2Logging();
 
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     sqlSessionFactoryBean.setDataSource(dataSource);
 
-    // mybatis 설정 파일을 XML 파일로 따로 두지 말고,
+    // Mybatis 설정 파일을 XML 파일로 따로 두지 말고
     // 다음과 같이 자바 코드로 설정하면 편하다.
-    // 
     sqlSessionFactoryBean.setTypeAliasesPackage("com.welcomeToJeju.wtj.domain");
     sqlSessionFactoryBean.setMapperLocations(
         appCtx.getResources("classpath:com/welcomeToJeju/wtj/dao/*Dao.xml"));
     return sqlSessionFactoryBean.getObject();
   }
+
+
 }

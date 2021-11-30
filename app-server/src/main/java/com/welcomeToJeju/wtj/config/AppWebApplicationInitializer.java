@@ -22,13 +22,13 @@ public class AppWebApplicationInitializer extends AbstractAnnotationConfigDispat
 
   @Override
   protected String[] getServletMappings() {
-    // DispatcherServlet에 대해 URL 매핑 정보를 리턴한다.
+    // DispatcherServlet에 대해 URL 매핑 정보를 리턴 한다.
     return new String[] {"/app/*"};
   }
 
   @Override
   protected String getServletName() {
-    // DispatcherServlet의 이름을 리턴한다.
+    // DispatcherServlet의 이름을 리턴 한다.
     return "app";
   }
 
@@ -42,19 +42,12 @@ public class AppWebApplicationInitializer extends AbstractAnnotationConfigDispat
       javax.servlet.ServletRegistration.Dynamic registration) {
     registration.setMultipartConfig(
         new MultipartConfigElement(
-            new File(System.getProperty("java.io.tmpdir")).getAbsolutePath(), // 업로드 한 파일을 임시 보관할 위치
-            10000000, // 최대 업로드할 수 있는 파일들의 총 크기
-            15000000, // 요청 전체 데이터의 크기
-            2000000 // 업로드 되고 있는 파일을 메모리에 임시 임시 보관하는 크기
+            new File(System.getProperty("java.io.tmpdir")).getAbsolutePath(),   // 업로드 한 파일을 임시 보관할 위치
+            10000000,   // 최대 업로드 할 수 있는 파일들의 총 크기
+            15000000,   // 요청 전체 데이터의 크기
+            2000000 // 업로드 되고 있는 파일을 메모리에 임시 보관하는 크기
             ));
   }
 
+
 }
-
-
-
-
-
-
-
-

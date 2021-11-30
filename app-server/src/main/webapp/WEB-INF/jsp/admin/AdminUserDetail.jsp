@@ -60,13 +60,6 @@
 </div>
 
 <div class="mb-3 row">
-<h5>경고</h5>
-  <div class="col-sm-16">
-  <input id='f-warningCount' type='text' name='warningCount' value='${user.warningCount}' class="form-control"  readonly>
-  </div>
-</div>
-
-<div class="mb-3 row">
 <h5>가입일</h5>
   <div class="col-sm-16">
   <input id='f-registeredDate' type='date' name='registeredDate' value='${user.registeredDate}' class="form-control"  readonly><br>
