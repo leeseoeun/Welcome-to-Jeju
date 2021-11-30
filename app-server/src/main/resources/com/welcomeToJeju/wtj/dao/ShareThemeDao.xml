@@ -230,28 +230,6 @@
       t.theme_no
   </select>
   
-  <select id="findByHashtag" resultMap="ShareThemeMap" parameterType="String">
-    select
-      t.theme_no,
-      t.title,
-      t.public,
-      t.share,
-      t.view_cnt,
-      t.user_no owner_no,
-      u.nickname owner_nickname,
-      t.category_no,
-      c.name category_name,
-      t.emoji
-    from 
-      jeju_theme t
-      left join jeju_theme_category c on t.category_no=c.category_no
-      inner join jeju_user u on t.user_no=u.user_no
-    where
-      t.share=1 and h.name=#{name}
-    order by
-      t.theme_no
-  </select>
-  
   <select id="findByKeyword" resultMap="ShareThemeMap" parameterType="String">
     select
       t.theme_no,
