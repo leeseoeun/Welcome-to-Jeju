@@ -35,8 +35,7 @@ public class MyThemeController {
       String title, 
       String category,
       String isPublic,
-      String emoji,
-      String hashtags) throws Exception {
+      String emoji) throws Exception {
 
     User user = (User) session.getAttribute("loginUser");
 
@@ -50,14 +49,6 @@ public class MyThemeController {
     theme.setIsPublic(Integer.parseInt(isPublic));
     theme.setEmoji(emoji);
     publicThemeDao.insert(theme);
-
-    String[] hashtagArr = hashtags.split("#");
-    for (String hashtag : hashtagArr) {
-      if (hashtag.length() == 0) {
-        continue;
-      }
-      publicThemeDao.insertHashtag(theme.getNo(), hashtag);
-    }
     sqlSessionFactory.openSession().commit();
 
     return "redirect:list?no=" + user.getNo();
@@ -81,9 +72,7 @@ public class MyThemeController {
   public ModelAndView update(Theme theme,
       String title, 
       String category,
-      String isPublic/*
-       * , String hashtags
-       */) throws Exception {
+      String isPublic) throws Exception {
 
     Theme oldTheme = publicThemeDao.findByNo(theme.getNo());
     theme.setTitle(title);
@@ -95,14 +84,6 @@ public class MyThemeController {
     theme.setIsPublic(Integer.parseInt(isPublic));
     theme.setEmoji(oldTheme.getEmoji());
     publicThemeDao.update(theme);
-
-    //    String[] hashtagArr = hashtags.split("#");
-    //    for (String hashtag : hashtagArr) {
-    //      if (hashtag.length() == 0) {
-    //        continue;
-    //      }
-    //      publicThemeDao.insertHashtag(theme.getNo(), hashtag);
-    //    }
     sqlSessionFactory.openSession().commit();
 
     ModelAndView mv = new ModelAndView();
@@ -117,7 +98,6 @@ public class MyThemeController {
     User user = (User) session.getAttribute("loginUser");
 
     themeDao.deleteAllLikedThemeByThemeNo(no);
-    publicThemeDao.deleteHashtag(no);
     //    ?themeDao.deletePlaceUserTheme(no);
     publicThemeDao.delete(no);
     sqlSessionFactory.openSession().commit();

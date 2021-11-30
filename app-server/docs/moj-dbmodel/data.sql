@@ -1,6 +1,6 @@
 -- 이모지
 insert into emoji(emoji_no, emoji)
-values(1, '&#9992;');
+values(1, '&#127749;');
 insert into emoji(emoji_no, emoji)
 values(2, '&#127796;');
 insert into emoji(emoji_no, emoji)
@@ -22,7 +22,7 @@ values(10, '&#127776;');
 
 -- 유저
 insert into jeju_user(user_no, email, password, nickname, emoji)
-values(1, 'aaa@test.com', password('1111'), '감귤밭떼기', '&#9992;');
+values(1, 'aaa@test.com', password('1111'), '감귤밭떼기', '&#127749;');
 insert into jeju_user(user_no, email, password, nickname, emoji)
 values(2, 'bbb@test.com', password('1111'), '서은', '&#127796;');
 insert into jeju_user(user_no, email, password, nickname, emoji)
@@ -49,7 +49,7 @@ insert into jeju_theme_category(category_no, name) values(3, '관광지');
 insert into jeju_theme_category(category_no, name) values(4, '기타');
 
 -- 테마
-insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(1, 1, '애월에 가면', 0, 1, 3, 20210621, '&#9992;');
+insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(1, 1, '애월에 가면', 0, 1, 3, 20210621, '&#127749;');
 insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(2, 1, '제주도 향토 음식', 0, 1, 1, 20210628, '&#127796;');
 insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(3, 1, '서귀포 숙소 추천', 0, 1, 4, 20210701, '&#127818;');
 insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(20, 1, '커피가 정말 맛있는 카페', 1, 1, 2, 20211030, '&#128511;');
@@ -57,7 +57,7 @@ insert into jeju_theme(theme_no, user_no, title, share, public, category_no, cre
 insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(4, 2, '바람을 벗삼아 떠나 보자', 0, 1, 3, 20210731, '&#128674;');
 insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(5, 2, '자연광이 좋은 카페', 0, 1, 2, 20210801, '&#127754;');
 insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(6, 2, '제주의 봄', 0, 1, 4, 20210831, '&#129372;');
-insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(21, 2, '내가 본 제주', 1, 1, 4, 20210621, '&#9992;');
+insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(21, 2, '내가 본 제주', 1, 1, 4, 20210621, '&#127749;');
 
 insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(7, 3, '바다가 사랑한 섬 우도', 0, 1, 3, 20210901, '&#128757;');
 insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(8, 3, '반려 동물과 함께 가기 좋은 카페', 0, 1, 1, 20210930, '&#128031;');
@@ -65,7 +65,7 @@ insert into jeju_theme(theme_no, user_no, title, share, public, category_no, cre
 insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(22, 3, '고기가 두툼한 흑돼지 집', 1, 1, 1, 20210628, '&#127796;');
 
 insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(10, 4, '제주 동부 투어', 0, 1, 3, 20211031, '&#127776;');
-insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(11, 4, '뷰가 좋아서 멍 때리기 좋은', 0, 1, 2, 20211101, '&#9992;');
+insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(11, 4, '뷰가 좋아서 멍 때리기 좋은', 0, 1, 2, 20211101, '&#127749;');
 insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(12, 4, '해산물이 먹고 싶을 때', 0, 1, 1, 20211123, '&#127796;');
 insert into jeju_theme(theme_no, user_no, title, share, public, category_no, created_dt, emoji) values(23, 4, '차 한잔 할래요?', 1, 1, 2, 20210701, '&#127818;');
 
