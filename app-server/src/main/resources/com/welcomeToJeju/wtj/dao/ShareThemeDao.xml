@@ -134,7 +134,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
 	  where
-	    t.public=1
+	    t.share=1
 	  order by
 	    t.theme_no
 	</select>
@@ -156,7 +156,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
     where
-      t.public=1 and t.user_no=#{userNo}
+      t.share=1 and t.user_no=#{userNo}
     order by
       t.theme_no
   </select>
@@ -225,7 +225,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
     where
-      t.public=1 and t.title=#{title}
+      t.share=1 and t.title=#{title}
     order by
       t.theme_no
   </select>
@@ -247,7 +247,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
     where
-      t.public=1 and h.name=#{name}
+      t.share=1 and h.name=#{name}
     order by
       t.theme_no
   </select>
@@ -269,7 +269,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
     where
-      t.public=1 and t.title like (concat('%',#{keyword},'%'))
+      t.share=1 and t.title like (concat('%',#{keyword},'%'))
   </select>
   
   <!-- 순위 -->  
@@ -298,7 +298,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
     where
-      t.share=1 and t.public=1
+      t.share=1
     order by
       t.view_cnt desc
       limit 10
@@ -321,7 +321,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
     where
-      t.public=1
+      t.share=1
     order by
     <!-- group by -->
       t.created_dt desc
