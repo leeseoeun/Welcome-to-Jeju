@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import com.welcomeToJeju.wtj.dao.PublicThemeDao;
+import com.welcomeToJeju.wtj.dao.ThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.User;
 
@@ -20,7 +20,7 @@ public class UserController {
   @Autowired SqlSessionFactory sqlSessionFactory;
   @Autowired UserDao userDao;
   @Autowired ServletContext sc;
-  @Autowired PublicThemeDao publicThemeDao;
+  @Autowired ThemeDao themeDao;
 
 
   @GetMapping("/user/checkEmail")
@@ -76,7 +76,7 @@ public class UserController {
 
     User user = userDao.findByNo(no);
 
-    publicThemeDao.deleteAllLikedThemeByUserNo(user.getNo());
+    themeDao.deleteAllLikedThemeByUserNo(user.getNo());
     userDao.deleteAllLikedUser(user.getNo());
     userDao.updateActive(user.getNo());
     sqlSessionFactory.openSession().commit();

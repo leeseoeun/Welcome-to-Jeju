@@ -38,4 +38,39 @@
       b.board_no desc
   </select>
   
+   <select id="findByNo" resultMap="BoardMap" parameterType="int">
+    select
+      b.board_no,
+      b.title,
+      b.content,
+      b.created_dt,
+      b.view_cnt,
+      u.user_no,
+      u.nickname
+    from
+      jeju_board b
+      inner join jeju_user u on b.user_no=u.user_no
+    where b.board_no=#{no}
+  </select>
+  
+  <update id="updateCount" parameterType="int">
+    update jeju_board set
+      view_cnt= view_cnt + 1
+    where
+      board_no=#{no}
+  </update>
+  
+  <update id="update" parameterType="Board">
+    update jeju_board set
+      title=#{title},
+      content=#{content}
+    where
+      board_no=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from jeju_board 
+    where board_no=#{no}
+  </delete>
+  
 </mapper>
