@@ -135,7 +135,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
 	  where
-	    t.public=1
+	    t.public=1 and t.share=0
 	  order by
 	    t.theme_no
 	</select>
@@ -157,7 +157,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
     where
-      t.public=1 and t.user_no=#{userNo}
+      t.public=1 and t.share=0 and t.user_no=#{userNo}
     order by
       t.theme_no
   </select>
@@ -226,29 +226,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
     where
-      t.public=1 and t.title=#{title}
-    order by
-      t.theme_no
-  </select>
-  
-  <select id="findByHashtag" resultMap="PublicThemeMap" parameterType="String">
-    select
-      t.theme_no,
-      t.title,
-      t.public,
-      t.share,
-      t.view_cnt,
-      t.user_no owner_no,
-      u.nickname owner_nickname,
-      t.category_no,
-      c.name category_name,
-      t.emoji
-    from 
-      jeju_theme t
-      left join jeju_theme_category c on t.category_no=c.category_no
-      inner join jeju_user u on t.user_no=u.user_no
-    where
-      t.public=1 and h.name=#{name}
+      t.public=1 and t.share=0 and t.title=#{title}
     order by
       t.theme_no
   </select>
@@ -270,7 +248,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
     where
-      t.public=1 and t.title like (concat('%',#{keyword},'%'))
+      t.public=1 and t.share=0 and t.title like (concat('%',#{keyword},'%'))
   </select>
   
   <!-- 순위 -->  
@@ -299,7 +277,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
     where
-      t.public=1
+      t.public=1 and t.share=0
     order by
       t.view_cnt desc
       limit 10
@@ -322,7 +300,7 @@
       left join jeju_theme_category c on t.category_no=c.category_no
       inner join jeju_user u on t.user_no=u.user_no
     where
-      t.public=1
+      t.public=1 and t.share=0
     order by
     <!-- group by -->
       t.created_dt desc
