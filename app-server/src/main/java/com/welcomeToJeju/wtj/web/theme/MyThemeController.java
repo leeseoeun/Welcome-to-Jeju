@@ -70,19 +70,16 @@ public class MyThemeController {
   // 테스트!!
   @PostMapping("/mytheme/update")
   public ModelAndView update(Theme theme,
-      String title, 
       String category,
       String isPublic) throws Exception {
 
-    Theme oldTheme = publicThemeDao.findByNo(theme.getNo());
-    theme.setTitle(title);
-    theme.setOwner(oldTheme.getOwner());
+    //    Theme oldTheme = publicThemeDao.findByNo(theme.getNo());
+    //    theme.setOwner(oldTheme.getOwner());
 
     ThemeCategory themeCategory = publicThemeDao.findCategoryByNo(Integer.parseInt(category));
     theme.setCategory(themeCategory);
 
     theme.setIsPublic(Integer.parseInt(isPublic));
-    theme.setEmoji(oldTheme.getEmoji());
     publicThemeDao.update(theme);
     sqlSessionFactory.openSession().commit();
 

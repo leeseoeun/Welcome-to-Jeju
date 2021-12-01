@@ -1,4 +1,4 @@
-# 1126 회의<br>
+# 1128 회의<br>
 1. model.exerd 정리<br>
 
 *1-1. user 테이블*<br>

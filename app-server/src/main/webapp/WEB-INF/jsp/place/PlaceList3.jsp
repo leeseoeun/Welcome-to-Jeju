@@ -29,7 +29,7 @@
   </p>
   <div class="collapse" id="collapseExample">
     <div class="card card-body">
-      <form action='update'>
+      <form action='../mytheme/update' method="post" enctype="multipart/form-data">
       <label for='f-no'>번호</label>
       <input id='f-no' type='text' name='no' value='${theme.no}' readonly><br>
       
@@ -43,17 +43,13 @@
       <option selected>카테고리</option>
       <option value="1">식당</option>
       <option value="2">카페</option>
-      <option value="3">관광명소</option>
+      <option value="3">관광지</option>
       <option value="4">기타</option>
       </select>
- 
- 
-     <label for='f-hashtags'>해시태그</label>
-     <input id='f-hashtags' type='text' name='hashtags' value='${theme.hashtags}'><br>
         
-    <button>변경</button>
-    <a href='../mytheme/delete?no=${theme.no}'>[삭제]</a>
-    <a href='list?no=${user.no}'>[목록]</a>
+	    <button>변경</button>
+	    <a href='../mytheme/delete?no=${theme.no}'>[삭제]</a>
+	    <a href='list?no=${user.no}'>[목록]</a>
       </form>
     </div>
   </div>
