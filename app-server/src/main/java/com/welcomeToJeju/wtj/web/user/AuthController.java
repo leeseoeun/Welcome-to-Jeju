@@ -20,7 +20,7 @@ public class AuthController {
   public ModelAndView loginform() {
     ModelAndView mv = new ModelAndView();
     mv.addObject("pageTitle", "로그인");
-    mv.addObject("contentUrl", "user/AuthLoginForm_naver.jsp");
+    mv.addObject("contentUrl", "user/AuthLoginForm.jsp");
     mv.setViewName("template_main");
     return mv;
   }
