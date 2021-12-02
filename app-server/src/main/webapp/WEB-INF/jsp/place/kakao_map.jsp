@@ -65,7 +65,7 @@ html, body {
 </head>
 
 <body>
-<form id="place" name="place" action="add" method="get">  <!-- post로 수정하기! -->
+<form id="place" name="place" action="addform" method="post">  <!-- post로 수정하기! -->
 <div id="wrapper">
 
 <div class="map_wrap">
@@ -206,7 +206,7 @@ function displayPlaces(places) {
             itemEl.onmouseout = function () {
                 infowindow.close();
             };
-        })(marker, places[i].id, places[i].place_name, places[i].road_address_name, places[i].y, places[i].x);
+        })(marker, places[i].id, places[i].place_name, places[i].address_name, places[i].y, places[i].x);
 
         fragment.appendChild(itemEl);
     }
