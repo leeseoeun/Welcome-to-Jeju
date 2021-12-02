@@ -264,7 +264,7 @@
 		
 		$('.customPrevBtn').click(function() {
 			owl.trigger('prev.owl.carousel', [ 300 ]);
-			})
+		})
 	});
 		
 	$(document).ready(function() {
