@@ -14,33 +14,57 @@
 <h1 style=text-align:center;>${user.emoji} ${user.nickname}님의 테마 목록 보기</h1>
 <br>
 
+<br>
+<h3 style=text-align:center;>유저 테마</h3>
+<br>
 <ul class="theme-list">
-<c:forEach items="${publicThemeList}" var="theme"
-begin="0" end="${fn:length(publicThemeList)-((fn:length(publicThemeList))%3)-1}">
+<c:forEach items="${publicThemeList}" var="theme">
   <a class="list-container" href="../place/list?no=${theme.no}">
     <li>
     <div class="content">
       <div class="icon">${theme.emoji}</div>
       <div class="theme-title">${theme.title}</div>
-      <div class="theme-count">${theme.hashtags}</div>
     </div>  <!-- .content -->
     </li>
   </a>
 </c:forEach>
+<c:forEach begin="0" end="${3-(fn:length(themeList)%3)-1}">
+    <a class="list-container" style=visibility:hidden;>
+      <li>
+        <div class="content">
+          <div class="icon">${theme.no}</div>
+          <div class="theme-title">${theme.title}</div>
+          <!-- <div class="theme-count">${theme.hashtags}</div> -->
+        </div>  <!-- .content -->
+      </li>
+    </a>
+</c:forEach>
 </ul>
 
+<br>
+<h3 style=text-align:center;>참여 테마</h3>
+<br>
 <ul class="theme-list">
-<c:forEach items="${shareThemeList}" var="theme"
-begin="0" end="${fn:length(shareThemeList)-((fn:length(shareThemeList))%3)-1}">
+<c:forEach items="${shareThemeList}" var="theme">
   <a class="list-container" href="../place/list?no=${theme.no}">
     <li>
     <div class="content">
       <div class="icon">${theme.emoji}</div>
       <div class="theme-title">${theme.title}</div>
-      <div class="theme-count">${theme.hashtags}</div>
     </div>  <!-- .content -->
     </li>
   </a>
+</c:forEach>
+<c:forEach begin="0" end="${3-(fn:length(themeList)%3)-1}">
+    <a class="list-container" style=visibility:hidden;>
+      <li>
+        <div class="content">
+          <div class="icon">${theme.no}</div>
+          <div class="theme-title">${theme.title}</div>
+          <!-- <div class="theme-count">${theme.hashtags}</div> -->
+        </div>  <!-- .content -->
+      </li>
+    </a>
 </c:forEach>
 </ul>
 
