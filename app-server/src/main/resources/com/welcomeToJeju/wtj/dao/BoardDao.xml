@@ -23,6 +23,19 @@
     values(#{title},#{content},#{writer.no})
   </insert>
   
+  <update id="update" parameterType="Board">
+    update jeju_board set
+      title=#{title},
+      content=#{content}
+    where
+      board_no=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from jeju_board 
+    where board_no=#{no}
+  </delete>
+  
   <select id="findAll" resultMap="BoardMap">
     select
       b.board_no,
@@ -38,7 +51,7 @@
       b.board_no desc
   </select>
   
-   <select id="findByNo" resultMap="BoardMap" parameterType="int">
+  <select id="findByNo" resultMap="BoardMap" parameterType="int">
     select
       b.board_no,
       b.title,
@@ -50,27 +63,15 @@
     from
       jeju_board b
       inner join jeju_user u on b.user_no=u.user_no
-    where b.board_no=#{no}
+    where
+      b.board_no=#{no}
   </select>
   
-  <update id="updateCount" parameterType="int">
+  <update id="updateViewCount" parameterType="int">
     update jeju_board set
       view_cnt= view_cnt + 1
     where
       board_no=#{no}
   </update>
-  
-  <update id="update" parameterType="Board">
-    update jeju_board set
-      title=#{title},
-      content=#{content}
-    where
-      board_no=#{no}
-  </update>
-  
-  <delete id="delete" parameterType="int">
-    delete from jeju_board 
-    where board_no=#{no}
-  </delete>
   
 </mapper>

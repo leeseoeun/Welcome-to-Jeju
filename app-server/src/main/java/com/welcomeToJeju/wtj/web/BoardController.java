@@ -37,6 +37,7 @@ public class BoardController {
 
     ModelAndView mv = new ModelAndView();
     mv.setViewName("redirect:list");
+
     return mv;
   }
 
@@ -49,33 +50,35 @@ public class BoardController {
     mv.addObject("pageTitle", "게시글 목록 보기");
     mv.addObject("contentUrl", "board/BoardList.jsp");
     mv.setViewName("template_main");
+
     return mv;
   }
 
   @GetMapping("/board/detail")
   public ModelAndView detail(int no, HttpSession session) throws Exception {
+    User user = (User) session.getAttribute("loginUser");
     Board board = boardDao.findByNo(no);
 
-    boardDao.updateCount(no);
+    boardDao.updateViewCount(no);
+    sqlSessionFactory.openSession().commit();
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("board", board);
-    mv.addObject("pageTitle", "게시글 상세보기");
+    mv.addObject("pageTitle", "게시글 상세 보기");
 
-    if (((User) session.getAttribute("loginUser")) == null || ((User) session.getAttribute("loginUser")).getNo() != board.getWriter().getNo()) {
+    if (user == null || user.getNo() != board.getWriter().getNo()) {
       mv.addObject("contentUrl", "board/BoardDetail.jsp");
 
-    } else if (board.getWriter().getNo() == ((User) session.getAttribute("loginUser")).getNo()) {
+    } else if (user.getNo() == board.getWriter().getNo()) {
       mv.addObject("contentUrl", "board/MyBoardDetail.jsp");
-    } 
-
+    }
     mv.setViewName("template_main");
+
     return mv;
   }
 
   @PostMapping("/board/update")
   public ModelAndView update(Board board) throws Exception {
-
     Board oldBoard = boardDao.findByNo(board.getNo());
     if (oldBoard == null) {
       throw new Exception("해당 번호의 게시글이 없습니다.");
@@ -86,13 +89,12 @@ public class BoardController {
 
     ModelAndView mv = new ModelAndView();
     mv.setViewName("redirect:list");
-    return mv;
 
+    return mv;
   }
 
   @GetMapping("/board/delete")
   public ModelAndView delete(int no) throws Exception {
-
     Board board = boardDao.findByNo(no);
     if (board == null) {
       throw new Exception("해당 번호의 게시글이 없습니다.");
@@ -103,7 +105,9 @@ public class BoardController {
 
     ModelAndView mv = new ModelAndView();
     mv.setViewName("redirect:list");
+
     return mv;
   }
+
 
 }
