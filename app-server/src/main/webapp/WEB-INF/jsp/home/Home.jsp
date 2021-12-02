@@ -41,7 +41,7 @@
   }
 }
 
-.user-share-theme {
+.user-share-themelist {
   margin-left: 110px;
 }
 </style>
@@ -51,13 +51,13 @@
 		<jsp:include page="../header.jsp" />
 		<jsp:include page="../sideBar.jsp" />
 		
-		<!-- 전체 테마 기준 -->
+		<!-- 참여 테마 기준 -->
 		<div class="theme-slide">
 			<button class="left">
 				<i class="fas fa-angle-left"></i>
 			</button>
 			<ul class="slide-theme-content">
-				<c:forEach items="${themeList}" var="theme">
+				<c:forEach items="${shareThemeList}" var="theme">
 					<li>
             <a href="place/list?no=${theme.no}" class="slide-theme-content-item">
 							<div class="icon">${theme.emoji}</div>
@@ -72,7 +72,7 @@
 		</div>
 		
 		<!-- 검색 -->
-		<form id="search-form" action="${contextRoot}/app/search/main">
+		<form id="search-form" action="${contextRoot}/app/search/all">
 			<div class="search-container">
 				<input type="text" name="keyword" id="search-bar">
 				<button class="search-icon">
@@ -174,15 +174,37 @@
       </ul>
     </div>  <!-- .hot-place -->
     
-    <!-- 최근 테마 -->
+    <!-- 최근 유저 테마 -->
     <div class="dash-board">
       <div class="hot-theme">
         <div class="title">
-          <span>🌠 최근 테마</span>
+          <span>🌠 최근 유저 테마</span>
           <!-- <div class="sub">최근 테마 목록</div> -->
         </div>
         <ul class="hot-theme-list owl-carousel">
-          <c:forEach items="${newTheme10}" var="theme">
+          <c:forEach items="${newPublicTheme10}" var="theme">
+            <li>
+              <a href="place/list?no=${theme.no}" class="content">
+                <div class="icon">${theme.emoji}</div>
+                <div class="theme-content">
+                  <div class="theme-title">${theme.title}</div>
+                </div>
+              </a>
+            </li>
+          </c:forEach>
+        </ul>
+      </div>  <!-- .hot-theme -->
+    </div>  <!-- .dash-board -->
+    
+    <!-- 최근 참여 테마 -->
+    <div class="dash-board">
+      <div class="hot-theme">
+        <div class="title">
+          <span>🌠 최근 참여 테마</span>
+          <!-- <div class="sub">최근 테마 목록</div> -->
+        </div>
+        <ul class="hot-theme-list owl-carousel">
+          <c:forEach items="${newShareTheme10}" var="theme">
             <li>
               <a href="place/list?no=${theme.no}" class="content">
                 <div class="icon">${theme.emoji}</div>
@@ -208,7 +230,7 @@
     <!-- 유저 테마 -->
     <div class="container">
       <div class="main-container">
-        <div class="user-share-theme">유저 테마</div>
+        <div class="user-share-themelist">유저 테마</div>
       <ul class="theme-list">
       <c:forEach items="${publicThemeList}" var="theme">
       <a class="list-container" href="../place/list?no=${theme.no}"

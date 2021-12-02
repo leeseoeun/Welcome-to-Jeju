@@ -302,7 +302,7 @@
       t.share=1
     order by
     <!-- group by -->
-      t.created_dt desc
+      t.theme_no desc
       limit 10
   </select>
   

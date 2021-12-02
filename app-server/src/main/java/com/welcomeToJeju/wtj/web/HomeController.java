@@ -23,7 +23,8 @@ public class HomeController {
     model.addAttribute("placeRaking10", placeDao.placeRanking10());
     model.addAttribute("shareThemeRanking10", shareThemeDao.themeRanking10());
     model.addAttribute("publicThemeRanking10", publicThemeDao.themeRanking10());
-    model.addAttribute("newTheme10", publicThemeDao.newTheme10());
+    model.addAttribute("newPublicTheme10", publicThemeDao.newTheme10());
+    model.addAttribute("newShareTheme10", shareThemeDao.newTheme10());
     model.addAttribute("publicThemeList", publicThemeDao.findAllPublicTheme());
     model.addAttribute("shareThemeList", shareThemeDao.findAllShareTheme());
 
