@@ -29,6 +29,7 @@
     <c:if test="${empty theme.emoji}">
       <div class="icon">🏄</div>
     </c:if>
+    
       <div class="theme-title">${theme.title}</div>
       <%-- <div class="theme-count">${theme.hashtags}</div> --%>
     </div>  <!-- .content -->
@@ -63,6 +64,7 @@
     <c:if test="${empty theme.emoji}">
       <div class="icon">🏄</div>
     </c:if>
+    
       <div class="theme-title">${theme.title}</div>
       <%-- <div class="theme-count">${theme.hashtags}</div> --%>
     </div>  <!-- .content -->
