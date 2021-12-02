@@ -35,7 +35,7 @@ public class ThemeController {
     return mv;
   }
 
-  @GetMapping("/theme/userlist")
+  @GetMapping("/user/themelist")
   public ModelAndView userThemeList(int no) throws Exception {
     Collection<Theme> publicThemeList = publicThemeDao.findAllPublicThemeByUserNo(no);
     Collection<Theme> shareThemeList = shareThemeDao.findAllShareThemeByUserNo(no);
