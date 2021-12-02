@@ -246,7 +246,7 @@
       </c:forEach>
       </ul>
     <!-- 참여 테마 -->
-        <div class="user-share-theme">참여 테마</div>
+        <div class="user-share-themelist">참여 테마</div>
       <ul class="theme-list">
       <c:forEach items="${shareThemeList}" var="theme"
       begin="0" end="${3-(fn:length(shareThemeList)%3)-1}">

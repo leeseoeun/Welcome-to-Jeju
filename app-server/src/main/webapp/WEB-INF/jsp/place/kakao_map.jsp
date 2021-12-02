@@ -289,7 +289,7 @@ function removeAllChildNods(el) {
 </script>
 
 <div>
-  <!-- 위도 및 경도 좌표 및 위치정보 -->
+  <!-- 위도 및 경도 좌표 및 위치 정보 -->
   <input type="text" id="id" name="id" value="">   
   <input type="text" id="place_name" name="place_name" value="">   
   <input type="text" id="address_name" name="address_name" value="">  
