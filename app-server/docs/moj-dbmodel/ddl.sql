@@ -34,13 +34,13 @@ DROP TABLE IF EXISTS jeju_board_comment RESTRICT;
 -- 유저
 CREATE TABLE jeju_user (
   user_no    INTEGER      NOT NULL COMMENT '유저번호', -- 유저번호
-  email      VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
-  password   VARCHAR(100) NOT NULL COMMENT '비밀번호', -- 비밀번호
-  nickname   VARCHAR(30)  NOT NULL COMMENT '닉네임', -- 닉네임
+  email      VARCHAR(255) NOT NULL COMMENT '이메일', -- 이메일
+  password   VARCHAR(100) NULL     COMMENT '비밀번호', -- 비밀번호
+  nickname   VARCHAR(30)  NULL     COMMENT '닉네임', -- 닉네임
   created_dt DATE         NOT NULL DEFAULT curdate() COMMENT '등록일', -- 등록일
   view_cnt   INTEGER      NULL     DEFAULT 0 COMMENT '조회수', -- 조회수
   active     INTEGER      NULL     DEFAULT 1 COMMENT '탈퇴', -- 탈퇴
-  emoji      VARCHAR(255) NOT NULL COMMENT '이모지' -- 이모지
+  emoji      VARCHAR(255) NULL     COMMENT '이모지' -- 이모지
 )
 COMMENT '유저';
 
