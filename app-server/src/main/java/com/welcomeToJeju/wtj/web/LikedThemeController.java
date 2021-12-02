@@ -20,8 +20,8 @@ public class LikedThemeController {
   @Autowired ThemeDao themeDao;
 
   @GetMapping("/likedtheme/add")
-  public String add(int themeNo, int userNo) throws Exception {
-    themeDao.insertLikedTheme(themeNo, userNo);
+  public String add(int themeNo, HttpSession session) throws Exception {
+    themeDao.insertLikedTheme(themeNo, ((User)session.getAttribute("loginUser")).getNo());
     sqlSessionFactory.openSession().commit();
 
     return "redirect:../place/list?no=" + themeNo;
