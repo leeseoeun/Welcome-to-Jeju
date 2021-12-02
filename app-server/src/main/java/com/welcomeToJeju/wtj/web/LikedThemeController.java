@@ -23,29 +23,30 @@ public class LikedThemeController {
   public String add(int themeNo, int userNo) throws Exception {
     themeDao.insertLikedTheme(themeNo, userNo);
     sqlSessionFactory.openSession().commit();
+
     return "redirect:../place/list?no=" + themeNo;
   }
 
   @GetMapping("/likedtheme/list")
   public ModelAndView list(HttpSession session) throws Exception {
-
     Collection<Theme> themeList = themeDao.findAllLikedTheme(((User) session.getAttribute("loginUser")).getNo());
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("themeList", themeList);
-    mv.addObject("pageTitle", "테마 좋아요 목록");
+    mv.addObject("pageTitle", "테마 좋아요 목록 보기");
     mv.addObject("contentUrl", "likedTheme/LikedThemeList.jsp");
     mv.setViewName("template_main");
-    return mv;
 
+    return mv;
   }
 
   @GetMapping("/likedtheme/delete")
   public String delete(int themeNo, HttpSession session) throws Exception {
-
     themeDao.deleteLikedTheme(themeNo, ((User)session.getAttribute("loginUser")).getNo());
     sqlSessionFactory.openSession().commit();
+
     return "redirect:list";
   }
+
 
 }

@@ -27,7 +27,7 @@ public class HomeController {
     model.addAttribute("publicThemeList", publicThemeDao.findAllPublicTheme());
     model.addAttribute("shareThemeList", shareThemeDao.findAllShareTheme());
 
-    return "home/Home";
+    return "home/Home"; // 뷰를 호출해야 되니까
   }
 
 
