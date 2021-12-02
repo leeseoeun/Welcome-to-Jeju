@@ -40,6 +40,10 @@
     display: none;
   }
 }
+
+.user-share-theme {
+  margin-left: 110px;
+}
 </style>
 
 <body>
@@ -58,7 +62,6 @@
             <a href="place/list?no=${theme.no}" class="slide-theme-content-item">
 							<div class="icon">${theme.emoji}</div>
 							<div class="theme-title">${theme.title}</div>
-							<%-- <div class="curators">${theme.hashtags}</div> --%>
             </a>
 				  </li>
 				</c:forEach>
@@ -78,11 +81,11 @@
 			</div>
 		</form>
 		
-    <!-- 공개 테마 순위 -->
+    <!-- 유저 테마 순위 -->
 		<div class="dash-board">
       <div class="hot-theme">
         <div class="title">
-          <span>🥇 🔥 🎖️ 공개 테마 순위</span>
+          <span>🎖️ 유저 테마 순위</span>
           <!-- <div class="sub">인기 있는 테마</div> -->
         </div>
         <ul class="hot-theme-list owl-carousel">
@@ -92,7 +95,6 @@
                 <div class="icon">${theme.emoji}</div>
                 <div class="theme-content">
 	                <div class="theme-title">${theme.title}</div>
-	                <%-- <div class="curators">${theme.hashtags}</div> --%>
                 </div>
               </a>
             </li>
@@ -105,7 +107,7 @@
     <div class="dash-board">
       <div class="hot-theme">
         <div class="title">
-          <span>🥇 🔥 🎖️ 참여 테마 순위</span>
+          <span>🎖️ 참여 테마 순위</span>
           <!-- <div class="sub">인기 있는 테마</div> -->
         </div>
         <ul class="hot-theme-list owl-carousel">
@@ -115,7 +117,6 @@
                 <div class="icon">${theme.emoji}</div>
                 <div class="theme-content">
                   <div class="theme-title">${theme.title}</div>
-                  <%-- <div class="curators">${theme.hashtags}</div> --%>
                 </div>
               </a>
             </li>
@@ -128,7 +129,7 @@
     <div class="dash-board">
 			<div class="hot-curators">
 				<div class="title">
-					<span>🥈 🔥 🏆 유저 순위</span>
+					<span>🏆 유저 순위</span>
 					<!-- <div class="sub">인기 있는 유저</div> -->
 				</div>
 				<ul class="hot-curators-list .owl-carousel2">
@@ -150,7 +151,7 @@
     <!-- 장소 순위 -->
     <div class="hot-place">
       <div class="title">
-        <span>🥉 🔥 🏅 장소 순위</span>
+        <span>🏅 장소 순위</span>
         <!-- <div class="sub">인기 있는 장소</div> -->
       </div>
       <ul class="hot-place-list owl-carousel">
@@ -187,7 +188,6 @@
                 <div class="icon">${theme.emoji}</div>
                 <div class="theme-content">
                   <div class="theme-title">${theme.title}</div>
-                  <%-- <div class="curators">${theme.hashtags}</div> --%>
                 </div>
               </a>
             </li>
@@ -205,34 +205,41 @@
       </div>  <!-- .hot-theme -->
     </div>  <!-- .dash-board -->
     
+    <!-- 유저 테마 -->
     <div class="container">
       <div class="main-container">
+        <div class="user-share-theme">유저 테마</div>
       <ul class="theme-list">
-      <c:forEach items="${themeList}" var="theme">
+      <c:forEach items="${publicThemeList}" var="theme">
+      <a class="list-container" href="../place/list?no=${theme.no}"
+      begin="0" end="${3-(fn:length(publicThemeList)%3)-1}">
+        <li>
+          <div class="content">
+	          <div class="icon">${theme.emoji}</div>
+	          <div class="theme-title">${theme.title}</div>
+	          <div class="theme-count">${theme.owner.nickname}</div>
+          </div>  <!-- .content -->
+        </li>
+      </a>
+      </c:forEach>
+      </ul>
+    <!-- 참여 테마 -->
+        <div class="user-share-theme">참여 테마</div>
+      <ul class="theme-list">
+      <c:forEach items="${shareThemeList}" var="theme"
+      begin="0" end="${3-(fn:length(shareThemeList)%3)-1}">
       <a class="list-container" href="../place/list?no=${theme.no}">
         <li>
           <div class="content">
 	          <div class="icon">${theme.emoji}</div>
 	          <div class="theme-title">${theme.title}</div>
-	          <%-- <div class="theme-count">${theme.hashtags}</div> --%>
-          </div>  <!-- .content -->
-        </li>
-      </a>
-      </c:forEach>  
-      <c:forEach begin="0" end="${3-(fn:length(themeList)%3)-1}">
-      <a class="list-container" style=visibility:hidden;>
-        <li>
-          <div class="content">
-            <div class="icon">${theme.no}</div>
-            <div class="theme-title">${theme.title}</div>
-            <%-- <div class="theme-count">${theme.hashtags}</div> --%>
           </div>  <!-- .content -->
         </li>
       </a>
       </c:forEach>
       </ul>
       </div>  <!-- .main-container -->
-      </div>  <!-- .container -->
+    </div>  <!-- .container -->
 	</main>
 
   <footer>
