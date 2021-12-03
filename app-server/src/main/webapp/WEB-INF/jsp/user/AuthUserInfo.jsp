@@ -60,6 +60,13 @@
 </div>
 
 <div class="mb-3 row">
+<h5>이모지</h5>
+  <div class="col-sm-16">
+  <input id='f-emoji' type='text' name='emoji' class="form-control" value = "${loginUser.emoji}" readonly>
+  </div>
+</div>
+
+<div class="mb-3 row">
 <h5>조회수</h5>
   <div class="col-sm-16">
   <input id='f-viewCount' type='text' name='viewCount' value='${loginUser.viewCount}' class="form-control"  readonly>
@@ -69,7 +76,7 @@
 <div class="mb-3 row">
 <h5>가입일</h5>
   <div class="col-sm-16">
-  <input id='f-registeredDate' type='date' name='registeredDate' value='${loginUser.registeredDate}' class="form-control"  readonly><br>
+  <input id='f-registeredDate' type='text' name='registeredDate' value='${loginUser.registeredDate}' class="form-control"  readonly><br>
   </div>
 </div>
 
