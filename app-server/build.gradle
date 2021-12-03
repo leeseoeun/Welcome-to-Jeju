@@ -23,10 +23,8 @@ dependencies {
   // jackson-databind(네이버 로그인시 필요한 라이브러리)
   implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
 
-
   // json-simple(네이버 로그인시 필요한 라이브러리)
   implementation 'com.googlecode.json-simple:json-simple:1.1.1'
-
 
   // 네이버 로그인 API
   implementation 'com.github.scribejava:scribejava-core:2.8.1'

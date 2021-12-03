@@ -2,52 +2,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true" %>
-    
-<style>
-label {
-margin-right: 5px;
-text-align: right;
-display: inline-block;
-width: 60px;
-
-}
-</style>
-
  <style>
- 
-.add-form {
-    width: 30%;
-    background-color: transparent;
-    margin: 0 auto;
-    padding: 30px;
+ .card-container{
+    display : flex;
+    justify-content: center;
+    padding: var(--font-great) 0 ;
   }
-  .col-auto{
-  display: flex;
-  	width:100%;
+  
+  .btn-block {
+  float:left;
+  margin-left: 20px;
+  margin-right: 20px;
   }
-  .col-auto button {
-  	justify-content: flex-end;
-  	width:50%;
-  }
+  
   </style>
   
-
-<br>
-<h1 style=text-align:center;>회원 가입</h1>
-<br>
-<div class = "add-form">
+<div class="card-container">
+  <div class="card align-middle" style="width:20rem; border-radius:20px;">
+    <div class="card-title" style="margin-top:30px;">
+      <h2 class="card-title text-center" style="color:#113366;">회원 가입</h2>
+    </div>
+<div class = "card-body">
 <form id="user-form" action='add' method='post'>
 
 <div class="mb-3 row">
 <h5>이메일</h5>
-  <div class="col-sm-16">
-  <input id='f-email' type='email' name='email' class="form-control" > 
+  <div class = "col-sm-16">
+  <input id='f-email' type='email' name='email' class="form-control" placeholder="Your Email" required autofocus> 
   <div class="invalid-feedback">
         이미 존재하는 이메일입니다.
     </div>
-  </div>
+    </div>
   <div class="col-auto">
-    <button id="x-email-check-btn" type="button" class="btn btn-outline-dark form-control">중복검사</button>
+    <button id="x-email-check-btn" type="button" class="btn btn-outline-dark form-control" 
+    style="color : #ffff; background-color:#F6BB43; border:none; margin-left: 197px; width: 85px;">중복검사</button>
   </div>
 </div>
 
@@ -61,24 +49,28 @@ width: 60px;
 <div class="mb-3 row">
 <h5>닉네임</h5>
   <div class = "col-sm-16">
-  <input id='f-nickname' type='nickname' name='nickname' class="form-control">
+  <input id='f-nickname' type='text' name='nickname' class="form-control">
   <div class="invalid-feedback">
         이미 존재하는 닉네임입니다.
     </div>
   </div>
   <div class="col-auto">
-    <button id="x-nickname-check-btn" type="button" class="btn btn-outline-dark form-control">중복검사</button>
+    <button id="x-nickname-check-btn" type="button" class="btn btn-outline-dark form-control"
+    style="color : #ffff; background-color:#F6BB43; border:none; margin-left: 197px; width: 85px;">중복검사</button>
   </div>
 </div>
-<!-- 
-<label for='f-email'>이메일</label>  <input id='f-email' type='email' name='email'><br>
-<label for='f-password'>암호</label>  <input id='f-password' type='password' name='password'><br>
-<label for='f-nickname'>닉네임</label>  <input id='f-nickname' type='nickname' name='nickname'><br>
- -->
-<button id="x-add-btn" class="btn btn-outline-dark form-control">가입하기</button><br>
-<br>
-<button class="btn btn-outline-dark form-control"><a href='../auth/loginform'>로그인!</a></button><br>
+
+
+<button id="x-add-btn" class="btn btn-lg btn-primary btn-block" 
+style = "color : #ffff; background-color:#F6BB43; border:none;">가입하기</button>
 </form>
+
+<form class = "form-login" action = "../auth/loginform">
+<button class="btn btn-lg btn-primary btn-block"
+style = "color : #ffff; background-color:#F6BB43; border:none;">로그인</button>
+</form>
+</div>
+</div>
 </div>
 
 <script>
@@ -90,11 +82,9 @@ document.querySelector("#user-form").onsubmit = () => {
     return false;
   }
 };
-
 var addBtn = document.querySelector("#x-add-btn");
 var emailTag = document.querySelector("#f-email");
 addBtn.setAttribute("disabled", "disabled");
-
 document.querySelector("#x-email-check-btn").onclick = () => {
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("load", function() {
@@ -109,11 +99,9 @@ document.querySelector("#x-email-check-btn").onclick = () => {
     xhr.open("get", "checkEmail?email=" + emailTag.value);
     xhr.send();
 };
-
 var addBtn = document.querySelector("#x-add-btn");
 var nicknameTag = document.querySelector("#f-nickname");
 addBtn.setAttribute("disabled", "disabled");
-
 document.querySelector("#x-nickname-check-btn").onclick = () => {
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("load", function() {
@@ -128,7 +116,6 @@ document.querySelector("#x-nickname-check-btn").onclick = () => {
     xhr.open("get", "checkNickname?nickname=" + nicknameTag.value);
     xhr.send();
 };
-
 </script>
 
-    
+   

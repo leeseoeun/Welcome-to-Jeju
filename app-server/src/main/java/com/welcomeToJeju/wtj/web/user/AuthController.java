@@ -16,11 +16,11 @@ public class AuthController {
 
   @Autowired UserDao userDao;
 
-  @GetMapping("/auth/loginform")
+  @GetMapping("/auth/loginform1")
   public ModelAndView loginform() {
     ModelAndView mv = new ModelAndView();
     mv.addObject("pageTitle", "로그인");
-    mv.addObject("contentUrl", "user/AuthLoginForm.jsp");
+    mv.addObject("contentUrl", "user/AuthLoginForm2.jsp");
     mv.setViewName("template_main");
     return mv;
   }
@@ -65,7 +65,6 @@ public class AuthController {
       return mv;
 
     } else {
-      //mv.addObject("refresh", "2;url=loginform");
       mv.addObject("pageTitle", "로그인 실패!");
       mv.addObject("contentUrl", "Error.jsp");
       mv.setViewName("template_main");
@@ -92,6 +91,5 @@ public class AuthController {
 
     return mv;
   }
-
 
 }

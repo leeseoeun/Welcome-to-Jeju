@@ -1,5 +1,6 @@
 package com.welcomeToJeju.wtj.web.user;
 
+import java.util.Random;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,7 +35,6 @@ public class UserController {
     }
   }
 
-
   @GetMapping("/user/checkNickname")
   @ResponseBody
   public String checkNickname(String nickname) throws Exception {
@@ -49,6 +49,13 @@ public class UserController {
   @PostMapping("/user/add")
   public ModelAndView add(User user, HttpServletRequest request) throws Exception {
 
+    String[] emoji = 
+      {"&#127749;", "&#127796;", "&#127818;", "&#128674;", "&#127754;", 
+          "&#129372;", "&#128757;", "&#128031;", "&#128511;", "&#127776;"};
+    Random random = new Random();
+    int randomNo = random.nextInt(emoji.length);
+
+    user.setEmoji(emoji[randomNo]);
     userDao.insert(user);
     sqlSessionFactory.openSession().commit();
 
@@ -60,12 +67,11 @@ public class UserController {
     return mv;
   }
 
-
   @GetMapping("/user/addform")
-  public ModelAndView form() {
+  public ModelAndView form2() {
     ModelAndView mv = new ModelAndView();
     mv.addObject("pageTitle", "회원 가입 하기");
-    mv.addObject("contentUrl", "user/UserAddForm2.jsp");
+    mv.addObject("contentUrl", "user/UserAddForm.jsp");
     mv.setViewName("template_main");
     return mv;
   }
@@ -92,25 +98,27 @@ public class UserController {
 
   @PostMapping("/user/update")
   public ModelAndView update(User user, HttpSession session) throws Exception {
-    User oldUser = (User) session.getAttribute("loginUser");
-    user.setNo(oldUser.getNo());
-    user.setEmail(oldUser.getEmail());
-    user.setRegisteredDate(oldUser.getRegisteredDate());
-    //    user.setReportedCount(oldUser.getReportedCount());
-    user.setViewCount(oldUser.getViewCount());
 
     userDao.update(user);
     sqlSessionFactory.openSession().commit();
-    session.invalidate();
+    session.setAttribute("loginUser", user);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("pageTitle", "회원 정보 수정");
-    mv.addObject("refresh", "1;../auth/loginform");
+    mv.addObject("refresh", "1;../home");
     mv.addObject("contentUrl", "user/UserUpdate.jsp");
     mv.setViewName("template_main");
     return mv;
+  }
 
+  @GetMapping("/user/form")
+  public ModelAndView form() {
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("pageTitle", "추가 정보 입력");
+    mv.addObject("contentUrl", "user/UserForm.jsp");
+    mv.setViewName("template_main");
 
+    return mv;
   }
 
 }
