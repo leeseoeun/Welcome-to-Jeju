@@ -11,12 +11,12 @@
     <div class="title">
     <br>
     <br>
-    <h1 style="text-align: center;">🔎 해시태그 '${keyword}'로 검색한 테마 목록</h1>
+    <h1 style="text-align: center;">🔎 '${keyword}'로 검색한 참여 테마 목록</h1>
     <br>
     <br>
     </div>
     <ul class="theme-list">
-      <c:forEach items="${hashtagList}" var="theme">
+      <c:forEach items="${shareThemeList}" var="theme">
         <a class="list-container" href="../place/list?no=${theme.no}">
           <li>
             <div class="content">
@@ -28,7 +28,6 @@
                 <div class="icon">🏄</div>
               </c:if>
               <div class="theme-title">${theme.title}</div>
-              <div class="theme-count">${theme.hashtags}</div>
             </div> <!-- .content -->
         </li>
         </a>
@@ -39,7 +38,6 @@
             <div class="content">
               <div class="icon">${theme.no}</div>
               <div class="theme-title">${theme.title}</div>
-              <div class="theme-count">#${theme.hashtags}</div>
             </div> <!-- .content -->
         </li>
         </a>

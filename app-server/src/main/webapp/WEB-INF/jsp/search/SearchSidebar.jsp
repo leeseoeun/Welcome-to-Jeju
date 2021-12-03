@@ -26,29 +26,19 @@ left: 150px;
 <br>
 
 <form id="search-form" action="${contextRoot}/app/search/all">
-<!-- 
-<select class="form-select" name="option">
-  <option selected> 검색 옵션을 선택해주세요!</option>
-  <option value="all">전체검색</option>
-  <option value="theme">테마</option>
-  <option value="hashtag">해시태그</option>
-  <option value="user">유저</option>
-</select>
- -->
 
 <label class="checkbox-inline">
   <input type="checkbox" name="option" id="inlineCheckbox1" value="all"> 전체검색
 </label>
 <label class="checkbox-inline">
-  <input type="checkbox" name="option" id="inlineCheckbox2" value="theme"> 테마
+  <input type="checkbox" name="option" id="inlineCheckbox2" value="publicTheme"> 유저테마
 </label>
 <label class="checkbox-inline">
-  <input type="checkbox" name="option" id="inlineCheckbox3" value="hashtag"> 해시태그
+  <input type="checkbox" name="option" id="inlineCheckbox3" value="shareTheme"> 참여테마
 </label>
 <label class="checkbox-inline">
-  <input type="checkbox" name="option" id="inlineCheckbox3" value="user"> 유저
+  <input type="checkbox" name="option" id="inlineCheckbox4" value="user"> 유저
 </label>
-
 
 <br>
   <div class="search-container">

@@ -66,12 +66,17 @@ public class SearchController {
     if (option.equals("all")) {
       mv.addObject("contentUrl", "search/Search.jsp");
 
-    } else if (option.equals("theme")) {
-      mv.addObject("contentUrl", "search/SearchTheme.jsp");
+    } else if (option.equals("publicTheme")) {
+      mv.addObject("contentUrl", "search/SearchPublicTheme.jsp");
+
+    } else if (option.equals("shareTheme")) {
+      mv.addObject("contentUrl", "search/SearchShareTheme.jsp");
 
     } else if (option.equals("user")){
       mv.addObject("contentUrl", "search/SearchUser.jsp");
+
     }
+
     mv.setViewName("template_main");
 
     return mv;
@@ -100,11 +105,13 @@ public class SearchController {
   public ModelAndView searchmain(String keyword) throws Exception {
 
     Collection<User> userList = userDao.findByKeyword(keyword);
-    Collection<Theme> themeList = publicThemeDao.findByKeyword(keyword);
+    Collection<Theme> publicThemeList = publicThemeDao.findByKeyword(keyword);
+    Collection<Theme> shareThemeList = shareThemeDao.findByKeyword(keyword);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("userList", userList);
-    mv.addObject("themeList", themeList);
+    mv.addObject("publicThemeList", publicThemeList);
+    mv.addObject("shareThemeList", shareThemeList);
     mv.addObject("keyword", keyword);
     mv.addObject("pageTitle", "통합 검색 목록보기");
     mv.addObject("contentUrl", "search/Search.jsp");
