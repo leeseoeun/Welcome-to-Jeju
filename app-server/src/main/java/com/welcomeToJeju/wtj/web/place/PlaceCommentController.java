@@ -1,7 +1,6 @@
 package com.welcomeToJeju.wtj.web.place;
 
 import java.util.HashMap;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import com.welcomeToJeju.wtj.domain.User;
 public class PlaceCommentController {   //
 
   @Autowired PlaceCommentDao placeCommentDao;
-  @Autowired ServletContext sc;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @PostMapping("/comment/add")

@@ -59,7 +59,7 @@
 <div class="mb-3 row">
 <h5>사진</h5>
   <div class = "col-sm-16">
-  <input id='f-photo' type='text' name='photo' class="form-control">
+  <input id='f-photo' type='file' name='photoFile' class="form-control">
   </div>
 </div>
 

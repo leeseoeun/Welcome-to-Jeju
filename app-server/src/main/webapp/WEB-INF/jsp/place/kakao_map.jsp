@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.io.File"%>
+<%-- <%@page import="java.io.File"%> --%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -119,7 +119,7 @@ function searchPlaces() {
     }
 
     // 장소 검색 객체를 통해 키워드로 장소 검색을 요청합니다
-    ps.keywordSearch( keyword, placesSearchCB);
+    ps.keywordSearch(keyword, placesSearchCB);
 }
 
 // 장소 검색이 완료됐을 때 호출되는 콜백함수입니다
