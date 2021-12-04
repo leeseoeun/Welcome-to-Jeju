@@ -5,10 +5,10 @@
     const qs = x => document.querySelector(x);
     
     const $placesList = qs("#placesList");
-		const $placeName = qs("#place_name");
-		const $placeAddress = qs("#address_name");
-		const $placeComment = qs("#place_comment");
-		let placeData = [];
+    const $placeName = qs("#place_name");
+    const $placeAddress = qs("#address_name");
+    const $placeComment = qs("#place_comment");
+    let placeData = [];
     // 마커를 담을 배열입니다
     let markers = [];
 
@@ -29,23 +29,23 @@
         const regex = /[^0-9]/g;
 
         function init() {
-						getDataFromServer();
+            getDataFromServer();
             placeListClickEvent();
             moveMapLocationEvent();
         }
 
-				function getDataFromServer(){
-					let xhr = new XMLHttpRequest();
-					xhr.onreadystatechange = () => {
-					  if (xhr.readyState != 4 || xhr.status != 200)
-					    return;
-					  placeData = JSON.parse(xhr.responseText);
-						displayPlaces(placeData);
-					};
-					xhr.open("GET", "../../app/place/list01", true);
-					xhr.send();
-				}
-				
+        function getDataFromServer(){
+          let xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = () => {
+            if (xhr.readyState != 4 || xhr.status != 200)
+              return;
+            placeData = JSON.parse(xhr.responseText);
+            displayPlaces(placeData);
+          };
+          xhr.open("GET", "../../app/place/list01", true);
+          xhr.send();
+        }
+        
         // 검색 결과 목록과 마커를 표출하는 함수입니다
         function displayPlaces(places) {
 
@@ -151,28 +151,28 @@
                 if (!liTag) return; 
                 if (!$placesList.contains(liTag)) return;
 
-								
+                
                 let selectedPlaceItemNum = parseInt(liTag.childNodes[0].className.replace(regex, ""));
-								$placeName.value = placeData[selectedPlaceItemNum-1].place_name;
-								$placeAddress.value = placeData[selectedPlaceItemNum-1].address_name;
-								let comments = placeData[selectedPlaceItemNum-1].comments;
-								let place_comments = "";
-								let count = 1;
-								comments.forEach(e => {
-									place_comments += `${count++}. ` + e.comment + "\r\n"
-								});
-								console.log(place_comments);
-								$placeComment.innerText = place_comments;
-								
-								document.querySelector(".modal").style.display = 'block';
-								document.getElementsByTagName("BODY")[0].style.overflow = 'hidden';
-								document.querySelector(".modal").classList.toggle('show');
-								                	
-								qs('.place_cancel_btn').addEventListener('click',()=>{
-									document.getElementsByTagName("BODY")[0].style.overflow = 'visible';
-									document.querySelector(".modal").style.display = 'none';
-									document.querySelector(".modal").classList.toggle('show');
-								});
+                $placeName.value = placeData[selectedPlaceItemNum-1].place_name;
+                $placeAddress.value = placeData[selectedPlaceItemNum-1].address_name;
+                let comments = placeData[selectedPlaceItemNum-1].comments;
+                let place_comments = "";
+                let count = 1;
+                comments.forEach(e => {
+                  place_comments += `${count++}. ` + e.comment + "\r\n"
+                });
+                console.log(place_comments);
+                $placeComment.innerText = place_comments;
+                
+                document.querySelector(".modal").style.display = 'block';
+                document.getElementsByTagName("BODY")[0].style.overflow = 'hidden';
+                document.querySelector(".modal").classList.toggle('show');
+                                  
+                qs('.place_cancel_btn').addEventListener('click',()=>{
+                  document.getElementsByTagName("BODY")[0].style.overflow = 'visible';
+                  document.querySelector(".modal").style.display = 'none';
+                  document.querySelector(".modal").classList.toggle('show');
+                });
 
             });
         }
