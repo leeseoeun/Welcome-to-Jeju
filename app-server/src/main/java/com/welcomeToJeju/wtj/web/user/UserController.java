@@ -103,6 +103,7 @@ public class UserController {
 
     user.setActive(oldUser.getActive());
     user.setEmoji(oldUser.getEmoji());
+    user.setRegisteredDate(oldUser.getRegisteredDate());
 
     userDao.update(user);
     sqlSessionFactory.openSession().commit();
