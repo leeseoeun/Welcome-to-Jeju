@@ -16,7 +16,7 @@
             </form>
         </c:if>
         <c:if test="${!empty loginUser}">
-                <button type="button" class="login">${loginUser.nickname }</button>
+                <button type="button" class="login">${loginUser.emoji}${loginUser.nickname}</button>
         </c:if>
 
         <button class="side-menu">
