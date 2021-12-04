@@ -84,6 +84,14 @@ public class NaverLoginController {
     if (user == null) {
 
       User newUser = new User();
+
+      String[] emoji = 
+        {"&#127749;", "&#127796;", "&#127818;", "&#128674;", "&#127754;", 
+            "&#129372;", "&#128757;", "&#128031;", "&#128511;", "&#127776;"};
+      Random random = new Random();
+      int randomNo = random.nextInt(emoji.length);
+
+      newUser.setEmoji(emoji[randomNo]);
       newUser.setEmail(email);
       newUser.setNickname("Hello");
       userDao.insert(newUser);
