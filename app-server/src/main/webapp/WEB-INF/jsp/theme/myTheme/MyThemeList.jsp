@@ -7,6 +7,14 @@
 <c:set scope="page" var="contextRoot" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${contextRoot}/css/theme_list.css">
 
+<style>
+.btn btn-outline-dark btn-lg {
+right: 600px;
+
+}
+
+</style>
+
 <div class="container">
 <div class="main-container">
 
@@ -14,16 +22,7 @@
 <h1 style=text-align:center;>나의 테마 목록 보기</h1>
 <br>
 
-<ul class="theme-list">
-<a class="list-container" href="addform">
-	  <li>
-	  <div class="content">
-	  <div class="icon">➕</div>
-	  <div class="theme-title">나의 테마 만들기</div>
-	  </div>  <!-- .content -->
-	  </li>
-</a>
-</ul>
+<h1><a href='addform' class="btn btn-outline-dark btn-lg"  style="margin-left: 900px;">🎨 나의 테마 만들기</a></h1>
 
 <h4>공개 테마</h4>
 <ul class="theme-list">
