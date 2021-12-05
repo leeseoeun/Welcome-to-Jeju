@@ -1,5 +1,6 @@
 package com.welcomeToJeju.wtj.web.place;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 import javax.servlet.ServletContext;
@@ -10,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import com.google.gson.Gson;
 import com.welcomeToJeju.wtj.dao.PlaceCommentDao;
 import com.welcomeToJeju.wtj.dao.PlaceDao;
 import com.welcomeToJeju.wtj.dao.PlacePhotoDao;
@@ -36,15 +35,14 @@ public class PlaceController {
 
   @Autowired PublicThemeDao publicThemeDao;
 
-  // 장소 검색
-  //  @GetMapping("/place/list")
-  //  public ModelAndView place() throws Exception {
-  //    ModelAndView mv = new ModelAndView();
-  //    mv.addObject("contentUrl", "place/kakao_map.jsp");
-  //    mv.setViewName("template_main");
-  //
-  //    return mv;
-  //  }
+  @GetMapping("/place/search")
+  public ModelAndView place() throws Exception {
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("contentUrl", "place/kakao_map.jsp");
+    mv.setViewName("template_main");
+
+    return mv;
+  }
 
   @PostMapping("/place/addform")
   public ModelAndView addform(Place place) {
@@ -120,10 +118,10 @@ public class PlaceController {
 
   @GetMapping("/place/list")
   public ModelAndView list(int no) throws Exception {
-    //    Collection<Place> placeList = placeDao.findAllByThemeNo(no);
+    Collection<Place> placeList = placeDao.findAllByThemeNo(no);
 
     ModelAndView mv = new ModelAndView();
-    //    mv.addObject("placeList", placeList);
+    mv.addObject("placeList", placeList);
     mv.addObject("pageTitle", "장소 목록 보기");
     mv.addObject("contentUrl", "place/kakao_map_list.jsp");
     mv.setViewName("template_main");
@@ -131,11 +129,11 @@ public class PlaceController {
     return mv;
   }
 
-  @GetMapping(value="list01", produces="application/json;charset=UTF-8")
-  @ResponseBody
-  public String list_get(int no) throws Exception{
-    return new Gson().toJson(placeDao.findAllByThemeNo(no));
-  }
+  //  @GetMapping(value="list01", produces="application/json;charset=UTF-8")
+  //  @ResponseBody
+  //  public String list_get(int no) throws Exception{
+  //    return new Gson().toJson(placeDao.findAllByThemeNo(no));
+  //  }
 
 
 }
