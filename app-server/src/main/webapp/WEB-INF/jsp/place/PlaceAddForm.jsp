@@ -5,12 +5,7 @@
 <style>
   .add-form {
     width: 30%;
-    /* border-radius: 6px; */
-    /* box-shadow: 3px 3px; */
     background-color: transparent;
-    /* background-color: #f8f8f8; */
-    /* background-color: #F6BB43; */
-    /* text-align: center; */
     margin: 0 auto;
     padding: 30px;
   }
@@ -23,24 +18,10 @@
 <div class="add-form">
 <form id="place-form" action="add" method="post" enctype="multipart/form-data">
 
-<div class="mb-3 row">
-<h5>장소 아이디</h5>
-	<div class="col-sm-16">
-	<input id='f-place' type='text' name='id' class="form-control" value="${place.id}" readonly>
-	</div>
-</div>
-<div class="mb-3 row">
-<h5>x</h5>
-	<div class="col-sm-16">
-	<input id='f-place' type='text' name='x' class="form-control" value="${place.x}" readonly>
-	</div>
-</div>
-<div class="mb-3 row">
-<h5>y</h5>
-	<div class="col-sm-16">
-	<input id='f-place' type='text' name='y' class="form-control" value="${place.y}" readonly>
-	</div>
-</div>
+  <input type="hidden" id="id" name="id">
+  <input type="hidden" id="address_name" name="address_name">
+  <input type="hidden" id="x" name="x">
+  <input type="hidden" id="y" name="y">
 
 <div class="mb-3 row">
 <h5>장소 이름</h5>
@@ -66,7 +47,7 @@
 <div class="mb-3 row">
 <h5>후기</h5>
   <div class = "col-sm-16">
-  <input id='f-comment' type='text' name='comment' class="form-control">
+  <textarea id='f-comment' name='comment' rows="5" class="form-control"></textarea>
   </div>
 </div>
 
