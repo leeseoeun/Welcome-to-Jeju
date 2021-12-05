@@ -135,7 +135,7 @@
 				<ul class="hot-curators-list .owl-carousel2">
 					<c:forEach items="${userRanking10}" var="user">
 						<li>
-						  <a href="theme/userlist?no=${user.no}" class="content">
+						  <a href="user/themelist?no=${user.no}" class="content">
 								<div class="icon">${user.emoji}</div>
 								<div class="curator-name">${user.nickname}</div>
 								<%-- <div class="theme-count">${user.registeredDate}</div> --%>
@@ -224,13 +224,11 @@
         <div class="title">
           <span>🌟 전체 테마</span>
         </div>
-      </div>  <!-- .hot-theme -->
-    </div>  <!-- .dash-board -->
     
     <!-- 유저 테마 -->
     <div class="container">
       <div class="main-container">
-        <div class="user-share-themelist">유저 테마</div>
+        <h5 class="user-share-themelist">👩 유저 테마</h5>
       <ul class="theme-list">
       <c:forEach items="${publicThemeList}" var="theme">
       <a class="list-container" href="../place/list?no=${theme.no}"
@@ -245,8 +243,11 @@
       </a>
       </c:forEach>
       </ul>
+      <br>
+      <br>
+      
     <!-- 참여 테마 -->
-        <div class="user-share-themelist">참여 테마</div>
+        <h5 class="user-share-themelist">👫 참여 테마</h5>
       <ul class="theme-list">
       <c:forEach items="${shareThemeList}" var="theme"
       begin="0" end="${3-(fn:length(shareThemeList)%3)-1}">
@@ -260,6 +261,8 @@
       </a>
       </c:forEach>
       </ul>
+      </div>  <!-- .hot-theme -->
+    </div>  <!-- .dash-board -->
       </div>  <!-- .main-container -->
     </div>  <!-- .container -->
 	</main>

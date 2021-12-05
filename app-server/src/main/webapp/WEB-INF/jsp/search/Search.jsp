@@ -59,7 +59,7 @@ left: 150px;
 		</div>
 		<ul class="hot-curators-list .owl-carousel2">
 			<c:forEach items="${userList}" var="user">
-				<li><a href="../theme/userlist?no=${user.no}" class="content">
+				<li><a href="../user/themelist?no=${user.no}" class="content">
 						<div class="icon">${user.emoji}</div>
 						<div class="curator-name">${user.nickname}</div>
 						<div class="theme-count">${user.registeredDate}</div>
@@ -93,7 +93,7 @@ left: 150px;
 				</li>
 				</a>
 			</c:forEach>
-			<c:forEach begin="0" end="${3-(fn:length(themeList)%3)-1}">
+			<c:forEach begin="0" end="${3-(fn:length(publicThemeList)%3)-1}">
 				<a class="list-container" style="visibility: hidden;">
 					<li>
 						<div class="content">
@@ -128,7 +128,7 @@ left: 150px;
         </li>
         </a>
       </c:forEach>
-      <c:forEach begin="0" end="${3-(fn:length(themeList)%3)-1}">
+      <c:forEach begin="0" end="${3-(fn:length(shareThemeList)%3)-1}">
         <a class="list-container" style="visibility: hidden;">
           <li>
             <div class="content">
