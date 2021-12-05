@@ -1,6 +1,7 @@
 package com.welcomeToJeju.wtj.web.theme;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,10 +57,21 @@ public class MyThemeController {
 
   @GetMapping("/mytheme/list")
   public ModelAndView list(int no) throws Exception {
-    Collection<Theme> themeList = publicThemeDao.findAllByUserNo(no);
+
+    List<Theme> publicThemeList = new ArrayList<>();
+    List<Theme> privateThemeList = new ArrayList<>();
+
+    for (Theme t : publicThemeDao.findAllByUserNo(no)) {
+      if (t.getIsPublic() == 1) {
+        publicThemeList.add(t);
+      } else if (t.getIsPublic() == 0) {
+        privateThemeList.add(t);
+      } 
+    }
 
     ModelAndView mv = new ModelAndView();
-    mv.addObject("themeList", themeList);
+    mv.addObject("publicThemeList", publicThemeList);
+    mv.addObject("privateThemeList", privateThemeList);
     mv.addObject("pageTitle", "나의 테마 목록 보기");
     mv.addObject("contentUrl", "theme/myTheme/MyThemeList.jsp");
     mv.setViewName("template_main");
