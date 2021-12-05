@@ -15,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.welcomeToJeju.wtj.dao.PlaceCommentDao;
 import com.welcomeToJeju.wtj.dao.PlaceDao;
 import com.welcomeToJeju.wtj.dao.PlacePhotoDao;
+import com.welcomeToJeju.wtj.dao.ThemeDao;
 import com.welcomeToJeju.wtj.domain.Place;
+import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.User;
 import net.coobird.thumbnailator.ThumbnailParameter;
 import net.coobird.thumbnailator.Thumbnails;
@@ -29,6 +31,7 @@ public class PlaceController {
   @Autowired PlacePhotoDao placePhotoDao;
   @Autowired ServletContext sc;
   @Autowired PlaceCommentDao placeCommentDao;
+  @Autowired ThemeDao themeDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @PostMapping("/place/addform")
@@ -106,9 +109,11 @@ public class PlaceController {
   @GetMapping("/place/list")
   public ModelAndView list(int no) throws Exception {
     Collection<Place> placeList = placeDao.findAllByThemeNo(no);
+    Theme theme = themeDao.findByNo(no);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("placeList", placeList);
+    mv.addObject("theme", theme);
     mv.addObject("pageTitle", "장소 목록 보기");
     mv.addObject("contentUrl", "place/kakao_map_list.jsp");
     mv.setViewName("template_main");
