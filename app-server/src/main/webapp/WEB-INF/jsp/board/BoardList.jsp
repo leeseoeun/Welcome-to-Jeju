@@ -14,7 +14,7 @@
 
 <c:choose>
 <c:when test="${loginUser ne null}">
-<h1><a href='addform' class="btn btn-outline-dark btn-lg"  style="margin-left: 900px;">📝 게시글 등록하기</a></h1>
+<h1><a href='addform' class="btn btn-outline-dark btn-lg"  style="margin-left: 910px;">📝 게시글 등록하기</a></h1>
 </c:when>
 </c:choose>
 
