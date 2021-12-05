@@ -8,7 +8,7 @@ public interface BoardCommentDao {
   void insert(BoardComment boardComment) throws Exception;
   void delete(int no) throws Exception;
 
-  List<BoardComment> findByBoardNo(int no) throws Exception;
+  List<BoardComment> findAllByBoardNo(int no) throws Exception;
 
   BoardComment findByNo(int no) throws Exception;
 

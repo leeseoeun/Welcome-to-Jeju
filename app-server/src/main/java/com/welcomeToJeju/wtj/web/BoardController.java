@@ -63,7 +63,7 @@ public class BoardController {
 
     User user = (User) session.getAttribute("loginUser");
     Board board = boardDao.findByNo(no);
-    List<BoardComment> boardComment = boardCommentDao.findByBoardNo(board.getNo());
+    List<BoardComment> boardComment = boardCommentDao.findAllByBoardNo(board.getNo());
 
     boardDao.updateViewCount(no);
     sqlSessionFactory.openSession().commit();
@@ -73,12 +73,22 @@ public class BoardController {
     mv.addObject("boardComment", boardComment);
     mv.addObject("pageTitle", "게시글 상세 보기");
 
-    if (user == null || user.getNo() != board.getWriter().getNo()) {
-      mv.addObject("contentUrl", "board/BoardDetail.jsp");
-
-    } else if (user.getNo() == board.getWriter().getNo()) {
+    if (user.getNo() == board.getWriter().getNo()) {
       mv.addObject("contentUrl", "board/MyBoardDetail.jsp");
+
+    } else {
+      mv.addObject("contentUrl", "board/BoardDetail.jsp");
     }
+
+
+    //
+    //    if (user == null || user.getNo() != board.getWriter().getNo()) {
+    //      mv.addObject("contentUrl", "board/BoardDetail.jsp");
+    //
+    //    } else if (user.getNo() == board.getWriter().getNo()) {
+    //      mv.addObject("contentUrl", "board/MyBoardDetail.jsp");
+    //    }
+
     mv.setViewName("template_main");
 
     return mv;

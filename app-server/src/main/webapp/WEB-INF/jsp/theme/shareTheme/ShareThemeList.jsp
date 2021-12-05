@@ -14,16 +14,7 @@
 <h1 style=text-align:center;>참여 테마 목록 보기</h1>
 <br>
 
-<ul class="theme-list">
-<a class="list-container" href="addform">
-	  <li>
-	  <div class="content">
-	  <div class="icon">➕</div>
-	  <div class="theme-title">참여 테마 만들기</div>
-	  </div>  <!-- .content -->
-	  </li>
-</a>
-</ul>
+<h1><a href='addform' class="btn btn-outline-dark btn-lg"  style="margin-left: 900px;">🎨 참여 테마 만들기</a></h1>
 
 <h4>참여 테마</h4>
 <ul class="theme-list">
@@ -35,7 +26,6 @@
 		    <div class="content">
 				<div class="icon">${theme.emoji}</div>
 				<div class="theme-title">${theme.title}</div>
-				<div class="theme-count">#${theme.hashtags}</div>
 			</div>  <!-- .content -->
 			</li>
 	  </a>
@@ -48,7 +38,6 @@
 		    <div class="content">
 					<div class="icon">${theme.emoji}</div>
 					<div class="theme-title">${theme.title}</div>
-					<div class="theme-count">#${theme.hashtags}</div>
 				</div>  <!-- .content -->
 			</li>
 	  </a>

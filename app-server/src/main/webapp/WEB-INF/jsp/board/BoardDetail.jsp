@@ -1,31 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    trimDirectiveWhitespaces="true" %>
+    trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<style>
+<c:set scope="page" var="contextRoot" value="${pageContext.request.contextPath}"/>
+<jsp:include page="../template_head.jsp"/>
 
-  .detail-form {
-    width: 30%;
-    /* border-radius: 6px; */
-    /* box-shadow: 3px 3px; */
-    background-color: transparent;
-    /* background-color: #f8f8f8; */
-    /* background-color: #F6BB43; */
-    /* text-align: center; */
-    margin: 0 auto;
-    padding: 30px;
-    
-  }
-  
-</style>
-
+<div class="container">
+<div class="main-container">
 <br>
 <h1 style=text-align:center;> 게시글 상세보기 </h1>
-<br>
+<br><br><br><br>
 
-<div class="detail">
-<div class="detail-form">
+<div class="dash-board" style="margin-left:150px;">
+<div class="detail-form"  style="width:400px; float: left; margin-right:150px;">
 <form id="update-form" action='update' method='post'>
 
 <div class="mb-3 row">
@@ -68,9 +57,9 @@
 </div>
 
 </form>
-<br>
+</div>
 
-<div class="comment-form">
+<div class="comment-form" style="width:400px; float:left;">
 <div class="card mb-2">
   <div class="card-header bg-light">
           <i class="fa fa-comment fa"></i> 댓글
@@ -119,13 +108,16 @@
       </div>
       <textarea class="form-control" id="exampleFormControlTextarea1" name='content' rows="3"></textarea>
       <br>
-      <button type='submit' class="btn btn-outline-dark">댓글 쓰기</button>
+      <button type='submit' class="btn btn-outline-dark" style="margin-left: 120px">댓글 쓰기</button>
         </form>
         </li>
     </ul>
   </div>
       </div>
       </div> <!-- .comment-form -->
-      </div> <!-- .detail -->
+      <div style="clear:left"></div>
+      </div> <!-- .dash-board -->
+      </div> <!-- .main-container -->
+      </div> <!-- .container -->
 
 

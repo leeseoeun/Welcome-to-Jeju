@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <style>
+    footer {
+    width: 100%;
+    height: 100px; /* footer의 높이 */
+    position: relative;  
+    bottom: 0;
+    left: 0;
+}
+    
+    </style>
+    
+    
 <footer>
     <div class="footer-link">
         <a href="#" target="_blank">facebook</a>
