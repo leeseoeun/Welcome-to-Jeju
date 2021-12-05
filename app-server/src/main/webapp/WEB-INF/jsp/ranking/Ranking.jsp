@@ -71,28 +71,36 @@
 </c:forEach>
 </ul>
 
+
+<br>
+<h1 style=text-align:center;>🏆 유저 순위</h1>
+<br>
+
+<ul class="theme-list">
+<c:forEach items="${userList}" var="user" varStatus="status">
+<c:set var="z" value="${z+1}"/>
+  <a class="list-container" href="user/themelist?no=${user.no}">
+  <td> 🏅 ${z}등 </td>
+    <li>
+    <div class="content">
+      <div class="icon">${user.emoji}</div>
+      <div class="theme-title">${user.nickname}</div>
+    </div>  <!-- .content -->
+    </li>
+  </a>
+</c:forEach>  
+<c:forEach begin="0" end="${3-(fn:length(userList)%3)-1}">
+    <a class="list-container" style=visibility:hidden;>
+      <li>
+        <div class="content">
+          <div class="icon">${user.emoji}</div>
+          <div class="theme-title">${user.nickname}</div>
+        </div>  <!-- .content -->
+      </li>
+    </a>
+</c:forEach>
+</ul>
+
 </div>  <!-- .main-container -->
 </div>  <!-- .container -->
 
-<div class="dash-board">
-        <div class="hot-curators">
-            <div class="title">
-                <br>
-                  <h1 style=text-align:center;>🏆 유저 순위</h1>
-                <br>
-            </div>
-            <ul class="hot-curators-list">
-                <c:forEach items="${userList}" var="user" varStatus="status" begin="0" end="4">
-                <c:set var="z" value="${z+1}"/>
-                <td> 🏅 ${z}등 </td>
-                    <li>
-                        <a href="user/themelist?no=${user.no}" class="content">
-                            <div class="icon">${user.emoji}</div>
-                            <div class="curator-name">${user.nickname}</div>
-                            <div class="theme-count">${user.registeredDate}</div>
-                        </a>
-                    </li>
-                </c:forEach>
-            </ul>
-            </div>
-            </div>

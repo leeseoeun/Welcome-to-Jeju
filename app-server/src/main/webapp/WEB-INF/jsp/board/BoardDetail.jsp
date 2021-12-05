@@ -18,18 +18,6 @@
     
   }
   
-  .comment-form {
-   width: 40%;
-    /* border-radius: 6px; */
-    /* box-shadow: 3px 3px; */
-    background-color: inherit;
-    /* background-color: #f8f8f8; */
-    /* background-color: #F6BB43; */
-    text-align: center; 
-    margin: 0 auto;
-    padding: 30px;
-  }
-  
 </style>
 
 <br>
@@ -80,8 +68,7 @@
 </div>
 
 </form>
-
-</div> <!-- .detail-form -->
+<br>
 
 <div class="comment-form">
 <div class="card mb-2">

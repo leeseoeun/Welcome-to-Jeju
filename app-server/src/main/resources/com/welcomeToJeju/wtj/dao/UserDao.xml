@@ -187,6 +187,7 @@
       jeju_user
     order by
       view_cnt desc
+      limit 10
   </select>
   
 </mapper>
