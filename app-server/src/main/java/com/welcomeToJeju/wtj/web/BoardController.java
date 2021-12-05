@@ -1,6 +1,7 @@
 package com.welcomeToJeju.wtj.web;
 
 import java.util.Collection;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +10,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import com.welcomeToJeju.wtj.dao.BoardCommentDao;
 import com.welcomeToJeju.wtj.dao.BoardDao;
 import com.welcomeToJeju.wtj.domain.Board;
+import com.welcomeToJeju.wtj.domain.BoardComment;
 import com.welcomeToJeju.wtj.domain.User;
 
 @Controller
 public class BoardController {
 
   @Autowired BoardDao boardDao;
+  @Autowired BoardCommentDao boardCommentDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @GetMapping("/board/addform")
@@ -56,14 +60,17 @@ public class BoardController {
 
   @GetMapping("/board/detail")
   public ModelAndView detail(int no, HttpSession session) throws Exception {
+
     User user = (User) session.getAttribute("loginUser");
     Board board = boardDao.findByNo(no);
+    List<BoardComment> boardComment = boardCommentDao.findByBoardNo(board.getNo());
 
     boardDao.updateViewCount(no);
     sqlSessionFactory.openSession().commit();
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("board", board);
+    mv.addObject("boardComment", boardComment);
     mv.addObject("pageTitle", "게시글 상세 보기");
 
     if (user == null || user.getNo() != board.getWriter().getNo()) {
