@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%-- <%@page import="java.io.File"%> --%>
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true" %>
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title> Place Information UI </title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <style>
-/* body{
-  font-family:"맑은 고딕", "고딕", "굴림";
-} */
 
 html, body {
 	margin: 0px;
@@ -65,7 +61,7 @@ html, body {
 </head>
 
 <body>
-<form id="place" name="place" action="addform" method="post">  <!-- post로 수정하기! -->
+<form id="place" name="place" action="addform" method="post">
 <div id="wrapper">
 
 <div class="map_wrap">
@@ -74,8 +70,8 @@ html, body {
   <div id="menu_wrap" class="bg_white">
     <div class="option">
       <div>
-        키워드 : <input type="text" id="keyword" size="15">
-        <button onclick="searchPlaces(); return false;">검색하기</button>
+        <input type="text" id="keyword" size="15">
+          <button onclick="searchPlaces(); return false;">검색하기</button>
       </div>
     </div>  <!-- .option -->
     <hr>
@@ -288,18 +284,18 @@ function removeAllChildNods(el) {
 }
 </script>
 
-<div>
-  <!-- 위도 및 경도 좌표 및 위치 정보 -->
-  <input type="text" id="id" name="id" value="">   
-  <input type="text" id="place_name" name="place_name" value="">   
-  <input type="text" id="address_name" name="address_name" value="">  
-  <input type="text" id="y" name="y" value=""> 
-  <input type="text" id="x" name="x" value=""> 
-</div>
-    
+<br>
+
 <div class="text-center">
-  <button type="submit" class="btn btn-outline-dark">등록하기</button>
+  <!-- 위도 및 경도 좌표 및 위치 정보 -->
+  <input type="hidden" id="id" name="id">
+  <input type="text" id="place_name" name="place_name">
+    <button type="submit" class="btn btn-outline-dark">등록하기</button>
+  <input type="hidden" id="address_name" name="address_name">
+  <input type="hidden" id="y" name="y">
+  <input type="hidden" id="x" name="x">
 </div>
+
 </div>  <!-- #wrapper -->
 </form> <!-- #place -->
 

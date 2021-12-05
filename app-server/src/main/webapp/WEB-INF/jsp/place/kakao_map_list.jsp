@@ -73,9 +73,48 @@
   #main {
     height: 100%;
   }
+  
+  .themedetail {
+    margin : 30px;
+    float : right;
+    }
   </style>
 </head>
 <body>
+
+<div class="themedetail">
+  <p>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      ${theme.title} 상세 보기 🔍
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <form action='update'>
+      <label for='f-no'>번호</label>
+      <input id='f-no' type='text' name='no' value='${theme.no}' readonly><br>
+      
+      <label for='f-title'>제목</label>
+      <input id='f-title' type='text' name='title' value='${theme.title}' readonly>
+      <a href='../likedtheme/add?themeNo=${theme.no}&userNo=${loginUser.no}'> 🤍</a><br>
+      <a href='../report/themeform?no=${theme.no}'> 🚨</a><br>
+      
+      <label for='f-nickname'>닉네임</label>
+      <input id='f-nickname' type='text' name='nickname' value='${theme.owner.nickname}' readonly> 
+      <a href='../likeduser/add?userNo=${theme.owner.no}&themeNo=${theme.no}'>🤍</a><br>
+      <a href='../report/userform?no=${theme.no}'> 🚨</a><br>
+      
+      <label for='f-category'>카테고리</label>
+      <input id='f-category' type='text' name='category' value='${theme.category.name}' readonly><br>
+      
+      <label for='f-hashtags'>해시태그</label>
+      <input id='f-hashtags' type='text' name='hashtags' value='${theme.hashtags}' readonly><br>
+    
+      <a href='../'>[목록]</a>
+      </form>
+    </div>
+  </div>
+</div>  <!-- .themedetail -->
 
   <div id="search">
   <div style="float:left; font-size:13.5px; padding-top: 5px; display: none;"><span>최신순</span> | <span>평점순</span></div>

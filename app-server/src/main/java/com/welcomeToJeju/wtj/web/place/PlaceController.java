@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.welcomeToJeju.wtj.dao.PlaceCommentDao;
 import com.welcomeToJeju.wtj.dao.PlaceDao;
 import com.welcomeToJeju.wtj.dao.PlacePhotoDao;
-import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.domain.Place;
 import com.welcomeToJeju.wtj.domain.User;
 import net.coobird.thumbnailator.ThumbnailParameter;
@@ -31,18 +30,6 @@ public class PlaceController {
   @Autowired ServletContext sc;
   @Autowired PlaceCommentDao placeCommentDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
-  int themeNo;
-
-  @Autowired PublicThemeDao publicThemeDao;
-
-  @GetMapping("/place/search")
-  public ModelAndView place() throws Exception {
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("contentUrl", "place/kakao_map.jsp");
-    mv.setViewName("template_main");
-
-    return mv;
-  }
 
   @PostMapping("/place/addform")
   public ModelAndView addform(Place place) {
@@ -129,11 +116,14 @@ public class PlaceController {
     return mv;
   }
 
-  //  @GetMapping(value="list01", produces="application/json;charset=UTF-8")
-  //  @ResponseBody
-  //  public String list_get(int no) throws Exception{
-  //    return new Gson().toJson(placeDao.findAllByThemeNo(no));
-  //  }
+  @GetMapping("/place/search")
+  public ModelAndView place(String keyword) throws Exception {
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("contentUrl", "place/kakao_map.jsp");
+    mv.setViewName("template_main");
+
+    return mv;
+  }
 
 
 }
