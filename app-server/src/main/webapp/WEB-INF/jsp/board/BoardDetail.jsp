@@ -24,7 +24,6 @@
 <h1 style=text-align:center;> 게시글 상세보기 </h1>
 <br>
 
-<div class="detail">
 <div class="detail-form">
 <form id="update-form" action='update' method='post'>
 
@@ -126,6 +125,5 @@
   </div>
       </div>
       </div> <!-- .comment-form -->
-      </div> <!-- .detail -->
 
 

@@ -63,7 +63,7 @@ public class BoardController {
 
     User user = (User) session.getAttribute("loginUser");
     Board board = boardDao.findByNo(no);
-    List<BoardComment> boardComment = boardCommentDao.findByBoardNo(board.getNo());
+    List<BoardComment> boardComment = boardCommentDao.findAllByBoardNo(board.getNo());
 
     boardDao.updateViewCount(no);
     sqlSessionFactory.openSession().commit();

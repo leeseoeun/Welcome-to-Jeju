@@ -21,20 +21,22 @@
   </resultMap>
   
   <insert id="insert" parameterType="BoardComment">
-    insert into jeju_board_comment(board_no,user_no,content,nickname) 
-    values(#{board.no},#{writer.no},#{content},#{writer.nickname})
+    insert into jeju_board_comment(board_no,user_no,content) 
+    values(#{board.no},#{writer.no},#{content})
   </insert>
   
-  <select id="findByBoardNo" resultMap="BoardCommentMap" parameterType="int">
+  <select id="findAllByBoardNo" resultMap="BoardCommentMap" parameterType="int">
     select
-      board_comment_no,
-      content,
-      nickname,
-      created_dt
+      c.board_comment_no,
+      c.content,
+      u.nickname,
+      u.emoji,
+      c.created_dt
     from
-      jeju_board_comment
+      jeju_board_comment c
+    inner join jeju_user u on c.user_no = u.user_no 
     where 
-      board_no=#{no}
+      c.board_no=#{no}
   </select>
   
   <delete id="delete" parameterType="int">
@@ -46,7 +48,6 @@
     select
       board_comment_no,
       content,
-      nickname,
       created_dt
     from
       jeju_board_comment

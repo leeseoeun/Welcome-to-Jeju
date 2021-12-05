@@ -36,7 +36,7 @@
 <tr data-no="${board.no}">
     <td>${board.no}</td>
     <td><a href='detail?no=${board.no}'>${board.title}</a></td> 
-    <td>${board.writer.nickname}</td> 
+    <td><a href='../user/themelist?no=${board.writer.no}'>${board.writer.nickname}</a></td> 
     <td>${board.registeredDate}</td> 
     <td>${board.viewCount}</td>
 </tr>
