@@ -34,7 +34,6 @@ right: 600px;
 		    <div class="content">
 				<div class="icon">${theme.emoji}</div>
 				<div class="theme-title">${theme.title}</div>
-				<div class="theme-count">#${theme.hashtags}</div>
 			</div>  <!-- .content -->
 			</li>
 	  </a>
@@ -47,7 +46,6 @@ right: 600px;
 		    <div class="content">
 					<div class="icon">${theme.emoji}</div>
 					<div class="theme-title">${theme.title}</div>
-					<div class="theme-count">#${theme.hashtags}</div>
 				</div>  <!-- .content -->
 			</li>
 	  </a>
@@ -65,7 +63,6 @@ right: 600px;
       <div class="content">
 	      <div class="icon">${theme.emoji}</div>
       <div class="theme-title">${theme.title}</div>
-      <div class="theme-count">#${theme.hashtags}</div>
       </div>  <!-- .content -->
       </li>
     </a>
@@ -78,7 +75,6 @@ right: 600px;
 		    <div class="content">
 					<div class="icon">${theme.emoji}</div>
 					<div class="theme-title">${theme.title}</div>
-					<div class="theme-count">#${theme.hashtags}</div>
 				</div>  <!-- .content -->
 			</li>
 	  </a>
