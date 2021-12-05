@@ -61,13 +61,11 @@
 </form>
 </div>  <!-- .add-form -->
 
-<!-- <script>
-document.querySelector("#theme-form").onsubmit = () => {
-  if (document.querySelector("#f-title").value == "" ||
-      document.querySelector("#f-category").value == "" ||
-      document.querySelector("#f-hashtag").value == "") {
+<script>
+document.querySelector("#place-form").onsubmit = () => {
+  if (document.querySelector("#f-comment").value == "") {
     window.alert("필수 입력 항목이 비어 있음!")
     return false;
   }
 };
-</script> -->
+</script>
