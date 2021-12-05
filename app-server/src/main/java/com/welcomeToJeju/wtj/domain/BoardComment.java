@@ -7,13 +7,13 @@ public class BoardComment {
   private int no;
   private Board board;
   private User writer;
-  private String comment;
+  private String content;
   private Date registeredDate;
 
   @Override
   public String toString() {
     return "BoardComment [no=" + no + ", board=" + board + ", writer=" + writer + ", comment="
-        + comment + ", registeredDate=" + registeredDate + "]";
+        + content + ", registeredDate=" + registeredDate + "]";
   }
 
   public int getNo() {
@@ -40,12 +40,12 @@ public class BoardComment {
     this.writer = writer;
   }
 
-  public String getComment() {
-    return comment;
+  public String getContent() {
+    return content;
   }
 
-  public void setComment(String comment) {
-    this.comment = comment;
+  public void setContent(String content) {
+    this.content = content;
   }
 
   public Date getRegisteredDate() {

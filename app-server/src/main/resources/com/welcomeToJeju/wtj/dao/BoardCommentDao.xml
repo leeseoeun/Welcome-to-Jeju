@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.welcomeToJeju.wtj.dao.BoardCommentDao">
+  
+  <resultMap type="BoardComment" id="BoardCommentMap">
+    <id column="board_comment_no" property="no"/> 
+    <result column="content" property="content"/>
+    <result column="created_dt" property="registeredDate"/>
+    
+    <association property="board" javaType="board">
+      <id column="board_no" property="no"/>
+    </association>
+    
+    <association property="writer" javaType="user">
+      <id column="user_no" property="no"/>
+      <result column="nickname" property="nickname"/>
+    </association>
+  </resultMap>
+  
+  <insert id="insert" parameterType="BoardComment">
+    insert into jeju_board_comment(board_no,user_no,content,nickname) 
+    values(#{board.no},#{writer.no},#{content},#{writer.nickname})
+  </insert>
+  
+  <select id="findByBoardNo" resultMap="BoardCommentMap" parameterType="int">
+    select
+      board_comment_no,
+      content,
+      nickname,
+      created_dt
+    from
+      jeju_board_comment
+    where 
+      board_no=#{no}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    delete from jeju_board_comment 
+    where board_comment_no=#{no}
+  </delete>
+  
+  <select id="findByNo" resultMap="BoardCommentMap" parameterType="int">
+    select
+      board_comment_no,
+      content,
+      nickname,
+      created_dt
+    from
+      jeju_board_comment
+    where 
+      board_comment_no=#{no}
+  </select>
+  
+  <!-- 
+  
+  
+  <select id="findAll" resultMap="BoardMap">
+    select
+      b.board_no,
+      b.title,
+      b.created_dt,
+      b.view_cnt,
+      u.user_no,
+      u.nickname
+    from
+      jeju_board b
+      inner join jeju_user u on b.user_no=u.user_no
+    order by 
+      b.board_no desc
+  </select>
+  
+
+  
+  <update id="updateViewCount" parameterType="int">
+    update jeju_board set
+      view_cnt= view_cnt + 1
+    where
+      board_no=#{no}
+  </update>
+   -->
+</mapper>
