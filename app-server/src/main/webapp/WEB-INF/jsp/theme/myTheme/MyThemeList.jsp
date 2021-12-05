@@ -52,6 +52,8 @@ right: 600px;
 </c:forEach>
 
 </ul>
+<br>
+<br>
 
 <h4>비공개 테마</h4>
 <ul class="theme-list">

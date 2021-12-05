@@ -10,13 +10,11 @@
 
 <div class="container">
 <div class="main-container">
-<br>
 <h1 style=text-align:center;>게시글 목록 보기</h1>
-<br>
 
 <c:choose>
 <c:when test="${loginUser ne null}">
-<a href='addform' class="btn btn-outline-primary btn-sm">게시글 등록하기</a><br>
+<h1><a href='addform' class="btn btn-outline-dark btn-lg"  style="margin-left: 900px;">📝 게시글 등록하기</a></h1>
 </c:when>
 </c:choose>
 
