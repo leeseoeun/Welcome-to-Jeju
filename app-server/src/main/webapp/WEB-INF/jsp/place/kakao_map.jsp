@@ -70,7 +70,7 @@ html, body {
   <div id="menu_wrap" class="bg_white">
     <div class="option">
       <div>
-        <input type="text" id="keyword" size="15">
+        <input type="text" id="keyword" size="15" value="${keyword}">
           <button onclick="searchPlaces(); return false;">검색하기</button>
       </div>
     </div>  <!-- .option -->

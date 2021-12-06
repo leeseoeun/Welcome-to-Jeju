@@ -124,6 +124,7 @@ public class PlaceController {
   @GetMapping("/place/search")
   public ModelAndView place(String keyword) throws Exception {
     ModelAndView mv = new ModelAndView();
+    mv.addObject("keyword", keyword);
     mv.addObject("contentUrl", "place/kakao_map.jsp");
     mv.setViewName("template_main");
 
