@@ -15,6 +15,16 @@
     float : left;
   }
   
+  .place-search, .place {
+    border: none;
+    border-radius: 0.25rem;
+    background-color: white;
+    padding: 0.375rem 0.75rem;
+    color: #212529;
+    font-size: 1rem;
+    text-align: center;
+  }
+  
   .place-list {
     position: absolute;
     float: left;
@@ -22,17 +32,13 @@
   
   .place {
     border: 1px solid #212529;
-    border-radius: 0.25rem;
     background-color: transparent;
-    padding: 0.375rem 0.75rem;
-    color: #212529;
-    font-size: 1rem;
-    text-align: center;
   }
   
   #map {
     position: relative;
     float: right;
+    border-radius: 0.25rem;
   }
 </style>
 </head>
@@ -66,10 +72,14 @@
       <input id='f-category' type='text' name='category' value='${theme.category.name}' readonly><br>
     
       <a href='../'>[목록]</a>
-      </form>
     </div>
   </div>
 </div>  <!-- .theme-detail -->
+
+<form action="search" style="float:right;">
+	<input id="f-place" type="text" name="keyword" class="place-search">
+	<a href="search" class="btn btn-outline-dark">🎨 장소 등록하기</a>
+</form>
 
 <br><br><br>
 
@@ -110,7 +120,7 @@
     </form>
   </div> -->
 
-<div id="map" style="width:50%;height:480px;"></div>
+<div id="map" style="width:75%;height:480px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=10e27bbc088ef2c82002c09d3c881402&libraries=services"></script>
 
