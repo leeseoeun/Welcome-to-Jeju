@@ -25,6 +25,14 @@
 <br/>
 
 <details>
+<summary>Use-Case Diagram</summary>
+<img src=https://github.com/lee-hyeyeon/Welcome-to-Jeju/blob/main/app-server/docs/wtj-usecase-diagram/usecase-diagram_1.png?raw=true>
+<img src=/app-server/docs/wtj-usecase-diagram/usecase-diagram_2.png>
+</details>
+<br>
+
+<details>
 <summary>Site-Map</summary>
 <img src=https://raw.githubusercontent.com/lee-hyeyeon/Welcome-to-Jeju/main/app-server/docs/wtj-sitemap/sitemap.jpg?token=AUUUBBWV3GLD3KHHXU7MKO3BWGVYE>
 </details>
+
