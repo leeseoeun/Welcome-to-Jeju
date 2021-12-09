@@ -35,7 +35,7 @@
 ## 5. DB Modeling
 <details>
 <summary>DB Modeling</summary>
-<img src=/app-server/docs/wtj-dbmodel/wtj-db-modeling.png>
+<img src=/app-server/docs/wtj-dbmodel/wtj-db-modeling.PNG>
 </details>
 <br>
 
