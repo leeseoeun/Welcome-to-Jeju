@@ -4,9 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.welcomeToJeju.wtj.dao.PlaceDao">
-  
+
   <resultMap type="Place" id="PlaceMap">
-    <id column="place_id" property="id"/> 
+    <id column="place_id" property="id"/>
     <result column="place_name" property="place_name"/>
     <result column="place_address" property="address_name"/>
     <result column="x_coord" property="x"/>
@@ -18,22 +18,34 @@
     </collection>
   </resultMap>
   
-  <!-- 장소 -->
   <insert id="insert" parameterType="Place"
     useGeneratedKeys="true" keyColumn="place_id" keyProperty="id">
-    insert into jeju_place(place_id, place_name, place_address,x_coord,y_coord)
+    insert into jeju_place(place_id,place_name,place_address,x_coord,y_coord)
     values(#{id},#{place_name},#{address_name},#{x},#{y})
   </insert>
   
   <insert id="insertPlaceUserTheme" parameterType="Map">
-  	insert into jeju_place_user_theme(theme_no,place_id,user_no)
-  	values(#{themeNo},#{placeId},#{userNo})
+  	insert into jeju_place_user_theme(place_id,user_no,theme_no)
+  	values(#{placeId},#{userNo},#{themeNo})
   </insert>
   
-  <delete id="delete" parameterType="Map">
+  <delete id="delete" parameterType="Map">  <!-- 유저 넘버? -->
     delete from jeju_place_user_theme
-    where place_id=#{placeId} and theme_no=#{themeNo} 
+    where place_id=#{placeId} and theme_no=#{themeNo}
   </delete>
+  
+  <select id="findById" resultMap="PlaceMap" parameterType="String">
+    select
+      p.place_id,
+      p.place_name,
+      p.place_address,
+      p.x_coord,
+      p.y_coord
+    from
+      jeju_place p
+    where
+      p.place_id=#{id}
+  </select>
   
   <select id="findAllByThemeNo" resultMap="PlaceMap" parameterType="int">
     select
@@ -42,7 +54,7 @@
       p.place_address,
       p.x_coord,
       p.y_coord,
-
+      
       jput.theme_no,
       jput.user_no,
       jput.place_id
@@ -52,34 +64,21 @@
     where jput.theme_no=#{no}
   </select>
   
-  <select id="findByPlaceId" resultMap="PlaceMap" parameterType="String">
+	<select id="placeRanking10" resultMap="PlaceMap">
     select
       p.place_id,
       p.place_name,
       p.place_address,
       p.x_coord,
-      p.y_coord
+      p.y_coord,
+      put.theme_no,
+      put.place_id,
+      put.user_no,
+      t.title
     from
       jeju_place p
-    where p.place_id=#{id}
+      join jeju_place_user_theme put on put.place_id=p.place_id
+      join jeju_theme t on t.theme_no=put.theme_no
   </select>
-
-	<select id="placeRanking10" resultMap="PlaceMap">
-       select
-           p.place_id,
-           p.place_name,
-           p.place_address,
-           p.x_coord,
-           p.y_coord,
-           jput.theme_no,
-           jput.user_no,
-           jput.place_id,
-           jt.title
-       from
-           jeju_place p
-               join jeju_place_user_theme jput on jput.place_id=p.place_id
-               join jeju_theme jt on jput.theme_no=jt.theme_no
-
-    </select>
   
 </mapper>

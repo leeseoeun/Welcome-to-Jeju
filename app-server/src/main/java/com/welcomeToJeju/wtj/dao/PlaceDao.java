@@ -11,9 +11,10 @@ public interface PlaceDao { //
 
   void delete(HashMap<String,Object> param) throws Exception;
 
+  Place findById(String id) throws Exception;
   List<Place> findAllByThemeNo(int themeNo) throws Exception;
+
   List<Place> placeRanking10() throws Exception;
 
-  Place findByPlaceId(String id) throws Exception;
 
 }

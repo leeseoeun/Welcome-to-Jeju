@@ -131,5 +131,17 @@ public class PlaceController {
     return mv;
   }
 
+  @GetMapping("/place/detail")
+  public ModelAndView detail(String id) throws Exception {
+    Place place = placeDao.findById(id);
+
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("place", place);
+    mv.addObject("contentUrl", "place/PlaceDetail.jsp");
+    mv.setViewName("template_main");
+
+    return mv;
+  }
+
 
 }
