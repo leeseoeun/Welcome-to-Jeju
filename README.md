@@ -3,7 +3,10 @@
 > **테마**를 통하여 취향에 맞는 **장소**를 다른 사용자와 공유해 보세요!
 <hr>
 
-## 1.
+## 1. 메인
+
+<img src=/app-server/docs/wtj/main.gif>
+<br>
 
 ## 2. 팀원 소개
 
@@ -12,6 +15,7 @@
 |이서은|이혜연|
 |Back-End|Back-End|
 |[GitHub](https://github.com/leeseoeun)|[GitHub](https://github.com/lee-hyeyeon)|
+<br>
 
 ## 3. 사용 기술
 
