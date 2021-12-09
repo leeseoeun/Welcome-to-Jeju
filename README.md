@@ -22,8 +22,9 @@
 |프로그래밍 언어|JAVA, Servlet, JSP|
 |웹 표준 기술|HTML5, CSS, JAVAScript, JQuery, Ajax, npm|
 |프레임 워크|Spring, MyBatis, IBatis, Bootstrap|
-<br/>
+<br>
 
+## 4. Use-Case Diagram
 <details>
 <summary>Use-Case Diagram</summary>
 <img src=https://github.com/lee-hyeyeon/Welcome-to-Jeju/blob/main/app-server/docs/wtj-usecase-diagram/usecase-diagram_1.png?raw=true>
@@ -31,6 +32,14 @@
 </details>
 <br>
 
+## 5. DB Modeling
+<details>
+<summary>DB Modeling</summary>
+<img src=/app-server/docs/wtj-dbmodel/wtj-db-modeling.png>
+</details>
+<br>
+
+## 6. Site-Map
 <details>
 <summary>Site-Map</summary>
 <img src=/app-server/docs/wtj-sitemap/sitemap.jpg>
