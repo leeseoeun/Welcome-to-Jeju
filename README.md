@@ -25,6 +25,6 @@
 <br/>
 
 <details>
-<summary>Use-Case Diagram</summary>
-<img src=C:/Users/hyeyeon/git/Welcome-to-Jeju/app-server/docs/wtj-sitemap/sitemap.jpg>
+<summary>Site-Map</summary>
+<img src=https://raw.githubusercontent.com/lee-hyeyeon/Welcome-to-Jeju/main/app-server/docs/wtj-sitemap/sitemap.jpg?token=AUUUBBWV3GLD3KHHXU7MKO3BWGVYE>
 </details>
