@@ -44,6 +44,23 @@
 </div>
 
 <div>
+<h5>이모지</h5>
+<select class="form-select" aria-label="f-emoji" id="f-emoji" name="emoji">
+  <option selected value="">👇</option>
+  <option value="&#127749;">&#127749;</option>
+  <option value="&#127796;">&#127796;</option>
+  <option value="&#127818;">&#127818;</option>
+  <option value="&#128674;">&#128674;</option>
+  <option value="&#127754;">&#127754;</option>
+  <option value="&#129372;">&#129372;</option>
+  <option value="&#128757;">&#128757;</option>
+  <option value="&#128044;">&#128044;</option>
+  <option value="&#128511;">&#128511;</option>
+  <option value="&#127801;">&#127801;</option>
+</select>
+</div>
+
+<div>
 <h5>카테고리</h5>
 <select class="form-select" aria-label="f-category" id="f-category" name="category">
   <option selected value="">👇</option>
@@ -74,8 +91,8 @@
 <script>
 document.querySelector("#theme-form").onsubmit = () => {
   if (document.querySelector("#f-title").value == "" ||
-      document.querySelector("#f-category").value == "" ||
-      document.querySelector("#f-hashtag").value == "") {
+      document.querySelector("#f-emoji").value == "" ||
+      document.querySelector("#f-category").value == "") {
     window.alert("필수 입력 항목이 비어 있음!")
     return false;
   }

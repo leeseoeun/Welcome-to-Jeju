@@ -20,8 +20,6 @@ public class BoardCommentController {
 
   @PostMapping("/boardcomment/add")
   public ModelAndView add(BoardComment boardComment, HttpSession session) throws Exception {
-
-    System.out.println(boardComment);
     boardCommentDao.insert(boardComment);
     sqlSessionFactory.openSession().commit();
 
@@ -34,11 +32,7 @@ public class BoardCommentController {
 
   @GetMapping("/boardcomment/delete")
   public ModelAndView delete(int no, int boardNo) throws Exception {
-
     BoardComment boardComment = boardCommentDao.findByNo(no);
-    if (boardComment == null) {
-      throw new Exception("해당 번호의 댓글이 없습니다.");
-    }
 
     boardCommentDao.delete(boardComment.getNo());
     sqlSessionFactory.openSession().commit();
@@ -48,5 +42,6 @@ public class BoardCommentController {
 
     return mv;
   }
+
 
 }
