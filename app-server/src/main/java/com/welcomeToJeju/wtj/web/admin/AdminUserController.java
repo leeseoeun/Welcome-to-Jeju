@@ -1,4 +1,4 @@
-package com.welcomeToJeju.wtj.web;
+package com.welcomeToJeju.wtj.web.admin;
 
 import java.util.Collection;
 import org.apache.ibatis.session.SqlSessionFactory;

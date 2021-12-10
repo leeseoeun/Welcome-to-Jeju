@@ -1,4 +1,4 @@
-package com.welcomeToJeju.wtj.web;
+package com.welcomeToJeju.wtj.web.admin;
 
 import java.util.Collection;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.welcomeToJeju.wtj.dao.PlaceDao;
 import com.welcomeToJeju.wtj.dao.PublicThemeDao;
 import com.welcomeToJeju.wtj.dao.ShareThemeDao;
-import com.welcomeToJeju.wtj.dao.ThemeDao;
 import com.welcomeToJeju.wtj.domain.Place;
 import com.welcomeToJeju.wtj.domain.Theme;
 
@@ -47,7 +46,6 @@ public class AdminThemeController {
     mv.addObject("placeList", placeList);
     mv.addObject("pageTitle", "테마 상세 보기");
     mv.addObject("contentUrl","admin/AdminThemeDetail.jsp");
-    //mv.addObject("contentUrl","place/PlaceList.jsp");
     mv.setViewName("template_main");
 
     return mv;
@@ -55,18 +53,17 @@ public class AdminThemeController {
 
   @GetMapping("/admin/themedelete")
   public ModelAndView delete(int no) throws Exception {
-//    Theme theme = publicThemeDao.findByNo(no);
-//
-//    themeDao.deleteAllLikedThemeByThemeNo(theme.getNo());
-//    publicThemeDao.deleteHashtag(theme.getNo());
-//    publicThemeDao.deletePlaceUserTheme(theme.getNo());
-//    publicThemeDao.delete(theme.getNo());
-//    sqlSessionFactory.openSession().commit();
-//
-//    ModelAndView mv = new ModelAndView();
-//    mv.setViewName("redirect:themelist");
-//
-//    return mv;
+    //    Theme theme = publicThemeDao.findByNo(no);
+    //
+    //    themeDao.deleteAllLikedThemeByThemeNo(theme.getNo());
+    //    publicThemeDao.deletePlaceUserTheme(theme.getNo());
+    //    publicThemeDao.delete(theme.getNo());
+    //    sqlSessionFactory.openSession().commit();
+    //
+    //    ModelAndView mv = new ModelAndView();
+    //    mv.setViewName("redirect:themelist");
+    //
+    //    return mv;
     return null;
   }
 
