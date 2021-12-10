@@ -5,7 +5,7 @@
 <hr>
 
 ## 🍊 메인 소개
-<img src=/app-server/docs/welcome-to-jeju/main.gif>
+<img src=/docs/welcome-to-jeju/main.gif>
 
 <br>
 
