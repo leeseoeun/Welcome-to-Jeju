@@ -2,4 +2,4 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 
-<h1 style=text-align:center;>나의 테마 만들기 성공!</h1>
+<h1 style=text-align:center;>참여 테마 만들기 성공!</h1>
