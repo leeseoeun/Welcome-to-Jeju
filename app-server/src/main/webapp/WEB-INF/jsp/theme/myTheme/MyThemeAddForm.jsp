@@ -42,6 +42,14 @@
   <label class="form-check-label" for="inlineCheckbox1">&#127749;</label>
 </div>
 <div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#128674;">
+  <label class="form-check-label" for="inlineCheckbox1">&#128674;</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#128044;">
+  <label class="form-check-label" for="inlineCheckbox1">&#128044;</label>
+</div>
+<div class="form-check form-check-inline">
   <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#127796;">
   <label class="form-check-label" for="inlineCheckbox1">&#127796;</label>
 </div>
@@ -50,75 +58,29 @@
   <label class="form-check-label" for="inlineCheckbox1">&#127818;</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#128674;">
-  <label class="form-check-label" for="inlineCheckbox1">&#128674;</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#127754;">
-  <label class="form-check-label" for="inlineCheckbox1">&#127754;</label>
-</div>
-<div class="form-check form-check-inline">
   <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#129372;">
   <label class="form-check-label" for="inlineCheckbox1">&#129372;</label>
 </div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#128757;">
-  <label class="form-check-label" for="inlineCheckbox1">&#128757;</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#128044;">
-  <label class="form-check-label" for="inlineCheckbox1">&#128044;</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#128511;">
-  <label class="form-check-label" for="inlineCheckbox1">&#128511;</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#127801;">
-  <label class="form-check-label" for="inlineCheckbox1">&#127801;</label>
-</div>
+
+<br><br>
 
 <div>
 <h5>카테고리</h5>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-category" name="category" value="1">
-  <label class="form-check-label" for="inlineCheckbox1">식당</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-category" name="category" value="2">
-  <label class="form-check-label" for="inlineCheckbox1">카페</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-category" name="category" value="3">
-  <label class="form-check-label" for="inlineCheckbox1">관광지</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-category" name="category" value="4">
-  <label class="form-check-label" for="inlineCheckbox1">기타</label>
-</div>
-<!-- <select class="form-select" aria-label="f-category" id="f-category" name="category">
+<select class="form-select" aria-label="f-category" id="f-category" name="category">
   <option selected value="">👇</option>
   <option value="1">식당</option>
   <option value="2">카페</option>
   <option value="3">관광명소</option>
   <option value="4">기타</option>
-</select> -->
+</select>
 </div>
 
 <div>
 <h5>공개 / 비공개</h5>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-isPublic" name="isPublic" value="1">
-  <label class="form-check-label" for="inlineCheckbox1">공개</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-isPublic" name="isPublic" value="0">
-  <label class="form-check-label" for="inlineCheckbox1">비공개</label>
-</div>
-<!-- <select class="form-select" aria-label="f-isPublic" id="f-isPublic" name ="isPublic" >
+<select class="form-select" aria-label="f-isPublic" id="f-isPublic" name ="isPublic" >
   <option selected value="1">공개</option>
   <option value="0">비공개</option>
-</select> -->
+</select>
 </div>
 
 <br>
