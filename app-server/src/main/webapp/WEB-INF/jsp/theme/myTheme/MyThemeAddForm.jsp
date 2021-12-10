@@ -38,27 +38,27 @@
 
 <h5>이모지</h5>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#127749;">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#127749;" checked>
   <label class="form-check-label" for="inlineCheckbox1">&#127749;</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#128674;">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#128674;">
   <label class="form-check-label" for="inlineCheckbox1">&#128674;</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#128044;">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#128044;">
   <label class="form-check-label" for="inlineCheckbox1">&#128044;</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#127796;">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#127796;">
   <label class="form-check-label" for="inlineCheckbox1">&#127796;</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#127818;">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#127818;">
   <label class="form-check-label" for="inlineCheckbox1">&#127818;</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="f-emoji" name="emoji" value="&#129372;">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#129372;">
   <label class="form-check-label" for="inlineCheckbox1">&#129372;</label>
 </div>
 
