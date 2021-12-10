@@ -29,15 +29,15 @@
 <br>
 
 ## 👨‍👩‍👧‍👦 Usecase Diagram
-<img src=img src=/app-server/docs/wtj-usecase_diagram/usecase_diagram_1.png>
-<img src=/app-server/docs/wtj-usecase_diagram/usecase_diagram_2.png>
+<img src=/docs/wtj-usecase_diagram/usecase_diagram_1.png>
+<img src=/docs/wtj-usecase_diagram/usecase_diagram_2.png>
 
 <br>
 
 ## 🛢️ DB Modeling
-<img src=/app-server/docs/wtj-dbmodel/wtj_db-modeling.PNG>
+<img src=/docs/wtj-dbmodel/wtj_db_modeling.PNG>
 
 <br>
 
 ## 🗺️ Sitemap
-<img src=/app-server/docs/wtj-sitemap/sitemap.jpg>
+<img src=/docs/wtj-sitemap/sitemap.jpg>
