@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set scope="page" var="contextRoot" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${contextRoot}/css/theme_list.css">
@@ -50,7 +50,7 @@
 <h3 style=text-align:center;>비공개 테마</h3>
 <br>
 <ul class="theme-list">
-<c:forEach items="${shareThemeList}" var="theme">
+<c:forEach items="${privateThemeList}" var="theme">
   <a class="list-container" href="../place/list?no=${theme.no}">
     <li>
     <div class="content">

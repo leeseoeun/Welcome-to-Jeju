@@ -16,7 +16,7 @@
 </style>
 
 <br>
-<h1 style=text-align:center;>나의 테마 만들기</h1>
+<h1 style=text-align:center;>참여 테마 만들기</h1>
 <br>
 
 <div class="add-form">

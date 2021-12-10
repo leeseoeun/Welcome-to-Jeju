@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set scope="page" var="contextRoot" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${contextRoot}/css/theme_list.css">
@@ -14,35 +14,36 @@
 <h1 style=text-align:center;>참여 테마 목록 보기</h1>
 <br>
 
-<h1><a href='addform' class="btn btn-outline-dark btn-lg"  style="margin-left: 900px;">🎨 참여 테마 만들기</a></h1>
+<form action="search" style="float:right;">
+  <a href="addform" class="btn btn-outline-dark">🎨 참여 테마 만들기</a>
+</form>
 
-<h4>참여 테마</h4>
+<br>
+
+<br>
+<h3 style=text-align:center;>참여 테마</h3>
+<br>
 <ul class="theme-list">
 <c:forEach items="${themeList}" var="theme">
-	<c:choose>
-	<c:when test="${theme.isPublic eq '1'}">
-		<a class="list-container" href="../place/list?no=${theme.no}">
-      <li>
-		    <div class="content">
-				<div class="icon">${theme.emoji}</div>
-				<div class="theme-title">${theme.title}</div>
-			</div>  <!-- .content -->
-			</li>
-	  </a>
-	</c:when>
-	</c:choose>
+  <a class="list-container" href="../place/list?no=${theme.no}">
+    <li>
+    <div class="content">
+      <div class="icon">${theme.emoji}</div>
+      <div class="theme-title">${theme.title}</div>
+    </div>  <!-- .content -->
+    </li>
+  </a>
 </c:forEach>
 <c:forEach begin="0" end="${3-(fn:length(themeList)%3)-1}">
-		<a class="list-container" style=visibility:hidden;>
+    <a class="list-container" style=visibility:hidden;>
       <li>
-		    <div class="content">
-					<div class="icon">${theme.emoji}</div>
-					<div class="theme-title">${theme.title}</div>
-				</div>  <!-- .content -->
-			</li>
-	  </a>
+        <div class="content">
+          <div class="icon">${theme.no}</div>
+          <div class="theme-title">${theme.title}</div>
+        </div>  <!-- .content -->
+      </li>
+    </a>
 </c:forEach>
-
 </ul>
 
 </div>  <!-- .main-container -->
