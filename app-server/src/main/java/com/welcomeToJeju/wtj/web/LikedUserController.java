@@ -1,6 +1,6 @@
 package com.welcomeToJeju.wtj.web;
 
-import java.util.Collection;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +26,11 @@ public class LikedUserController {
 
   @GetMapping("/likeduser/list")
   public ModelAndView list(HttpSession session) throws Exception {
-    Collection<User> userList = userDao.findAllLikedUser(((User) session.getAttribute("loginUser")).getNo());
+    List<User> userList = userDao.findAllLikedUser(((User) session.getAttribute("loginUser")).getNo());
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("userList", userList);
-    mv.addObject("pageTitle", "유저 좋아요 목록 보기");
+    mv.addObject("pageTitle", "내가 좋아하는 유저 보기");
     mv.addObject("contentUrl", "likedUser/LikedUserList.jsp");
     mv.setViewName("template_main");
 

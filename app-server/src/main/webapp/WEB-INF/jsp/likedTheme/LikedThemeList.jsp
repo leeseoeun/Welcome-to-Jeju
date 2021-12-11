@@ -27,7 +27,7 @@
     </div>  <!-- .content -->
     </li>
   </a>
-  <a href='delete?themeNo=${theme.no}'>⛔</a>
+  <a href='delete?themeNo=${theme.no}'>❌</a>
 </c:forEach>  
 <c:forEach begin="0" end="${3-(fn:length(themeList)%3)-1}">
     <a class="list-container" style=visibility:hidden;>
@@ -54,6 +54,7 @@
     </div>  <!-- .content -->
     </li>
   </a>
+  <a href='delete?themeNo=${theme.no}'>❌</a>
 </c:forEach>
 <c:forEach begin="0" end="${3-(fn:length(themeList)%3)-1}">
     <a class="list-container" style=visibility:hidden;>
