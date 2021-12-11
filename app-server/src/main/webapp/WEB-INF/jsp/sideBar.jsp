@@ -109,7 +109,7 @@
 					</form>
 				</li>
 			</ul>
-		</div>
+		</div>  <!-- .logout-menu-box -->
 	</c:if>
 
 </div>

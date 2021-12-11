@@ -1,26 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
     
-    <style>
-    footer {
+<style>
+  footer {
     width: 100%;
     height: 100px; /* footer의 높이 */
     position: relative;  
     bottom: 0;
     left: 0;
-}
-    
-    </style>
-    
+  }
+</style>
     
 <footer>
-    <div class="footer-link">
-        <a href="#" target="_blank">facebook</a>
-        <a href="#" target="_blank">instagram</a>
-        <a href="#">e-mail</a>
-    </div>
-    <div>* SNS를 통해 업데이트 소식을 알려드립니다</div>
-    <br>
-    <div><a href="#">개인정보처리방침</a></div>
-
+  <div class="footer-link">
+    <a href="#">사용자 피드백 🌴 신고 및 의견은 여기에</a>
+  </div>
+  <div>
+    <a href="#">개인 정보 처리 방침</a>
+  </div>
+  
+  <br>
+  
 </footer>
