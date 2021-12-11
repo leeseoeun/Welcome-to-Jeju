@@ -7,12 +7,28 @@
 <c:set scope="page" var="contextRoot" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${contextRoot}/css/theme_list2.css">
 
+<style>
+  .ranking {
+    width: 33.3%;
+    float: left;
+  }
+
+  .ranking-title {
+    margin-left: 50px;
+    text-align: center;
+  }
+</style>
+
 <div class="container">
 <div class="main-container">
 
-<div class="public-theme-ranking" style="width:33%; float: left;">
 <br>
-<h3 style=text-align:center;>유저 테마</h3>
+<h1 style=text-align:center;>순위 보기</h1>
+<br>
+
+<div class="ranking">
+<br>
+<h3 class="ranking-title">유저 테마</h3>
 <br>
 <ul class="theme-list">
 <c:forEach items="${publicThemeList}" var="theme" varStatus="status">
@@ -28,9 +44,9 @@
 </ul>
 </div>
 
-<div class="share-theme-ranking" style="width:33%; float: left;">
+<div class="ranking">
 <br>
-<h3 style=text-align:center;>참여 테마</h3>
+<h3 class="ranking-title">참여 테마</h3>
 <br>
 <ul class="theme-list">
 <c:forEach items="${shareThemeList}" var="theme" varStatus="status">
@@ -46,9 +62,9 @@
 </ul>
 </div>
 
-<div class="user-ranking" style="width:33%; float: left;">
+<div class="ranking">
 <br>
-<h3 style=text-align:center;>유저</h3>
+<h3 class="ranking-title">유저</h3>
 <br>
 <ul class="theme-list">
 <c:forEach items="${userList}" var="user" varStatus="status">
@@ -63,6 +79,7 @@
 </c:forEach>
 </ul>
 </div>
+
 </div>  <!-- .main-container -->
 </div>  <!-- .container -->
 
