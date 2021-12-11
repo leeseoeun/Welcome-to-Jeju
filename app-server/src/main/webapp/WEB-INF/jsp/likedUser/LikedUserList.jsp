@@ -24,7 +24,7 @@
             <div class="curator-name">${user.nickname}</div>
           </a>
         </li>
-        <a href='delete?themeNo=${theme.no}'>❌</a>
+        <a href='delete?userNo=${user.no}'>❌</a>
       </c:forEach>
     </ul>
   </div>  <!-- .hot-curators -->
