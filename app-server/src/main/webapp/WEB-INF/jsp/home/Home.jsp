@@ -103,7 +103,7 @@
       </div>  <!-- .hot-theme -->
     </div>  <!-- .dash-board -->
     
-        <!--참여 테마 순위 -->
+    <!--참여 테마 순위 -->
     <div class="dash-board">
       <div class="hot-theme">
         <div class="title">
@@ -220,65 +220,65 @@
     
     <div class="dash-board">
       <div class="hot-theme">
-    <div class="title">
-    <br>
-    <br>
-    <span>🌟 전체 테마</span>
-    <br><br>
-    <div class="sub">👩 유저 테마</div>
-    </div>
-    <ul class="theme-list">
-      <c:forEach items="${publicThemeList}" var="theme">
-        <a class="list-container" href="../place/list?no=${theme.no}">
-          <li>
-            <div class="content">
-              <div class="icon">${theme.emoji}</div>
-              <div class="theme-title">${theme.title}</div>
-            </div> <!-- .content -->
-        </li>
-        </a>
-      </c:forEach>
-      <c:forEach begin="0" end="${3-(fn:length(publicThemeList)%3)-1}">
+        <div class="title">
+          <span>🌟 전체 테마</span>
+          
+          <br><br>
+          
+          <div class="sub">&nbsp;👩 유저 테마</div>
+        </div>
+        <ul class="theme-list">
+          <c:forEach items="${publicThemeList}" var="theme">
+          <a class="list-container" href="../place/list?no=${theme.no}">
+	          <li>
+	            <div class="content">
+	              <div class="icon">${theme.emoji}</div>
+	              <div class="theme-title">${theme.title}</div>
+	            </div> <!-- .content -->
+	          </li>
+          </a>
+        </c:forEach>
+        <c:forEach begin="0" end="${3-(fn:length(publicThemeList)%3)-1}">
         <a class="list-container" style="visibility: hidden;">
-          <li>
-            <div class="content">
-              <div class="icon">${theme.no}</div>
-              <div class="theme-title">${theme.title}</div>
-            </div> <!-- .content -->
-        </li>
+	        <li>
+	          <div class="content">
+	            <div class="icon">${theme.no}</div>
+	            <div class="theme-title">${theme.title}</div>
+	          </div> <!-- .content -->
+	        </li>
         </a>
-      </c:forEach>
-    </ul>
-  </div>
-  
-    <div class="hot-theme">
-    <div class="title">
-    <div class="sub">👫 참여 테마</div>
-    </div>
-    <ul class="theme-list">
-      <c:forEach items="${shareThemeList}" var="theme">
-        <a class="list-container" href="../place/list?no=${theme.no}">
-          <li>
-            <div class="content">
-              <div class="icon">${theme.emoji}</div>
-              <div class="theme-title">${theme.title}</div>
-            </div> <!-- .content -->
-        </li>
-        </a>
-      </c:forEach>
-      <c:forEach begin="0" end="${3-(fn:length(shareThemeList)%3)-1}">
-        <a class="list-container" style="visibility: hidden;">
-          <li>
-            <div class="content">
-              <div class="icon">${theme.no}</div>
-              <div class="theme-title">${theme.title}</div>
-            </div> <!-- .content -->
-        </li>
-        </a>
-      </c:forEach>
-    </ul>
-  </div>
-    </div>
+        </c:forEach>
+      </ul>
+      </div>  <!-- .hot-theme -->
+      
+	    <div class="hot-theme">
+	      <div class="title">
+	        <div class="sub">&nbsp;👫 참여 테마</div>
+	      </div>
+	      <ul class="theme-list">
+	        <c:forEach items="${shareThemeList}" var="theme">
+	        <a class="list-container" href="../place/list?no=${theme.no}">
+	          <li>
+	            <div class="content">
+	              <div class="icon">${theme.emoji}</div>
+	              <div class="theme-title">${theme.title}</div>
+	            </div> <!-- .content -->
+	        </li>
+	      </a>
+	      </c:forEach>
+	      <c:forEach begin="0" end="${3-(fn:length(shareThemeList)%3)-1}">
+	        <a class="list-container" style="visibility: hidden;">
+	          <li>
+	            <div class="content">
+	              <div class="icon">${theme.no}</div>
+	              <div class="theme-title">${theme.title}</div>
+	            </div> <!-- .content -->
+	          </li>
+	        </a>
+	        </c:forEach>
+	      </ul>
+      </div>  <!-- .hot-theme -->
+    </div>  <!-- .dash-board -->
   
 	</main>
 

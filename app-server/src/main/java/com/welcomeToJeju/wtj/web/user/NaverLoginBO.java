@@ -21,13 +21,13 @@ public class NaverLoginBO {
   // redirect_uri: 네이버 로그인 인증의 결과를 전달받을 콜백 URL(URL 인코딩). 애플리케이션을 등록할 때 Callback
   // URL에 설정한 정보입니다.
   // state: 애플리케이션이 생성한 상태 토큰
-  private final static String CLIENT_ID = "PB1GAYixjRjKoaFJOMK4"; // 네이버API Client ID
+  private final static String CLIENT_ID = "PB1GAYixjRjKoaFJOMK4"; // 네이버 API Client ID
   private final static String CLIENT_SECRET = "KQQUtMG8hJ";
   private final static String REDIRECT_URI = "http://localhost:8080/wtj/app/auth/callback.do";
   private final static String SESSION_STATE = "oauth_state";
   /* 프로필 조회 API URL */
-  private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";/// Api 종류
-  /// 기본 !!
+  private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me"; // Api 종류
+  // 기본 !!
 
   /* 네이버 아이디로 인증 URL 생성 Method */
   public String getAuthorizationUrl(HttpSession session) {
@@ -40,7 +40,7 @@ public class NaverLoginBO {
     /* Scribe에서 제공하는 인증 URL 생성 기능을 이용하여 네아로 인증 URL 생성 */
     OAuth20Service oauthService = new ServiceBuilder().apiKey(CLIENT_ID)
         .apiSecret(CLIENT_SECRET).callback(REDIRECT_URI).state(state) // 앞서 생성한 난수값을 인증
-        // URL생성시 사용함
+        // URL 생성 시 사용함
         .build(NaverLoginApi.instance());
 
     return oauthService.getAuthorizationUrl();
@@ -50,7 +50,7 @@ public class NaverLoginBO {
   public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state)
       throws IOException {
 
-    /* Callback으로 전달받은 세선검증용 난수값과 세션에 저장되어있는 값이 일치하는지 확인 */
+    /* Callback으로 전달받은 세선 검증용 난수값과 세션에 저장 되어 있는 값이 일치하는지 확인 */
     String sessionState = getSession(session);
     if (StringUtils.pathEquals(sessionState, state)) {
 

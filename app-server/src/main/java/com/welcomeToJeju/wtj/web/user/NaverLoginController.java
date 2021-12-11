@@ -92,7 +92,7 @@ public class NaverLoginController {
       session.setAttribute("loginUser", userDao.findByEmail(email));
 
       ModelAndView mv = new ModelAndView();
-      mv.setViewName("redirect:../user/form");
+      mv.setViewName("redirect:../user/form");  // 추가 정보 입력
       return mv;
 
     } 
@@ -100,10 +100,12 @@ public class NaverLoginController {
     user.setActive(1);
     userDao.update(user);
     sqlSessionFactory.openSession().commit();
+
     session.setAttribute("loginUser", userDao.findByNo(user.getNo()));
 
     ModelAndView mv = new ModelAndView();
     mv.setViewName("redirect:../home");
     return mv;
   }
+
 }
