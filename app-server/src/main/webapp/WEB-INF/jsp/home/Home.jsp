@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<c:set scope="page" var="contextRoot" value="${pageContext.servletContext.contextPath}" />
+<c:set scope="page" var="contextRoot" value="${pageContext.servletContext.contextPath}"/>
 
 <!-- 전체 테마 -->
 <c:set scope="page" var="contextRoot2" value="${pageContext.request.contextPath}"/>
@@ -156,7 +156,7 @@
         <!-- <div class="sub">인기 있는 장소</div> -->
       </div>
       <ul class="hot-place-list owl-carousel">
-        <c:forEach items="${placeRaking10}" var="place">
+        <c:forEach items="${placeRanking10}" var="place">
           <li>
             <a href="#" class="content">
               <div class="desc">
@@ -230,7 +230,7 @@
         </div>
         <ul class="theme-list">
           <c:forEach items="${publicThemeList}" var="theme">
-          <a class="list-container" href="../place/list?no=${theme.no}">
+          <a class="list-container" href="place/list?no=${theme.no}">
 	          <li>
 	            <div class="content">
 	              <div class="icon">${theme.emoji}</div>
@@ -258,7 +258,7 @@
 	      </div>
 	      <ul class="theme-list">
 	        <c:forEach items="${shareThemeList}" var="theme">
-	        <a class="list-container" href="../place/list?no=${theme.no}">
+	        <a class="list-container" href="place/list?no=${theme.no}">
 	          <li>
 	            <div class="content">
 	              <div class="icon">${theme.emoji}</div>
