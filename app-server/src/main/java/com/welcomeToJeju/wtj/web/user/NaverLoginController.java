@@ -1,6 +1,5 @@
 package com.welcomeToJeju.wtj.web.user;
 
-import java.util.Random;
 import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.json.simple.JSONObject;
@@ -85,13 +84,6 @@ public class NaverLoginController {
 
       User newUser = new User();
 
-      String[] emoji = 
-        {"&#127749;", "&#127796;", "&#127818;", "&#128674;", "&#127754;", 
-            "&#129372;", "&#128757;", "&#128031;", "&#128511;", "&#127776;"};
-      Random random = new Random();
-      int randomNo = random.nextInt(emoji.length);
-
-      newUser.setEmoji(emoji[randomNo]);
       newUser.setEmail(email);
       newUser.setNickname("Hello");
       userDao.insert(newUser);
@@ -105,16 +97,6 @@ public class NaverLoginController {
 
     } 
 
-    // user가 null이 아닐 때
-    if (user.getEmoji() == null) {
-      String[] emoji = 
-        {"&#127749;", "&#127796;", "&#127818;", "&#128674;", "&#127754;", 
-            "&#129372;", "&#128757;", "&#128031;", "&#128511;", "&#127776;"};
-      Random random = new Random();
-      int randomNo = random.nextInt(emoji.length);
-
-      user.setEmoji(emoji[randomNo]);
-    }
     user.setActive(1);
     userDao.update(user);
     sqlSessionFactory.openSession().commit();

@@ -39,6 +39,42 @@
   </div>
   </div>  
   
+<h5>이모지</h5>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#129503;" checked>
+  <label class="form-check-label" for="inlineCheckbox1">&#129503;</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#128060;">
+  <label class="form-check-label" for="inlineCheckbox1">&#128060;</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#128120;">
+  <label class="form-check-label" for="inlineCheckbox1">&#128120;</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#128115;">
+  <label class="form-check-label" for="inlineCheckbox1">&#128115;</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#129333;">
+  <label class="form-check-label" for="inlineCheckbox1">&#129333;</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#128048;">
+  <label class="form-check-label" for="inlineCheckbox1">&#128048;</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#129412;">
+  <label class="form-check-label" for="inlineCheckbox1">&#129412;</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" id="f-emoji" name="emoji" value="&#129337;">
+  <label class="form-check-label" for="inlineCheckbox1">&#129337;</label>
+</div>
+
+<br><br>  
+  
 <div class="mb-3 row">
 <h5>닉네임</h5>
   <div class = "col-sm-16">
