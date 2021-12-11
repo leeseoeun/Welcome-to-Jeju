@@ -23,7 +23,7 @@
 <div class="main-container">
 
 <br>
-<h1 style=text-align:center;>순위 보기</h1>
+<h1 class="ranking-title">순위 보기</h1>
 <br>
 
 <div class="ranking">
