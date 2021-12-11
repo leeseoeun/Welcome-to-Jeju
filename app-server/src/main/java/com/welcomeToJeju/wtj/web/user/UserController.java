@@ -1,6 +1,5 @@
 package com.welcomeToJeju.wtj.web.user;
 
-import java.util.Random;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -49,13 +48,6 @@ public class UserController {
   @PostMapping("/user/add")
   public ModelAndView add(User user, HttpServletRequest request) throws Exception {
 
-    String[] emoji = 
-      {"&#127749;", "&#127796;", "&#127818;", "&#128674;", "&#127754;", 
-          "&#129372;", "&#128757;", "&#128031;", "&#128511;", "&#127776;"};
-    Random random = new Random();
-    int randomNo = random.nextInt(emoji.length);
-
-    user.setEmoji(emoji[randomNo]);
     userDao.insert(user);
     sqlSessionFactory.openSession().commit();
 
@@ -102,7 +94,6 @@ public class UserController {
     User oldUser = (User) session.getAttribute("loginUser");
 
     user.setActive(oldUser.getActive());
-    user.setEmoji(oldUser.getEmoji());
     user.setRegisteredDate(oldUser.getRegisteredDate());
 
     userDao.update(user);
