@@ -1,6 +1,7 @@
 package com.welcomeToJeju.wtj.web;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,21 @@ public class LikedThemeController {
 
   @GetMapping("/likedtheme/list")
   public ModelAndView list(HttpSession session) throws Exception {
-    Collection<Theme> themeList = themeDao.findAllLikedTheme(((User) session.getAttribute("loginUser")).getNo());
+    List<Theme> themeList = new ArrayList<>();
+    List<Theme> shareThemeList = new ArrayList<>();
+
+    for (Theme t : themeDao.findAllLikedTheme(((User) session.getAttribute("loginUser")).getNo())) {
+      if (t.getIsShare() == 0) {
+        themeList.add(t);
+      } else if (t.getIsShare() == 1) {
+        shareThemeList.add(t);
+      }
+    }
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("themeList", themeList);
-    mv.addObject("pageTitle", "테마 좋아요 목록 보기");
+    mv.addObject("shareThemeList", shareThemeList);
+    mv.addObject("pageTitle", "내가 좋아하는 테마 보기");
     mv.addObject("contentUrl", "likedTheme/LikedThemeList.jsp");
     mv.setViewName("template_main");
 
