@@ -12,6 +12,16 @@
     <result column="x_coord" property="x"/>
     <result column="y_coord" property="y"/>
     
+    <!-- <collection property="photos" ofType="PlacePhoto">
+      <id column="place_photo_no" property="no"/>
+      <result column="file_path" property="filePath"/>
+    </collection>
+    
+    <collection property="comments" ofType="PlaceComment">
+      <id column="place_comment_no" property="no"/>
+      <result column="comment" property="comment"/>
+    </collection> -->
+    
     <collection property="themeList" javaType="Theme">
       <id column="theme_no" property="no"/>
       <result column="title" property="title"/>
@@ -40,9 +50,15 @@
       p.place_name,
       p.place_address,
       p.x_coord,
-      p.y_coord
+      p.y_coord<!-- ,
+      pp.place_photo_no,
+      pp.file_path,
+      c.place_comment_no,
+      c.comment -->
     from
       jeju_place p
+      <!-- join jeju_place_photo pp on pp.place_id=p.place_id
+      join jeju_place_comment c on c.place_id=p.place_id -->
     where
       p.place_id=#{id}
   </select>
@@ -79,6 +95,7 @@
       jeju_place p
       join jeju_place_user_theme put on put.place_id=p.place_id
       join jeju_theme t on t.theme_no=put.theme_no
+    limit 10
   </select>
   
 </mapper>
