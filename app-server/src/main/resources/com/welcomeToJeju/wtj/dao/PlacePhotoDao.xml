@@ -9,15 +9,14 @@
     <id column="place_photo_no" property="no"/> 
     <result column="file_path" property="filePath"/>
   
-  <association property="writer" javaType="User">
-    <id column="user_no" property="no"/>
-  </association>
-
-  <association property="place" javaType="Place">
-    <id column="place_id" property="id"/>
-    <result column="place_name" property="name"/>
-  </association>
-  
+	  <association property="writer" javaType="User">
+	    <id column="user_no" property="no"/>
+	  </association>
+	
+	  <association property="place" javaType="Place">
+	    <id column="place_id" property="id"/>
+	    <result column="place_name" property="name"/>
+	  </association>
   </resultMap>
   
   <insert id="insert" parameterType="Map">
@@ -29,5 +28,14 @@
     delete from jeju_place_photo
     where place_id=#{id}
   </delete>
+  
+  <select id="findAllByPlaceId" resultMap="PlacePhotoMap" parameterType="String">
+    select
+      file_path
+    from
+      jeju_place_photo
+    where
+      place_id=#{id}
+  </select>
   
 </mapper>
