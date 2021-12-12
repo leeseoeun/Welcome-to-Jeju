@@ -30,4 +30,13 @@
     where place_id=#{id}
   </delete>
   
+  <select id="findAllByPlaceId" resultMap="PlaceCommentMap" parameterType="String">
+    select
+      comment
+    from
+      jeju_place_comment
+    where
+      place_id=#{id}
+  </select>
+  
 </mapper>
