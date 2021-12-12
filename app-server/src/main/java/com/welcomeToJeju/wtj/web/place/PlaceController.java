@@ -17,6 +17,8 @@ import com.welcomeToJeju.wtj.dao.PlaceDao;
 import com.welcomeToJeju.wtj.dao.PlacePhotoDao;
 import com.welcomeToJeju.wtj.dao.ThemeDao;
 import com.welcomeToJeju.wtj.domain.Place;
+import com.welcomeToJeju.wtj.domain.PlaceComment;
+import com.welcomeToJeju.wtj.domain.PlacePhoto;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.User;
 import net.coobird.thumbnailator.ThumbnailParameter;
@@ -134,9 +136,14 @@ public class PlaceController {
   @GetMapping("/place/detail")
   public ModelAndView detail(String id) throws Exception {
     Place place = placeDao.findById(id);
+    Collection<PlacePhoto> photoList = placePhotoDao.findAllByPlaceId(id);
+    Collection<PlaceComment> commentList = placeCommentDao.findAllByPlaceId(id);
+
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("place", place);
+    mv.addObject("photoList", photoList);
+    mv.addObject("commentList", commentList);
     mv.addObject("contentUrl", "place/PlaceDetail.jsp");
     mv.setViewName("template_main");
 
