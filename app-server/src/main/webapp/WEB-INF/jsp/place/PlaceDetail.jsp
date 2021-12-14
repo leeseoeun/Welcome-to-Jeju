@@ -44,9 +44,11 @@
 
 <div class="mb-3 row">
 <h5>후기</h5>
+  <c:forEach items="${commentList}" var="placeComment">
   <div class = "col-sm-16">
-  <input id='f-comment' type='text' name='comment' class="form-control" value="${place.comments}">
+  <input id='f-comment' type='text' name='comment' class="form-control" value="${placeComment.comment}" readonly>
   </div>
+  </c:forEach>
 </div>
 
 <!-- </form> -->
