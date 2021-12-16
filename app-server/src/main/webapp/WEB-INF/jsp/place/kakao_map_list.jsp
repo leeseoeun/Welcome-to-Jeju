@@ -91,7 +91,7 @@
   <div>
 	  <c:forEach items="${placeList}" var="place">
 	      <div class="place" style="positon :relative; z-index: 1">
-	    <a href="detail?id=${place.id}">
+	    <a href="detail?no=${theme.no}&id=${place.id}">
           ${place.place_name}<br>
           ${fn:split(place.address_name, ',')[0]}<br>
 	   </a>

@@ -52,5 +52,13 @@
   </c:forEach>
 </div>
 
+<div class="text-center">
+  <a href="list?no=${no}" class="btn btn-outline-dark">목록 보기</a>
+  
+  <%-- <c:if test="${loginUser.no eq  }"> --%>
+  <a href="delete?no=${no}&id=${place.id}" class="btn btn-outline-dark">삭제하기</a>
+  <%-- </c:if> --%>
+</div>
+
 <!-- </form> -->
 </div>  <!-- .detail -->

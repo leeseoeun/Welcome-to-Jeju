@@ -9,7 +9,7 @@ public interface PlaceDao { //
   void insert(Place place) throws Exception;
   void insertPlaceUserTheme(HashMap<String,Object> param) throws Exception;
 
-  void delete(HashMap<String,Object> param) throws Exception;
+  void deletePlaceUserTheme(HashMap<String,Object> param) throws Exception;
 
   Place findById(String id) throws Exception;
   List<Place> findAllByThemeNo(int themeNo) throws Exception;
