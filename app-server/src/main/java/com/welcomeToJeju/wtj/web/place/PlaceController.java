@@ -37,7 +37,7 @@ public class PlaceController {
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @PostMapping("/place/addform")
-  public ModelAndView addform(Place place, String no) {
+  public ModelAndView addform(Place place, int no) {
     ModelAndView mv = new ModelAndView();
     mv.addObject("place", place);
     mv.addObject("no", no);
@@ -49,7 +49,7 @@ public class PlaceController {
 
   @PostMapping("/place/add")
   public ModelAndView add(Place place, Part photoFile, String comment,
-      HttpSession session, String no) throws Exception{
+      HttpSession session, int no) throws Exception{
 
     User user = (User) session.getAttribute("loginUser");
 
@@ -126,7 +126,7 @@ public class PlaceController {
   }
 
   @GetMapping("/place/search")
-  public ModelAndView place(String keyword, String no) throws Exception {
+  public ModelAndView place(String keyword, int no) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.addObject("keyword", keyword);
     mv.addObject("no", no);
@@ -137,7 +137,7 @@ public class PlaceController {
   }
 
   @GetMapping("/place/detail")
-  public ModelAndView detail(String id, String no) throws Exception {
+  public ModelAndView detail(String id, int no) throws Exception {
     Place place = placeDao.findById(id);
     Collection<PlacePhoto> photoList = placePhotoDao.findAllByPlaceId(id);
     Collection<PlaceComment> commentList = placeCommentDao.findAllByPlaceId(id);
@@ -157,7 +157,7 @@ public class PlaceController {
   }
 
   @GetMapping("/place/delete")
-  public ModelAndView delete(String id, String no) throws Exception {
+  public ModelAndView delete(String id, int no) throws Exception {
     HashMap<String,Object> param = new HashMap<>();
     param.put("placeId", id);
     param.put("themeNo", no);
