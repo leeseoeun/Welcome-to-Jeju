@@ -79,7 +79,7 @@
 <div class="placemenu">
 <a href='../place/add'>장소 등록하기 ✏️</a>
 <br>
-<jsp:include page="../place/PlaceList.jsp"/>
+<%-- <jsp:include page="../place/PlaceList.jsp"/> --%>
 </div>  <!-- .placemenu -->
 
 <!-- 
