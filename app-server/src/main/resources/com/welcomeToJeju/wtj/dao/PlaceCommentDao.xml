@@ -7,7 +7,7 @@
   
   <resultMap type="PlaceComment" id="PlaceCommentMap">
     <id column="comment_no" property="no"/> 
-    <result column="comment" property="place_name"/>
+    <result column="comment" property="comment"/>
   
   <association property="writer" javaType="User">
     <id column="user_no" property="no"/>

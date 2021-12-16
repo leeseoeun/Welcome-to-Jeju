@@ -144,6 +144,7 @@ public class PlaceController {
     mv.addObject("place", place);
     mv.addObject("photoList", photoList);
     mv.addObject("commentList", commentList);
+    mv.addObject("pageTitle", "장소 상세 보기");
     mv.addObject("contentUrl", "place/PlaceDetail.jsp");
     mv.setViewName("template_main");
 

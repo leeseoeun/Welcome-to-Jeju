@@ -48,6 +48,9 @@
   <div class = "col-sm-16">
   <input id='f-comment' type='text' name='comment' class="form-control" value="${placeComment.comment}" readonly>
   </div>
+  
+  <br><br>
+  
   </c:forEach>
 </div>
 
