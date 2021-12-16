@@ -47,20 +47,23 @@ public class PlaceController {
     return mv;
   }
 
-  // 테마 번호
   @PostMapping("/place/add")
   public ModelAndView add(Place place, Part photoFile, String comment,
       HttpSession session, String no) throws Exception{
 
-    placeDao.insert(place);
-
     User user = (User) session.getAttribute("loginUser");
 
-    HashMap<String,Object> placeParam = new HashMap<>();
-    placeParam.put("placeId", place.getId());
-    placeParam.put("userNo", user.getNo());
-    placeParam.put("themeNo", no);
-    placeDao.insertPlaceUserTheme(placeParam);
+    if (placeDao.findById(place.getId()) == null) {
+      placeDao.insert(place);
+
+      //      User user = (User) session.getAttribute("loginUser");
+
+      HashMap<String,Object> placeParam = new HashMap<>();
+      placeParam.put("placeId", place.getId());
+      placeParam.put("userNo", user.getNo());
+      placeParam.put("themeNo", no);
+      placeDao.insertPlaceUserTheme(placeParam);
+    }
 
     if (photoFile.getSize() > 0) {
       String filename = UUID.randomUUID().toString();
@@ -140,7 +143,6 @@ public class PlaceController {
     Place place = placeDao.findById(id);
     Collection<PlacePhoto> photoList = placePhotoDao.findAllByPlaceId(id);
     Collection<PlaceComment> commentList = placeCommentDao.findAllByPlaceId(id);
-
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("place", place);
