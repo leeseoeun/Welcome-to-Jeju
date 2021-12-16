@@ -37,9 +37,10 @@ public class PlaceController {
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @PostMapping("/place/addform")
-  public ModelAndView addform(Place place) {
+  public ModelAndView addform(Place place, String no) {
     ModelAndView mv = new ModelAndView();
     mv.addObject("place", place);
+    mv.addObject("no", no);
     mv.addObject("pageTitle", "장소 등록하기");
     mv.addObject("contentUrl", "place/PlaceAddForm.jsp");
     mv.setViewName("template_main");
@@ -49,17 +50,17 @@ public class PlaceController {
   // 테마 번호
   @PostMapping("/place/add")
   public ModelAndView add(Place place, Part photoFile, String comment,
-      HttpSession session/* , int no */) throws Exception{
+      HttpSession session, String no) throws Exception{
 
     placeDao.insert(place);
 
     User user = (User) session.getAttribute("loginUser");
 
-    //    HashMap<String,Object> placeParam = new HashMap<>();
-    //    placeParam.put("placeId", place.getId());
-    //    placeParam.put("userNo", user.getNo());
-    //    placeParam.put("themeNo", no);
-    //    placeDao.insertPlaceUserTheme(placeParam);
+    HashMap<String,Object> placeParam = new HashMap<>();
+    placeParam.put("placeId", place.getId());
+    placeParam.put("userNo", user.getNo());
+    placeParam.put("themeNo", no);
+    placeDao.insertPlaceUserTheme(placeParam);
 
     if (photoFile.getSize() > 0) {
       String filename = UUID.randomUUID().toString();
@@ -103,7 +104,7 @@ public class PlaceController {
     sqlSessionFactory.openSession().commit();
 
     ModelAndView mv = new ModelAndView();
-    mv.setViewName("redirect:list");
+    mv.setViewName("redirect:list?no=" + no);
 
     return mv;
   }
@@ -124,9 +125,10 @@ public class PlaceController {
   }
 
   @GetMapping("/place/search")
-  public ModelAndView place(String keyword) throws Exception {
+  public ModelAndView place(String keyword, String no) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.addObject("keyword", keyword);
+    mv.addObject("no", no);
     mv.addObject("contentUrl", "place/kakao_map_search.jsp");
     mv.setViewName("template_main");
 
@@ -144,6 +146,7 @@ public class PlaceController {
     mv.addObject("place", place);
     mv.addObject("photoList", photoList);
     mv.addObject("commentList", commentList);
+    mv.addObject("pageTitle", "장소 상세 보기");
     mv.addObject("contentUrl", "place/PlaceDetail.jsp");
     mv.setViewName("template_main");
 

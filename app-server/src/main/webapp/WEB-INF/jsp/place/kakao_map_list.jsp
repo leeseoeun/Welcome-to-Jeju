@@ -79,8 +79,9 @@
 </div>
 
 <form action="search" style="width:500px; float: left; margin-left:1230px; margin-bottom: 20px;">
+  <input id="f-no" type="hidden" name="no" value="${theme.no}">
 	<input id="f-place" type="text" name="keyword" class="place-search">
-	<a href="search" class="btn btn-outline-dark">🎨 장소 등록하기</a>
+	<a href="search?no=${theme.no}&keyword=" class="btn btn-outline-dark">🎨 장소 등록하기</a>
 </form>
 
 <br><br><br>

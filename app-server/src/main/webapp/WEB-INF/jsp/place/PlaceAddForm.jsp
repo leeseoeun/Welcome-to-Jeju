@@ -17,7 +17,7 @@
 
 <div class="add-form">
 <form id="place-form" action="add" method="post" enctype="multipart/form-data">
-
+  <input type="hidden" id="no" name="no" value="${no}">
   <input type="hidden" id="id" name="id" value="${place.id}">
   <input type="hidden" id="x" name="x" value="${place.x}">
   <input type="hidden" id="y" name="y" value="${place.y}">

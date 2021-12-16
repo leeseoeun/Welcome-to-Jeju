@@ -296,6 +296,7 @@ function removeAllChildNods(el) {
 
 <div class="text-center">
   <!-- 위도 및 경도 좌표 및 위치 정보 -->
+  <input type="hidden" id="no" name="no" value="${no}">
   <input type="hidden" id="id" name="id">
   <input type="text" id="place_name" name="place_name" readonly>
     <button type="submit" class="btn btn-outline-dark">등록하기</button>
