@@ -10,7 +10,7 @@
 
 		<br>
 		<h1 style="text-align: center;">내가 좋아하는 테마 보기</h1>
-		<br> <br>
+		<br><br>
 		<h3 style="text-align: center;">유저 테마</h3>
 		<br>
 		<ul class="theme-list">
@@ -36,8 +36,7 @@
 				</a>
 			</c:forEach>
 		</ul>
-
-		<br>
+		
 		<h3 style="text-align: center;">참여 테마</h3>
 		<br>
 		<ul class="theme-list">
@@ -52,7 +51,7 @@
 				</a>
 				<a href='delete?themeNo=${theme.no}'>❌</a>
 			</c:forEach>
-			<c:forEach begin="0" end="${3-(fn:length(themeList)%3)-1}">
+			<c:forEach begin="0" end="${3-(fn:length(shareThemeList)%3)-1}">
 				<a class="list-container" style="visibility: hidden;">
 					<li>
 						<div class="content">
@@ -63,6 +62,7 @@
 				</a>
 			</c:forEach>
 		</ul>
+		<br><br><br><br>
 
 	</div>
 	<!-- .main-container -->

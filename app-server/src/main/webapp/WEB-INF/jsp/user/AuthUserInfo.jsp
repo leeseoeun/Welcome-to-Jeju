@@ -24,12 +24,7 @@
 <div class = "card-body">
 <form id = "update-form" action='../user/update' method='post'>
 
-<div class="mb-3 row">
-<h5>회원번호</h5>
-  <div class="col-sm-16">
-  <input id='f-no' type='text' name='no' value="${loginUser.no}" class="form-control"  readonly>
-  </div>
-</div>
+  <input id='f-no' type='hidden' name='no' value="${loginUser.no}" class="form-control"  readonly>
 
 <div class="mb-3 row">
 <h5>이메일</h5>
