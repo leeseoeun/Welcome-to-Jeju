@@ -28,7 +28,7 @@
 <div class="mb-3 row">
 <h5>이메일</h5>
   <div class = "col-sm-16">
-  <input id='f-email' type='email' name='email' class="form-control" placeholder="Your Email" required autofocus> 
+  <input id='f-email' type='email' name='email' class="form-control" placeholder="Email을 입력해주세요." required autofocus> 
   <div class="invalid-feedback">
         이미 존재하는 이메일입니다.
     </div>
@@ -40,9 +40,9 @@
 </div>
 
 <div class="mb-3 row">
-<h5>암호</h5>
+<h5>비밀번호</h5>
   <div class = "col-sm-16">
-  <input id='f-password' type='password' name='password' class="form-control">
+  <input id='f-password' type='password' name='password' placeholder="비밀번호를 입력해주세요." class="form-control">
   </div>
 </div>
 
@@ -85,7 +85,7 @@
 <div class="mb-3 row">
 <h5>닉네임</h5>
   <div class = "col-sm-16">
-  <input id='f-nickname' type='text' name='nickname' class="form-control">
+  <input id='f-nickname' type='text' name='nickname' placeholder="닉네임을 입력해주세요." class="form-control">
   <div class="invalid-feedback">
         이미 존재하는 닉네임입니다.
     </div>
