@@ -20,8 +20,19 @@
 								<div class="icon">${user.emoji}</div>
 								<div class="curator-name">${user.nickname}</div>
 						</a></li>
-						<a href='delete?userNo=${user.no}'>❌</a>
+						<a href='delete?userNo=${user.no}' style="margin-left: -18px; margin-right: 12px;">❌</a>
 					</c:forEach>
+					
+					<c:forEach begin="0" end="${3-(fn:length(userList)%3)-1}">
+        <a class="list-container" style="visibility: hidden;">
+          <li>
+            <div class="content">
+              <div class="icon">${user.no}</div>
+              <div class="theme-title">${uer.nickname}</div>
+            </div> <!-- .content -->
+        </li>
+        </a>
+      </c:forEach>
 				</ul>
 			</div>
 			<!-- .hot-curators -->
