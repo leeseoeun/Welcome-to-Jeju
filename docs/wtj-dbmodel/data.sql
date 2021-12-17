@@ -182,7 +182,7 @@ insert into jeju_place_comment(place_comment_no,place_id,comment,user_no)
 values(5,'11041974','검은 모레 해변과 절벽이 인상 깊은 장소',1);
 insert into jeju_place_comment(place_comment_no,place_id,comment,user_no)
 values(6,'11041974','ㅜㅜ 썰물 때만 동굴 입구를 찾을 수 있어요',3);
-
+ 
 -- 장소_유저_테마
 insert into jeju_place_user_theme(place_id,user_no,theme_no)
 values('17357777',1,1);
