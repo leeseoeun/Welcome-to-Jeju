@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set scope="page" var="contextRoot" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${contextRoot}/css/user_list.css">
@@ -14,7 +15,7 @@
 		<div class="dash-board">
 			<div class="hot-curators">
 				<div class="title"></div>
-				<ul class="hot-curators-list">
+				<ul class="hot-curators-list" style="margin-left: 45px;">
 					<c:forEach items="${userList}" var="user">
 						<li><a href="../theme/userlist?no=${user.no}" class="content">
 								<div class="icon">${user.emoji}</div>
@@ -27,13 +28,14 @@
         <a class="list-container" style="visibility: hidden;">
           <li>
             <div class="content">
-              <div class="icon">${user.no}</div>
-              <div class="theme-title">${uer.nickname}</div>
+              <div class="icon">${user.emoji}</div>
+              <div class="curator-name">${user.nickname}</div>
             </div> <!-- .content -->
         </li>
         </a>
       </c:forEach>
 				</ul>
+				<br><br><br><br>
 			</div>
 			<!-- .hot-curators -->
 		</div>
