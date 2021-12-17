@@ -38,7 +38,7 @@
   <c:forEach items="${photoList}" var="placePhoto">
     ${placePhoto.writer.emoji}&nbsp;${placePhoto.writer.nickname}
 	  <c:if test="${loginUser.no eq placePhoto.writer.no}">
-      <td><a href="delete">❌</a></td>
+      <a href="delete">❌</a>
     </c:if>
 	  <a href="${contextPath}/upload/place/${placePhoto.filePath}">
 	    <img id="f-photo-image" src="${contextPath}/upload/place/${placePhoto.filePath}_100x100.jpg">
