@@ -39,7 +39,7 @@
   	values(#{placeId},#{userNo},#{themeNo})
   </insert>
   
-  <delete id="delete" parameterType="Map">  <!-- 유저 넘버? -->
+  <delete id="deletePlaceUserTheme" parameterType="Map">  <!-- 유저 넘버? -->
     delete from jeju_place_user_theme
     where place_id=#{placeId} and theme_no=#{themeNo}
   </delete>
@@ -50,15 +50,9 @@
       p.place_name,
       p.place_address,
       p.x_coord,
-      p.y_coord<!-- ,
-      pp.place_photo_no,
-      pp.file_path,
-      c.place_comment_no,
-      c.comment -->
+      p.y_coord
     from
       jeju_place p
-      <!-- join jeju_place_photo pp on pp.place_id=p.place_id
-      join jeju_place_comment c on c.place_id=p.place_id -->
     where
       p.place_id=#{id}
   </select>

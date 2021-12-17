@@ -37,7 +37,7 @@ public class PlaceController {
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   @PostMapping("/place/addform")
-  public ModelAndView addform(Place place, String no) {
+  public ModelAndView addform(Place place, int no) {
     ModelAndView mv = new ModelAndView();
     mv.addObject("place", place);
     mv.addObject("no", no);
@@ -47,20 +47,21 @@ public class PlaceController {
     return mv;
   }
 
-  // 테마 번호
   @PostMapping("/place/add")
   public ModelAndView add(Place place, Part photoFile, String comment,
-      HttpSession session, String no) throws Exception{
-
-    placeDao.insert(place);
+      HttpSession session, int no) throws Exception{
 
     User user = (User) session.getAttribute("loginUser");
 
-    HashMap<String,Object> placeParam = new HashMap<>();
-    placeParam.put("placeId", place.getId());
-    placeParam.put("userNo", user.getNo());
-    placeParam.put("themeNo", no);
-    placeDao.insertPlaceUserTheme(placeParam);
+    if (placeDao.findById(place.getId()) == null) {
+      placeDao.insert(place);
+
+      HashMap<String,Object> placeParam = new HashMap<>();
+      placeParam.put("placeId", place.getId());
+      placeParam.put("userNo", user.getNo());
+      placeParam.put("themeNo", no);
+      placeDao.insertPlaceUserTheme(placeParam);
+    }
 
     if (photoFile.getSize() > 0) {
       String filename = UUID.randomUUID().toString();
@@ -125,7 +126,7 @@ public class PlaceController {
   }
 
   @GetMapping("/place/search")
-  public ModelAndView place(String keyword, String no) throws Exception {
+  public ModelAndView place(String keyword, int no) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.addObject("keyword", keyword);
     mv.addObject("no", no);
@@ -136,19 +137,35 @@ public class PlaceController {
   }
 
   @GetMapping("/place/detail")
-  public ModelAndView detail(String id) throws Exception {
+  public ModelAndView detail(String id, int no) throws Exception {
     Place place = placeDao.findById(id);
     Collection<PlacePhoto> photoList = placePhotoDao.findAllByPlaceId(id);
     Collection<PlaceComment> commentList = placeCommentDao.findAllByPlaceId(id);
 
+    System.out.println(no);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("place", place);
     mv.addObject("photoList", photoList);
     mv.addObject("commentList", commentList);
+    mv.addObject("no", no);
     mv.addObject("pageTitle", "장소 상세 보기");
     mv.addObject("contentUrl", "place/PlaceDetail.jsp");
     mv.setViewName("template_main");
+
+    return mv;
+  }
+
+  @GetMapping("/place/delete")
+  public ModelAndView delete(String id, int no) throws Exception {
+    HashMap<String,Object> param = new HashMap<>();
+    param.put("placeId", id);
+    param.put("themeNo", no);
+    placeDao.deletePlaceUserTheme(param);
+    sqlSessionFactory.openSession().commit();
+
+    ModelAndView mv = new ModelAndView();
+    mv.setViewName("redirect:list?no=" + no);
 
     return mv;
   }
