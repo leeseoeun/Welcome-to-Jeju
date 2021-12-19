@@ -2,23 +2,15 @@
 insert into emoji(emoji_no, emoji)
 values(1, '&#127749;');
 insert into emoji(emoji_no, emoji)
-values(2, '&#127796;');
+values(2, '&#128674;');
 insert into emoji(emoji_no, emoji)
-values(3, '&#127818;');
+values(3, '&#128044;');
 insert into emoji(emoji_no, emoji)
-values(4, '&#128674;');
+values(4, '&#127796;');
 insert into emoji(emoji_no, emoji)
-values(5, '&#127754;');
+values(5, '&#127818;');
 insert into emoji(emoji_no, emoji)
 values(6, '&#129372;');
-insert into emoji(emoji_no, emoji)
-values(7, '&#128757;');
-insert into emoji(emoji_no, emoji)
-values(8, '&#128044;');
-insert into emoji(emoji_no, emoji)
-values(9, '&#128511;');
-insert into emoji(emoji_no, emoji)
-values(10, '&#127801;');
 
 -- 유저
 insert into jeju_user(user_no,email,password,nickname,emoji)
@@ -87,7 +79,7 @@ values(14,4,'반려 동물과 함께 가기 좋은 카페',2,1,0,'&#128674;');
 insert into jeju_theme(theme_no,user_no,title,category_no,public,share,emoji)
 values(15,4,'제주의 봄 만끽하기',3,1,1,'&#127754;');
 insert into jeju_theme(theme_no,user_no,title,category_no,public,share,emoji)
-values(16,4,'너를 위해서 준비했어! 선물 사기 좋은 장소',4,1,1,'&#129372;');
+values(16,4,'너를 위해서 준비했어! 선물 상점',4,1,1,'&#129372;');
 
 insert into jeju_theme(theme_no,user_no,title,category_no,public,share,emoji)
 values(17,5,'해산물이 먹고 싶을 때',1,1,1,'&#128757;');
