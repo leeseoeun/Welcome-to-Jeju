@@ -1,7 +1,7 @@
-package com.welcomeToJeju.util;
+package com.welcomeToJeJu.util;
 
 public class NaverAddressInfo {
-	public String jibunAddress;
-	public String x;
-	public String y;
+  public String jibunAddress;
+  public String x;
+  public String y;
 }

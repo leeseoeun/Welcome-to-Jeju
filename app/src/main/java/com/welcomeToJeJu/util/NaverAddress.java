@@ -1,8 +1,8 @@
-package com.welcomeToJeju.util;
+package com.welcomeToJeJu.util;
 
 public class NaverAddress {
-	Object[] addresses;
-	public NaverAddress(Object[] addresses) {
-		this.addresses = addresses;
-	}
+  Object[] addresses;
+  public NaverAddress(Object[] addresses) {
+    this.addresses = addresses;
+  }
 }
