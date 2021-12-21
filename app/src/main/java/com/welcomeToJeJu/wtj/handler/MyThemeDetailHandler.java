@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.welcomeToJeju.moj.domain.Theme;
-import com.welcomeToJeju.moj.domain.User;
-import com.welcomeToJeju.util.Prompt;
+import com.welcomeToJeJu.util.Prompt;
+import com.welcomeToJeJu.wtj.domain.Theme;
+import com.welcomeToJeJu.wtj.domain.User;
 
-public class MyThemeDetailHandler extends AbstractMyMapHandler {
+public class MyThemeDetailHandler extends AbstractMyThemeHandler {
   Map<String, Map<String, String>> controlMenu = new HashMap<>();
 
   public MyThemeDetailHandler(List<User> userList) {
@@ -19,7 +19,6 @@ public class MyThemeDetailHandler extends AbstractMyMapHandler {
     controlMenu.put("이전 메뉴",null);
   }
 
-  @SuppressWarnings("unlikely-arg-type")
   @Override
   public void execute(CommandRequest request) throws Exception {
     Theme searchedTheme;

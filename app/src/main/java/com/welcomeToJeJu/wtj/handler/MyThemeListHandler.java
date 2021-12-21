@@ -1,21 +1,24 @@
 package com.welcomeToJeJu.wtj.handler;
 
 import java.util.List;
-import com.welcomeToJeju.moj.domain.Theme;
-import com.welcomeToJeju.moj.domain.User;
+import com.welcomeToJeJu.wtj.domain.Theme;
+import com.welcomeToJeJu.wtj.domain.User;
 
-public class MyThemeListHandler extends AbstractMyMapHandler {
+public class MyThemeListHandler extends AbstractMyThemeHandler {
 
   public MyThemeListHandler(List<User> userList) {
     super(userList);
   }
 
+  @Override
   public void execute(CommandRequest request) {
     System.out.println("[테마 목록보기]");
+
     if (AuthLoginHandler.getLoginUser().getThemeList().size() == 0) {
       System.out.println("등록된 테마 없음!");
       return;
     }
+
     for (Theme theme : AuthLoginHandler.getLoginUser().getThemeList()) {
       System.out.printf("<%d>\n", theme.getNo());
       System.out.printf("[%s] 테마 제목 > %s\n", theme.getCategory(), theme.getTitle());
@@ -27,4 +30,6 @@ public class MyThemeListHandler extends AbstractMyMapHandler {
       System.out.println();
     }
   }
+
+
 }

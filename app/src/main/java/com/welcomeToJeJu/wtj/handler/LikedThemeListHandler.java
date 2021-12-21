@@ -1,8 +1,8 @@
 package com.welcomeToJeJu.wtj.handler;
 
-import com.welcomeToJeju.moj.domain.Theme;
+import com.welcomeToJeJu.wtj.domain.Theme;
 
-public class LikedThemeListHandler implements Command{
+public class LikedThemeListHandler implements Command {
 
   @Override
   public void execute(CommandRequest request) {

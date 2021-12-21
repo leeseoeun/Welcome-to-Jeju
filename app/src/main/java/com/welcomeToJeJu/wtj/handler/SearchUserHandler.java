@@ -1,16 +1,17 @@
 package com.welcomeToJeJu.wtj.handler;
 
 import java.util.List;
-import com.welcomeToJeju.moj.domain.Theme;
-import com.welcomeToJeju.moj.domain.User;
-import com.welcomeToJeju.util.Prompt;
+import com.welcomeToJeJu.util.Prompt;
+import com.welcomeToJeJu.wtj.domain.Theme;
+import com.welcomeToJeJu.wtj.domain.User;
 
-public class SearchUserHandler extends AbstractSearchHandler{
+public class SearchUserHandler extends AbstractSearchHandler {
 
   public SearchUserHandler(List<User> userList) {
     super(userList);
   }
 
+  @Override
   public void execute(CommandRequest request) {
 
     System.out.println("[유저 검색 하기]");

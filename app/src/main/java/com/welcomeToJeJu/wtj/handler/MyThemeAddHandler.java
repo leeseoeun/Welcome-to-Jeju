@@ -2,29 +2,30 @@ package com.welcomeToJeJu.wtj.handler;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.welcomeToJeju.moj.domain.Theme;
-import com.welcomeToJeju.moj.domain.User;
-import com.welcomeToJeju.util.Prompt;
+import com.welcomeToJeJu.util.Prompt;
+import com.welcomeToJeJu.wtj.domain.Theme;
+import com.welcomeToJeJu.wtj.domain.User;
 
-public class MyThemeAddHandler extends AbstractMyMapHandler {
+public class MyThemeAddHandler extends AbstractMyThemeHandler {
 
   List<Theme> themeList;
+
   public MyThemeAddHandler(List<User> userList, List<Theme> themeList) {
     super(userList);
     this.themeList = themeList;
   }
 
+  @Override
   public void execute(CommandRequest request) {
     Theme theme = new Theme();
     System.out.println("[나의 테마 등록하기]");
 
-
-
     if(AuthLoginHandler.getLoginUser().getThemeList().size() == 0) {
       theme.setNo(1);
+
     } else {
-      int themeNo = AuthLoginHandler.getLoginUser().
-          getThemeList().get(AuthLoginHandler.getLoginUser().getThemeList().size()-1).getNo();
+      int themeNo = AuthLoginHandler.getLoginUser().getThemeList()
+          .get(AuthLoginHandler.getLoginUser().getThemeList().size()-1).getNo();
       theme.setNo(++themeNo);
     }
 
@@ -35,6 +36,7 @@ public class MyThemeAddHandler extends AbstractMyMapHandler {
       return;
     }
 
+    // 카테고리
     int categoryNum;
     List<String> categories = new ArrayList<>();
     categories.add("식당");
@@ -57,14 +59,15 @@ public class MyThemeAddHandler extends AbstractMyMapHandler {
     }
     theme.setCategory(categories.get(categoryNum-1));
 
+    // 해시태그
     while (true) {
       String input = Prompt.inputString("해시 태그(완료: 엔터) > ");
       if (input.length() == 0)
         break;
-
       theme.getHashtags().add(input);
     }
 
+    // 공개/비공개
     String publicOption = Prompt.inputString("공개 설정(Y/n) > ");
     if (publicOption.equalsIgnoreCase("y") || publicOption.equals("") ) {
       theme.setPublic(true);
@@ -76,5 +79,6 @@ public class MyThemeAddHandler extends AbstractMyMapHandler {
     System.out.println();
     System.out.println("테마 등록 완료!");
   }
+
 
 }

@@ -1,11 +1,11 @@
 package com.welcomeToJeJu.wtj.handler;
 
 import java.util.List;
-import com.welcomeToJeju.moj.domain.Theme;
-import com.welcomeToJeju.moj.domain.User;
-import com.welcomeToJeju.util.Prompt;
+import com.welcomeToJeJu.util.Prompt;
+import com.welcomeToJeJu.wtj.domain.Theme;
+import com.welcomeToJeJu.wtj.domain.User;
 
-public class LikedThemeAddHandler extends AbstactLikedThemeHandler{
+public class LikedThemeAddHandler extends AbstactLikedThemeHandler {
 
   public LikedThemeAddHandler(List<User> userList) {
     super(userList);

@@ -3,32 +3,35 @@ package com.welcomeToJeJu.wtj.handler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import com.welcomeToJeju.context.UserContextListener;
-import com.welcomeToJeju.menu.Menu;
-import com.welcomeToJeju.moj.domain.User;
-import com.welcomeToJeju.util.Prompt;
+import com.welcomeToJeJu.context.UserContextListener;
+import com.welcomeToJeJu.menu.Menu;
+import com.welcomeToJeJu.util.Prompt;
+import com.welcomeToJeJu.wtj.domain.User;
 
 public class AuthLoginHandler implements Command{
 
   List<User> userList;
-  static User loginUser;
-  static int useAccessLevel = Menu.ACCESS_LOGOUT;
 
+  static User loginUser;
+  static int userAccessLevel = Menu.ACCESS_LOGOUT;
+
+  // 옵저버
   List<UserContextListener> userListeners = new ArrayList<>();
   User user;
 
   public static User getLoginUser() {
     return loginUser;
   }
-  public static int getUseAccessLevel() {
-    return useAccessLevel;
+  public static int getUserAccessLevel() {
+    return userAccessLevel;
   }
 
-  public AuthLoginHandler(List<User> userList,List<UserContextListener> userListeners) {
+  public AuthLoginHandler(List<User> userList, List<UserContextListener> userListeners) {
     this.userList = userList;
     this.userListeners = userListeners;
   }
 
+  @Override
   public void execute(CommandRequest request) {
     System.out.println("[로그인]");
 
@@ -37,7 +40,7 @@ public class AuthLoginHandler implements Command{
 
     if(email.equals("root@test.com") && password.equals("0000")) {
       loginUser = userList.get(0);
-      useAccessLevel = Menu.ACCESS_GENERAL | Menu.ACCESS_ADMIN;
+      userAccessLevel = Menu.ACCESS_GENERAL | Menu.ACCESS_ADMIN;
       System.out.println("제주정승🍊 환영합니다!");
       return;
     }
@@ -48,7 +51,7 @@ public class AuthLoginHandler implements Command{
       System.out.println("이메일 또는 암호가 일치하지 않음!");
     } else {
       notifyOnLogin();
-      useAccessLevel = Menu.ACCESS_GENERAL;
+      userAccessLevel = Menu.ACCESS_GENERAL;
     }
 
     loginUser = user;
@@ -60,6 +63,7 @@ public class AuthLoginHandler implements Command{
         return user;
       }
     }
+
     return null;
   }
 

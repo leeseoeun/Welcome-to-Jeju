@@ -1,8 +1,8 @@
 package com.welcomeToJeJu.wtj.handler;
 
 import java.util.List;
-import com.welcomeToJeju.moj.domain.Theme;
-import com.welcomeToJeju.moj.domain.User;
+import com.welcomeToJeJu.wtj.domain.Theme;
+import com.welcomeToJeJu.wtj.domain.User;
 
 public abstract class AbstactLikedThemeHandler implements Command {
 
@@ -20,6 +20,7 @@ public abstract class AbstactLikedThemeHandler implements Command {
         }
       }
     }
+
     return null;
   }
 

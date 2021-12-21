@@ -1,9 +1,9 @@
 package com.welcomeToJeJu.wtj.handler;
 
 import java.util.List;
-import com.welcomeToJeju.moj.domain.Theme;
-import com.welcomeToJeju.moj.domain.User;
-import com.welcomeToJeju.util.Prompt;
+import com.welcomeToJeJu.util.Prompt;
+import com.welcomeToJeJu.wtj.domain.Theme;
+import com.welcomeToJeJu.wtj.domain.User;
 
 public class SearchThemeHandler extends AbstractSearchHandler {
 
@@ -14,16 +14,19 @@ public class SearchThemeHandler extends AbstractSearchHandler {
     this.themeList = themeList;
   } 
 
+  @Override
   public void execute(CommandRequest request) {
 
     System.out.println("[테마 검색하기]");
 
     while (true) {
       String input = Prompt.inputString("테마 이름(취소 : 엔터) > ");
-      if(input.equals("")) {
+
+      if(input.equalsIgnoreCase("") || input.length() == 0) {
         System.out.println("테마 검색 취소!");
         return;
       }
+
       for (Theme theme : themeList) {
         if (theme.getTitle().contains(input) && theme.isPublic()) {
           System.out.printf("테마 제목 > %s\n", theme.getTitle());
@@ -36,7 +39,10 @@ public class SearchThemeHandler extends AbstractSearchHandler {
           return;
         }
       }
-      System.out.println("등록된 테마 없음!");
+
+      System.out.println("해당하는 테마 없음!");
     }
   }
+
+
 }

@@ -1,14 +1,14 @@
 package com.welcomeToJeJu.wtj.handler;
 
 import java.util.List;
-import com.welcomeToJeju.moj.domain.Theme;
-import com.welcomeToJeju.moj.domain.User;
+import com.welcomeToJeJu.wtj.domain.Theme;
+import com.welcomeToJeJu.wtj.domain.User;
 
-public abstract class AbstractMyMapHandler implements Command {
+public abstract class AbstractMyThemeHandler implements Command {
 
   List<User> userList;
 
-  public AbstractMyMapHandler(List<User> userList) {
+  public AbstractMyThemeHandler(List<User> userList) {
     this.userList = userList;
   }
 
@@ -19,6 +19,7 @@ public abstract class AbstractMyMapHandler implements Command {
           return theme;
       }
     }
+
     return null;
   }
 

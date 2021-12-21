@@ -1,8 +1,8 @@
 package com.welcomeToJeJu.wtj.handler;
 
-import com.welcomeToJeju.moj.domain.Place;
-import com.welcomeToJeju.moj.domain.Theme;
-import com.welcomeToJeju.util.Prompt;
+import com.welcomeToJeJu.util.Prompt;
+import com.welcomeToJeJu.wtj.domain.Place;
+import com.welcomeToJeJu.wtj.domain.Theme;
 
 public class PlaceDeleteHandler extends AbstractPlaceHandler{
 
@@ -51,4 +51,6 @@ public class PlaceDeleteHandler extends AbstractPlaceHandler{
       System.out.println("장소 삭제하기 완료!");
     }
   }
+
+
 }

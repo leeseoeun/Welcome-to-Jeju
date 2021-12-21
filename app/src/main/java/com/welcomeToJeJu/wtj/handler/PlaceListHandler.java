@@ -1,7 +1,7 @@
 package com.welcomeToJeJu.wtj.handler;
 
-import com.welcomeToJeju.moj.domain.Place;
-import com.welcomeToJeju.moj.domain.Theme;
+import com.welcomeToJeJu.wtj.domain.Place;
+import com.welcomeToJeJu.wtj.domain.Theme;
 
 public class PlaceListHandler extends AbstractPlaceHandler{
 
@@ -18,10 +18,9 @@ public class PlaceListHandler extends AbstractPlaceHandler{
         continue;
       }
 
-      int index = 1;
-
       System.out.printf("[%s] 테마 제목 > %s\n", theme.getCategory(), theme.getTitle());
 
+      int index = 1;
       for (Place place : theme.getPlaceList()) {
         System.out.printf("<%d>\n", index++);
         System.out.printf("장소 이름 > %s\n", place.getStoreName());

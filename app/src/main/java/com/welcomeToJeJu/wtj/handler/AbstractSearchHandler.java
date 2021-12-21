@@ -1,7 +1,7 @@
 package com.welcomeToJeJu.wtj.handler;
 
 import java.util.List;
-import com.welcomeToJeju.moj.domain.User;
+import com.welcomeToJeJu.wtj.domain.User;
 
 public abstract class AbstractSearchHandler implements Command {
   List<User> userList;
@@ -9,4 +9,6 @@ public abstract class AbstractSearchHandler implements Command {
   public AbstractSearchHandler(List<User> userList) {
     this.userList = userList;
   }
+
+
 }

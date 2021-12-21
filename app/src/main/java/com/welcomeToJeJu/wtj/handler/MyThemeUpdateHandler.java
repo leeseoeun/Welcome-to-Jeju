@@ -2,16 +2,17 @@ package com.welcomeToJeJu.wtj.handler;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.welcomeToJeju.moj.domain.Theme;
-import com.welcomeToJeju.moj.domain.User;
-import com.welcomeToJeju.util.Prompt;
+import com.welcomeToJeJu.util.Prompt;
+import com.welcomeToJeJu.wtj.domain.Theme;
+import com.welcomeToJeJu.wtj.domain.User;
 
-public class MyThemeUpdateHandler extends AbstractMyMapHandler {
+public class MyThemeUpdateHandler extends AbstractMyThemeHandler {
 
   public MyThemeUpdateHandler(List<User> userList) {
     super(userList);
   }
 
+  @Override
   public void execute(CommandRequest request) {
     System.out.println("[테마 수정하기]");
 
@@ -24,6 +25,8 @@ public class MyThemeUpdateHandler extends AbstractMyMapHandler {
     }
 
     String newTitle = Prompt.inputString("테마 제목 > ");
+
+    // 카테고리
     List<String> categories = new ArrayList<>();
     categories.add("식당");
     categories.add("카페");
@@ -44,8 +47,8 @@ public class MyThemeUpdateHandler extends AbstractMyMapHandler {
       break;
     }
 
+    // 해시태그
     List<String> hashtagList = new ArrayList<>();
-
     while (true) {
       String input = Prompt.inputString("해시 태그(완료: 엔터) > ");
       if (input.length() == 0)
@@ -53,8 +56,8 @@ public class MyThemeUpdateHandler extends AbstractMyMapHandler {
       hashtagList.add(input);
     }
 
+    // 공개/비공개
     boolean isPublic = false;
-
     String publicOption = Prompt.inputString("공개 설정(Y/n) > ");
     if (publicOption.equalsIgnoreCase("y") || publicOption.equals("")) {
       isPublic = true;
@@ -73,5 +76,6 @@ public class MyThemeUpdateHandler extends AbstractMyMapHandler {
     System.out.println();
     System.out.println("테마 수정 완료!");
   }
+
 
 }

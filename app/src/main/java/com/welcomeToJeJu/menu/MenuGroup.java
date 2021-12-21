@@ -54,7 +54,7 @@ public class MenuGroup extends Menu {
       List<Menu> menuList = new ArrayList<>();
 
       for(Menu menu : childs) {
-        if((AuthLoginHandler.getUseAccessLevel() & menu.accessScope) > 0) {
+        if((AuthLoginHandler.getUserAccessLevel() & menu.accessScope) > 0) {
           menuList.add(menu);
         }
       }

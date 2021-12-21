@@ -2,13 +2,15 @@ package com.welcomeToJeJu.wtj.handler;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.welcomeToJeju.moj.domain.Report;
+import com.welcomeToJeJu.wtj.domain.Report;
 
-public abstract class AbstractBoardHandler implements Command {
+public abstract class AbstractReportHandler implements Command {
 
   List<Report> boardList = new ArrayList<>();
 
-  public AbstractBoardHandler (List<Report> boardList) {
+  public AbstractReportHandler (List<Report> boardList) {
     this.boardList = boardList;
   }
+
+
 }
