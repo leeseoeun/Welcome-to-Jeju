@@ -2,11 +2,11 @@ package com.welcomeToJeJu.wtj.handler;
 
 import java.util.ArrayList;
 import com.google.gson.Gson;
-import com.welcomeToJeju.moj.domain.Place;
-import com.welcomeToJeju.moj.domain.Theme;
-import com.welcomeToJeju.util.KakaoMapApi;
-import com.welcomeToJeju.util.KakaoVo;
-import com.welcomeToJeju.util.Prompt;
+import com.welcomeToJeJu.util.KakaoMapApi;
+import com.welcomeToJeJu.util.KakaoVo;
+import com.welcomeToJeJu.util.Prompt;
+import com.welcomeToJeJu.wtj.domain.Place;
+import com.welcomeToJeJu.wtj.domain.Theme;
 
 public class PlaceAddHandler extends AbstractPlaceHandler {
 
@@ -35,7 +35,7 @@ public class PlaceAddHandler extends AbstractPlaceHandler {
       for(int i = 0 ; i < SearchedPlaces.length ; i++) {
         selectedPlace = gson.fromJson(gson.toJson(SearchedPlaces[i]),KakaoVo.class);
 
-        if(selectedPlace.getAddress_name().contains("서울")) {
+        if (selectedPlace.getAddress_name().contains("제주"/* "서울" */)) {
           filterPlace.add(selectedPlace);
         }
       }

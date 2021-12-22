@@ -2,8 +2,8 @@ package com.welcomeToJeJu.wtj.handler;
 
 import java.util.HashMap;
 import java.util.List;
-import com.welcomeToJeju.context.UserContextListener;
-import com.welcomeToJeju.menu.Menu;
+import com.welcomeToJeJu.context.UserContextListener;
+import com.welcomeToJeJu.menu.Menu;
 
 public class AuthLogoutHandler implements Command{
 
@@ -13,17 +13,18 @@ public class AuthLogoutHandler implements Command{
     this.userListeners = userListeners;
   }
 
+  @Override
   public void execute(CommandRequest request) {
     System.out.println("[로그아웃]");
 
     AuthLoginHandler.loginUser = null;
-    AuthLoginHandler.useAccessLevel = Menu.ACCESS_LOGOUT;
+    AuthLoginHandler.userAccessLevel = Menu.ACCESS_LOGOUT;
     notifyOnLogout();
 
   }
 
   private void notifyOnLogout() {
-    HashMap<String, Object> params = new HashMap<>();
+    HashMap<String,Object> params = new HashMap<>();
 
     for (UserContextListener listener : userListeners) {
       listener.contextLogout(params);
