@@ -23,18 +23,15 @@ public class SearchThemeHandler extends AbstractSearchHandler {
       String input = Prompt.inputString("테마 이름(취소 : 엔터) > ");
 
       if(input.equalsIgnoreCase("") || input.length() == 0) {
-        System.out.println("테마 검색 취소!");
+        System.out.println("테마 검색하기 취소!");
         return;
       }
 
       for (Theme theme : themeList) {
-        if (theme.getTitle().contains(input) && theme.isPublic()) {
-          System.out.printf("테마 제목 > %s\n", theme.getTitle());
-          System.out.printf("[%s 님의 테마]\n", theme.getThemeOwnerName());
+        if (theme.getTitle().contains(input) && theme.isPublic()) { // 테마 이름에 'input'이 있다면
+          System.out.printf("[%s] 테마 이름 > %s\n", theme.getCategory(), theme.getTitle());
           System.out.printf("해시 태그 > %s\n", theme.getHashtags().toString());
-          System.out.printf("장소 > %s\n", theme.getPlaceList().toString());
-          System.out.printf("조회수 > %d\n", theme.getViewCount() + 1);                  
-          theme.setViewCount(theme.getViewCount()+1);
+          System.out.printf("조회수 > %d\n", theme.getViewCount() + 1);    // 테마 검색 시 조회수+1
           System.out.println();
           return;
         }

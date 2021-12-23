@@ -13,16 +13,10 @@ public class PlaceDeleteHandler extends AbstractPlaceHandler{
 
       Theme theme = (Theme) request.getAttribute("searchedTheme");
 
-      if (theme == null) {
-        System.out.println("등록된 테마 없음!");
-        return;
-      }
-
       String storeName = Prompt.inputString("장소 이름(취소 : 엔터) > ");
 
-      if (storeName.equals("") || storeName.length() == 0) {
+      if (storeName.equalsIgnoreCase("") || storeName.length() == 0) {
         System.out.println("장소 삭제하기 취소!");
-        System.out.println();
         return;
       }
 
@@ -43,12 +37,11 @@ public class PlaceDeleteHandler extends AbstractPlaceHandler{
       String input = Prompt.inputString("삭제하기(y/N) > ");
       if (input.equalsIgnoreCase("n") || input.length() == 0) {
         System.out.println("장소 삭제하기 취소!");
-        System.out.println();
         return;
       }
 
       theme.getPlaceList().remove(place);
-      System.out.println("장소 삭제하기 완료!");
+      System.out.println("장소 삭제하기 성공!");
     }
   }
 

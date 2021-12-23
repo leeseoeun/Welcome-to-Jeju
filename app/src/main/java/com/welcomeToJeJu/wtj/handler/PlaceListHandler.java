@@ -8,17 +8,11 @@ public class PlaceListHandler extends AbstractPlaceHandler{
   @Override
   public void execute(CommandRequest request) {
     while (true) {
-      System.out.println("[장소 목록보기]");
+      System.out.println("[장소 목록 보기]");
 
       Theme theme = (Theme) request.getAttribute("searchedTheme");
 
-      if (theme == null) {
-        System.out.println("등록된 테마 없음!");
-        System.out.println();
-        continue;
-      }
-
-      System.out.printf("[%s] 테마 제목 > %s\n", theme.getCategory(), theme.getTitle());
+      System.out.printf("[%s] 테마 이름 > %s\n", theme.getCategory(), theme.getTitle());
 
       int index = 1;
       for (Place place : theme.getPlaceList()) {
