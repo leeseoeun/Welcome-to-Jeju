@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import com.welcomeToJeJu.util.Prompt;
-import com.welcomeToJeJu.wtj.handler.AuthLoginHandler;
+//import com.welcomeToJeJu.wtj.handler.AuthLoginHandler;
 
 // 역할
 // - 다른 메뉴를 포함하는 컨테이너 역할을 수행한다.
@@ -53,11 +53,11 @@ public class MenuGroup extends Menu {
 
       List<Menu> menuList = new ArrayList<>();
 
-      for(Menu menu : childs) {
-        if((AuthLoginHandler.getUserAccessLevel() & menu.accessScope) > 0) {
-          menuList.add(menu);
-        }
-      }
+      //      for(Menu menu : childs) {
+      //        if((AuthLoginHandler.getUserAccessLevel() & menu.accessScope) > 0) {
+      //          menuList.add(menu);
+      //        }
+      //      }
 
       for (int i = 0; i < menuList.size(); i++) {
         System.out.printf("%d. %s\n", i + 1, menuList.get(i).title);
