@@ -22,7 +22,9 @@ import com.welcomeToJeJu.wtj.handler.CommandRequest;
 import com.welcomeToJeJu.wtj.handler.LikedThemeAddHandler;
 import com.welcomeToJeJu.wtj.handler.LikedThemeDeleteHandler;
 import com.welcomeToJeJu.wtj.handler.LikedThemeListHandler;
+import com.welcomeToJeJu.wtj.handler.LikedUserAddHandler;
 import com.welcomeToJeJu.wtj.handler.LikedUserDeleteHandler;
+import com.welcomeToJeJu.wtj.handler.LikedUserListHandler;
 import com.welcomeToJeJu.wtj.handler.MyThemeAddHandler;
 import com.welcomeToJeJu.wtj.handler.MyThemeDeleteHandler;
 import com.welcomeToJeJu.wtj.handler.MyThemeDetailHandler;
@@ -31,10 +33,23 @@ import com.welcomeToJeJu.wtj.handler.MyThemeUpdateHandler;
 import com.welcomeToJeJu.wtj.handler.PlaceAddHandler;
 import com.welcomeToJeJu.wtj.handler.PlaceDeleteHandler;
 import com.welcomeToJeJu.wtj.handler.PlaceListHandler;
+import com.welcomeToJeJu.wtj.handler.RealTimeRankHandler;
+import com.welcomeToJeJu.wtj.handler.ReportAddThemeHandler;
+import com.welcomeToJeJu.wtj.handler.ReportAddUserHandler;
+import com.welcomeToJeJu.wtj.handler.ReportMyListHandler;
+import com.welcomeToJeJu.wtj.handler.ReportThemeProcessingHandler;
+import com.welcomeToJeJu.wtj.handler.ReportUserProcessingHandler;
 import com.welcomeToJeJu.wtj.handler.SearchHashtagHandler;
 import com.welcomeToJeJu.wtj.handler.SearchThemeHandler;
 import com.welcomeToJeJu.wtj.handler.SearchUserHandler;
+import com.welcomeToJeJu.wtj.handler.UserAddHandler;
+import com.welcomeToJeJu.wtj.handler.UserDeleteHandler;
+import com.welcomeToJeJu.wtj.handler.UserDetailHandler;
 import com.welcomeToJeJu.wtj.handler.UserEditHandler;
+import com.welcomeToJeJu.wtj.handler.UserListHandler;
+import com.welcomeToJeJu.wtj.handler.UserRankHandler;
+import com.welcomeToJeJu.wtj.handler.UserUnregisterHandler;
+import com.welcomeToJeJu.wtj.handler.UserUpdateHandler;
 import com.welcomeToJeJu.wtj.listener.FileListener;
 import com.welcomeToJeJu.wtj.listener.LoginListener;
 
@@ -46,7 +61,7 @@ public class App {
   List<ReportTheme> reportThemeList = new ArrayList<>();
   List<ReportUser> reportUserList = new ArrayList<>();
 
-  HashMap<String, Command> commandMap = new HashMap<>();
+  HashMap<String,Command> commandMap = new HashMap<>();
 
   List<ApplicationContextListener> listeners = new ArrayList<>();
   List<UserContextListener> userListeners = new ArrayList<>();
@@ -99,7 +114,6 @@ public class App {
     commandMap.put("/theme/all", new AllThemeListHandler(userList));
     commandMap.put("/auth/unregistered", new UserUnregisterHandler(userList));
     commandMap.put("/auth/edit", new UserEditHandler());
-
     // 회원 탈퇴 메뉴 추가
 
     commandMap.put("/user/add", new UserAddHandler(userList));
@@ -187,7 +201,6 @@ public class App {
     mg.add(new MenuItem("로그인", Menu.ACCESS_LOGOUT, "/auth/login"));
     mg.add(new MenuItem("회원 가입하기", Menu.ACCESS_LOGOUT, "/user/add"));
     mg.add(new MenuItem("내 정보", Menu.ACCESS_GENERAL, "/auth/displayLoginUer"));
-    //    mg.add(new MenuItem(""))
     mg.add(new MenuItem("로그아웃", Menu.ACCESS_GENERAL, "/auth/logout"));
     mg.add(new MenuItem("전체 테마 보기", "/theme/all"));
 
@@ -205,7 +218,7 @@ public class App {
 
 
   private Menu createUserMenu(MenuGroup mg) {
-    MenuGroup user = new MenuGroup("회원관리",Menu.ACCESS_ADMIN);
+    MenuGroup user = new MenuGroup("회원 관리", Menu.ACCESS_ADMIN);
 
     user.add(new MenuItem("회원 목록보기", Menu.ACCESS_ADMIN, "/user/list"));
     user.add(new MenuItem("회원 상세보기", Menu.ACCESS_ADMIN, "/user/detail"));
@@ -262,8 +275,8 @@ public class App {
   private void createRankMenu(MenuGroup mg) {
     MenuGroup rank = new MenuGroup("순위보기");
 
-    rank.add(new MenuItem("테마 순위보기", "/rank/themeRank")); // 전체 테마 검색 기준 조횟수 증가
-    rank.add(new MenuItem("유저 순위보기", "/rank/userRank")); // 유저 검색 기준 조횟수 증가
+    rank.add(new MenuItem("테마 순위보기", "/rank/themeRank"));   // 테마 검색 시 조회수 증가
+    rank.add(new MenuItem("유저 순위보기", "/rank/userRank"));    // 유저 검색 시 조회수 증가
 
     mg.add(rank);
   }
