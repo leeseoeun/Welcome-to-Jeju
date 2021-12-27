@@ -44,6 +44,7 @@ public class MyThemeController {
     theme.setTitle(title);
     theme.setOwner(user);
 
+    // 카테고리 넘버로 카테고리 찾기
     ThemeCategory themeCategory = publicThemeDao.findCategoryByNo(Integer.parseInt(category));
     theme.setCategory(themeCategory);
 
@@ -58,8 +59,8 @@ public class MyThemeController {
   @GetMapping("/mytheme/list")
   public ModelAndView list(int no) throws Exception {
 
-    List<Theme> publicThemeList = new ArrayList<>();
-    List<Theme> privateThemeList = new ArrayList<>();
+    List<Theme> publicThemeList = new ArrayList<>();    // 공개 테마
+    List<Theme> privateThemeList = new ArrayList<>();   // 비공개 테마
 
     for (Theme t : publicThemeDao.findAllByUserNo(no)) {
       if (t.getIsPublic() == 1) {
