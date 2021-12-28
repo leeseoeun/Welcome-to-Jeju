@@ -4,7 +4,7 @@
 
 <style>
   .add-form {
-    width: 30%;
+    width: 30.5%;
     background-color: transparent;
     margin: 0 auto;
     padding: 30px;
