@@ -19,7 +19,7 @@ public class LikedController {
   @Autowired SqlSessionFactory sqlSessionFactory;
 
   // 좋아요
-  @GetMapping("/likedtheme/list")
+  @GetMapping("/liked/list")
   public ModelAndView list(HttpSession session) throws Exception {
     User user = (User) session.getAttribute("loginUser");
 
@@ -49,7 +49,7 @@ public class LikedController {
 
   // 좋아하는 테마
   @GetMapping("/likedtheme/add")
-  public String add(int themeNo, HttpSession session) throws Exception {
+  public String likedThemeAdd(int themeNo, HttpSession session) throws Exception {
     themeDao.insertLikedTheme(themeNo, ((User)session.getAttribute("loginUser")).getNo());
     sqlSessionFactory.openSession().commit();
 
@@ -66,7 +66,7 @@ public class LikedController {
 
   // 좋아하는 유저
   @GetMapping("/likeduser/add")
-  public String add(int userNo, HttpSession session, int themeNo) throws Exception {
+  public String likedUserAdd(int userNo, HttpSession session, int themeNo) throws Exception {
     userDao.insertLikedUser(userNo, ((User) session.getAttribute("loginUser")).getNo());
     sqlSessionFactory.openSession().commit();
 

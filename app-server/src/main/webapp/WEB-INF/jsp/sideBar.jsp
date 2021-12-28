@@ -42,7 +42,7 @@
           <li><span class="emozi">👫</span><span class="name">참여 테마</span></li>
         </a>
         
-        <a href="${contextRoot}/app/like/list?no=${loginUser.no}">
+        <a href="${contextRoot}/app/liked/list?no=${loginUser.no}">
           <li><span class="emozi">🙆</span><span class="name">좋아요</span></li>
         </a>
         
