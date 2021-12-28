@@ -38,13 +38,14 @@ public class MyThemeController {
       String isPublic,
       String emoji) throws Exception {
 
+    // 로그인한 유저 -> 만든이
     User user = (User) session.getAttribute("loginUser");
 
     Theme theme = new Theme();
     theme.setTitle(title);
     theme.setOwner(user);
 
-    // 카테고리 넘버로 카테고리 찾기
+    // 카테고리 넘버 -> 카테고리 찾기
     ThemeCategory themeCategory = publicThemeDao.findCategoryByNo(Integer.parseInt(category));
     theme.setCategory(themeCategory);
 
@@ -62,11 +63,11 @@ public class MyThemeController {
     List<Theme> publicThemeList = new ArrayList<>();    // 공개 테마
     List<Theme> privateThemeList = new ArrayList<>();   // 비공개 테마
 
-    for (Theme t : publicThemeDao.findAllByUserNo(no)) {
-      if (t.getIsPublic() == 1) {
-        publicThemeList.add(t);
-      } else if (t.getIsPublic() == 0) {
-        privateThemeList.add(t);
+    for (Theme theme : publicThemeDao.findAllByUserNo(no)) {
+      if (theme.getIsPublic() == 1) {
+        publicThemeList.add(theme);
+      } else if (theme.getIsPublic() == 0) {
+        privateThemeList.add(theme);
       } 
     }
 
@@ -108,7 +109,7 @@ public class MyThemeController {
     User user = (User) session.getAttribute("loginUser");
 
     themeDao.deleteAllLikedThemeByThemeNo(no);
-    //    ?themeDao.deletePlaceUserTheme(no);
+    //    themeDao.deletePlaceUserTheme(no);
     publicThemeDao.delete(no);
     sqlSessionFactory.openSession().commit();
 
