@@ -42,7 +42,11 @@
           <li><span class="emozi">👫</span><span class="name">참여 테마</span></li>
         </a>
         
-        <!-- Single button -->
+        <a href="${contextRoot}/app/like/list?no=${loginUser.no}">
+          <li><span class="emozi">🙆</span><span class="name">좋아요</span></li>
+        </a>
+        
+        <%-- <!-- Single button -->
         <div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle"
             data-toggle="dropdown" aria-expanded="false">
@@ -58,7 +62,7 @@
           </ul>
         </div>  <!-- .btn-group -->
         
-        <br><br>
+        <br><br> --%>
         
       </ul>
     </div>  <!-- .my-menu-list -->
