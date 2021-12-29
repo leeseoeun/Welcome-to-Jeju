@@ -1,12 +1,13 @@
 package com.welcomeToJeju.wtj.web;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
+import com.welcomeToJeju.wtj.dao.PublicThemeDao;
+import com.welcomeToJeju.wtj.dao.ShareThemeDao;
 import com.welcomeToJeju.wtj.dao.ThemeDao;
 import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
@@ -14,6 +15,8 @@ import com.welcomeToJeju.wtj.domain.User;
 
 public class LikedController {
 
+  @Autowired PublicThemeDao publicThemeDao;
+  @Autowired ShareThemeDao shareThemeDao;
   @Autowired ThemeDao themeDao;
   @Autowired UserDao userDao;
   @Autowired SqlSessionFactory sqlSessionFactory;
@@ -21,23 +24,14 @@ public class LikedController {
   // 좋아요
   @GetMapping("/liked/list")
   public ModelAndView list(HttpSession session) throws Exception {
-    User user = (User) session.getAttribute("loginUser");
+    int userNo = ((User) session.getAttribute("loginUser")).getNo();
 
-    List<Theme> themeList = new ArrayList<>();      // 유저 테마
-    List<Theme> shareThemeList = new ArrayList<>(); // 참여 테마
-
-    List<User> userList = userDao.findAllLikedUser(user.getNo());
-
-    for (Theme theme : themeDao.findAllLikedTheme(user.getNo())) {
-      if (theme.getIsShare() == 0) {
-        themeList.add(theme);
-      } else if (theme.getIsShare() == 1) {
-        shareThemeList.add(theme);
-      }
-    }
+    List<Theme> publicThemeList = publicThemeDao.findAllByUserNo(userNo);
+    List<Theme> shareThemeList = shareThemeDao.findAllByUserNo(userNo);
+    List<User> userList = userDao.findAllLikedUser(userNo);
 
     ModelAndView mv = new ModelAndView();
-    mv.addObject("themeList", themeList);
+    mv.addObject("publicThemeList", publicThemeList);
     mv.addObject("shareThemeList", shareThemeList);
     mv.addObject("userList", userList);
     mv.addObject("pageTitle", "좋아요 목록 보기");
