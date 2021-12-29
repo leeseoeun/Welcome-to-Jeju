@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.welcomeToJeju.wtj.dao.PublicThemeDao;
@@ -13,6 +14,7 @@ import com.welcomeToJeju.wtj.dao.UserDao;
 import com.welcomeToJeju.wtj.domain.Theme;
 import com.welcomeToJeju.wtj.domain.User;
 
+@Controller
 public class LikedController {
 
   @Autowired PublicThemeDao publicThemeDao;
@@ -23,12 +25,10 @@ public class LikedController {
 
   // 좋아요
   @GetMapping("/liked/list")
-  public ModelAndView list(HttpSession session) throws Exception {
-    int userNo = ((User) session.getAttribute("loginUser")).getNo();
-
-    List<Theme> publicThemeList = publicThemeDao.findAllByUserNo(userNo);
-    List<Theme> shareThemeList = shareThemeDao.findAllByUserNo(userNo);
-    List<User> userList = userDao.findAllLikedUser(userNo);
+  public ModelAndView list(int no) throws Exception {
+    List<Theme> publicThemeList = publicThemeDao.findAllByUserNo(no);
+    List<Theme> shareThemeList = shareThemeDao.findAllByUserNo(no);
+    List<User> userList = userDao.findAllLikedUser(no);
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("publicThemeList", publicThemeList);

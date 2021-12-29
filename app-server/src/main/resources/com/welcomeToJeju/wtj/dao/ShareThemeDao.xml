@@ -186,27 +186,7 @@
   </select>
   
   <!-- 좋아하는 테마 -->
-  <insert id="insertLikedTheme" >
-    Insert into jeju_liked_theme(theme_no,user_no)
-    values(#{param1},#{param2})
-  </insert>
-  
-  <delete id="deleteLikedTheme" >
-    delete from jeju_liked_theme
-    where theme_no=#{param1} and user_no=#{param2}
-  </delete>
-  
-  <delete id="deleteAllLikedThemeByThemeNo" parameterType="int">
-    delete from jeju_liked_theme
-    where theme_no=#{param1}
-  </delete>
-  
-  <delete id="deleteAllLikedThemeByUserNo" parameterType="int">
-    delete from jeju_liked_theme
-    where user_no=#{param1}
-  </delete>
-  
-  <select id="findAllLikedTheme" resultMap="ThemeMap" parameterType="int">
+  <select id="findAllLikedTheme" resultMap="ShareThemeMap" parameterType="int">
     select
       t.theme_no,
       t.title,
