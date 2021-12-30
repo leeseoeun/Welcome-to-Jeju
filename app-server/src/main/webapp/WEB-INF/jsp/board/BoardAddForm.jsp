@@ -20,26 +20,26 @@
 <br>
 
 <div class="add-form">
-	<form id="theme-form" action="add" method="post" enctype="multipart/form-data">
+	<form id="board-form" action="add" method="post" enctype="multipart/form-data">
 
 		<div class="mb-3 row">
 			<h5>제목</h5>
 			<div class="col-sm-16">
-				<input id='f-title' type='text' name='title' class="form-control">
+				<input id="f-title" type="text" name="title" class="form-control">
 			</div>
 		</div>
 
 		<div class="mb-3 row">
 			<h5>닉네임</h5>
 			<div class="col-sm-16">
-				<input id='f-owner' type='text' class="form-control" value="${loginUser.nickname}" readonly>
+				<input id="f-writer" type="text" class="form-control" value="${loginUser.nickname}" readonly>
 			</div>
 		</div>
 
 		<div class="mb-3 row">
 			<h5>내용</h5>
 			<div class="col-sm-16">
-				<textarea id='f-content' name='content' class="form-control" rows="5">${board.content}</textarea>
+				<textarea id="f-content" name="content" rows="5" class="form-control"></textarea>
 			</div>
 		</div>
 
@@ -52,8 +52,8 @@
 	</form>
 </div>
 
-<script>
-document.querySelector("#theme-form").onsubmit = () => {
+<script>  /* 제목 및 내용을 입력하지 않을 시 등록 불가능 */
+document.querySelector("#board-form").onsubmit = () => {
   if (document.querySelector("#f-title").value == "" ||
       document.querySelector("#f-content").value == "") {
     window.alert("필수 입력 항목이 비어 있음!")

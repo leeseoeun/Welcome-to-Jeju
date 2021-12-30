@@ -13,7 +13,7 @@
 <h1 style=text-align:center;>자유 게시글 목록 보기</h1>
 <br>
 
-<c:if test="${not empty loginUser}">
+<c:if test="${not empty loginUser}">  <!-- 로그인하지 않을 시 등록 불가능 -->
   <form action="search" style="float:right;">
     <a href="addform" class="btn btn-outline-dark">📝 자유 게시글 등록하기</a>
   </form>
