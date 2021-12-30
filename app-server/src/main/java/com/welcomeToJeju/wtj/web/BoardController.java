@@ -26,7 +26,7 @@ public class BoardController {
   @GetMapping("/board/addform")
   public ModelAndView addForm() {
     ModelAndView mv = new ModelAndView();
-    mv.addObject("pageTitle", "게시글 등록하기");
+    mv.addObject("pageTitle", "자유 게시글 등록하기");
     mv.addObject("contentUrl", "board/BoardAddForm.jsp");
     mv.setViewName("template_main");
     return mv;
@@ -51,7 +51,7 @@ public class BoardController {
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("boardList", boardList);
-    mv.addObject("pageTitle", "게시글 목록 보기");
+    mv.addObject("pageTitle", "자유 게시글 목록 보기");
     mv.addObject("contentUrl", "board/BoardList.jsp");
     mv.setViewName("template_main");
 
