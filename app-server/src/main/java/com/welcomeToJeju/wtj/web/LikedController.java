@@ -26,8 +26,8 @@ public class LikedController {
   // 좋아요
   @GetMapping("/liked/list")
   public ModelAndView list(int no) throws Exception {
-    List<Theme> publicThemeList = publicThemeDao.findAllByUserNo(no);
-    List<Theme> shareThemeList = shareThemeDao.findAllByUserNo(no);
+    List<Theme> publicThemeList = publicThemeDao.findAllLikedTheme(no);
+    List<Theme> shareThemeList = shareThemeDao.findAllLikedTheme(no);
     List<User> userList = userDao.findAllLikedUser(no);
 
     ModelAndView mv = new ModelAndView();
@@ -52,10 +52,12 @@ public class LikedController {
 
   @GetMapping("/likedtheme/delete")
   public String likedThemedelete(int themeNo, HttpSession session) throws Exception {
-    themeDao.deleteLikedTheme(themeNo, ((User)session.getAttribute("loginUser")).getNo());
+    int loginUserNo = ((User)session.getAttribute("loginUser")).getNo();
+
+    themeDao.deleteLikedTheme(themeNo, loginUserNo);
     sqlSessionFactory.openSession().commit();
 
-    return "redirect:list";
+    return "redirect:../liked/list?no=" + loginUserNo;
   }
 
   // 좋아하는 유저
@@ -69,10 +71,12 @@ public class LikedController {
 
   @GetMapping("/likeduser/delete")
   public String likedUserDelete(int userNo, HttpSession session) throws Exception {
-    userDao.deleteLikedUser(userNo, ((User)session.getAttribute("loginUser")).getNo());
+    int loginUserNo = ((User)session.getAttribute("loginUser")).getNo();
+
+    userDao.deleteLikedUser(userNo, loginUserNo);
     sqlSessionFactory.openSession().commit();
 
-    return "redirect:list";
+    return "redirect:../liked/list?no=" + loginUserNo;
   }
 
 
