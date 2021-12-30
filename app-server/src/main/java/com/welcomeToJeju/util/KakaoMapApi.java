@@ -24,17 +24,17 @@ public class KakaoMapApi {
       throw new RuntimeException("encoding fail!", e);
     }
 
-    String apiURL = "https://dapi.kakao.com/v2/local/search/keyword.json?query=" 
-        + keyword;
+    String apiURL = "https://dapi.kakao.com/v2/local/search/keyword.json?query=" + keyword;
 
-    Map<String, String> requestHeaders = new HashMap<>();
+    Map<String,String> requestHeaders = new HashMap<>();
     requestHeaders.put("Authorization", "KakaoAK 5ff9f98d2d56ab0938e988d2c4df0045");
+
     String responseBody = get(apiURL, requestHeaders);
-    //    return gson.fromJson(gson.toJson(gson.fromJson(responseBody, KakaoResponseVo.class).documents[0]), KakaoVo.class);
+
     return gson.fromJson(responseBody, KakaoResponseVo.class).documents;
   }
 
-  private String get(String apiUrl, Map<String, String> requestHeaders) {
+  private String get(String apiUrl, Map<String,String> requestHeaders) {
     HttpURLConnection con = connect(apiUrl);
     try {
       con.setRequestMethod("GET");
@@ -68,7 +68,6 @@ public class KakaoMapApi {
 
   private String readBody(InputStream body) {
     InputStreamReader streamReader = new InputStreamReader(body, StandardCharsets.UTF_8);
-
     try (BufferedReader lineReader = new BufferedReader(streamReader)) {
       StringBuilder responseBody = new StringBuilder();
 
@@ -82,4 +81,6 @@ public class KakaoMapApi {
       throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
     }
   }
+
+
 }

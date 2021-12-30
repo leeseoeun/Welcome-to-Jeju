@@ -8,18 +8,17 @@
   <resultMap type="PlaceComment" id="PlaceCommentMap">
     <id column="comment_no" property="no"/> 
     <result column="comment" property="comment"/>
-  
-  <association property="writer" javaType="User">
-    <id column="user_no" property="no"/>
-    <result column="nickname" property="nickname"/>
-    <result column="emoji" property="emoji"/>
-  </association>
-
-  <association property="place" javaType="Place">
-    <id column="place_id" property="id"/>
-    <result column="place_name" property="name"/>
-  </association>
-  
+    
+	  <association property="writer" javaType="User">
+	    <id column="user_no" property="no"/>
+	    <result column="nickname" property="nickname"/>
+	    <result column="emoji" property="emoji"/>
+	  </association>
+	  
+	  <association property="place" javaType="Place">
+	    <id column="place_id" property="id"/>
+	    <result column="place_name" property="name"/>
+	  </association>
   </resultMap>
   
   <insert id="insert" parameterType="Map">
