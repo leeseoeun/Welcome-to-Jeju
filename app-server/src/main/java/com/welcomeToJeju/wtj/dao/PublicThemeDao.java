@@ -25,7 +25,7 @@ public interface PublicThemeDao {
   List<Theme> findAllPublicThemeByPlaceId(String placeId) throws Exception;
 
   // 좋아하는 테마
-  List<Theme> findAllLikedTheme(int userNo) throws Exception;
+  List<Theme> findAllLikeTheme(int userNo) throws Exception;
 
   // 테마 검색
   Theme findByNo(int no) throws Exception;

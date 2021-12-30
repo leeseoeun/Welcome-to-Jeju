@@ -26,10 +26,10 @@ public interface UserDao {
   List<User> findByKeyword(String keyword) throws Exception;
 
   // 좋아하는 유저
-  void insertLikedUser(@Param("likedUserNo") int likedUserNo, @Param("loginUserNo") int loginUserNo) throws Exception;
-  void deleteLikedUser(@Param("likedUserNo") int likedUserNo, @Param("loginUserNo") int loginUserNo) throws Exception;
-  void deleteAllLikedUser(int userNo) throws Exception;
-  List<User> findAllLikedUser(int loginUserNo) throws Exception;
+  void insertLikeUser(@Param("likeUserNo") int likedUserNo, @Param("loginUserNo") int loginUserNo) throws Exception;
+  void deleteLikeUser(@Param("likeUserNo") int likedUserNo, @Param("loginUserNo") int loginUserNo) throws Exception;
+  void deleteAllLikeUser(int userNo) throws Exception;
+  List<User> findAllLikeUser(int loginUserNo) throws Exception;
 
   // 순위
   void updateViewCount(int userNo) throws Exception;

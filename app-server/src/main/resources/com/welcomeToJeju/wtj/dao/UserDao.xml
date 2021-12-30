@@ -138,22 +138,22 @@
   </select>
   
   <!-- 좋아하는 유저 -->
-  <insert id="insertLikedUser">
+  <insert id="insertLikeUser">
     insert into jeju_liked_user(user_no,liked_user_no)
     values(#{loginUserNo},#{likedUserNo})
   </insert>
   
-  <delete id="deleteLikedUser">
+  <delete id="deleteLikeUser">
     delete from jeju_liked_user
     where user_no=#{loginUserNo} and liked_user_no=#{likedUserNo}
   </delete>
   
-  <delete id="deleteAllLikedUser" parameterType="int">
+  <delete id="deleteAllLikeUser" parameterType="int">
     delete from jeju_liked_user 
     where user_no=#{loginUserNo}
   </delete>
   
-  <select id="findAllLikedUser" resultMap="UserMap" parameterType="int">
+  <select id="findAllLikeUser" resultMap="UserMap" parameterType="int">
     select
       u.user_no,
       u.nickname,

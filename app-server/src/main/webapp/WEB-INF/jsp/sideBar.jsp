@@ -42,7 +42,7 @@
           <li><span class="emozi">👫</span><span class="name">참여 테마</span></li>
         </a>
         
-        <a href="${contextRoot}/app/liked/list?no=${loginUser.no}">
+        <a href="${contextRoot}/app/like/list?no=${loginUser.no}">
           <li><span class="emozi">🙆</span><span class="name">좋아요</span></li>
         </a>
         
@@ -102,7 +102,7 @@
   </c:if>
 
   <!-- 로그인 -->
-  <c:if test="${!empty loginUser}">
+  <c:if test="${not empty loginUser}">
     <div class="logout-menu-box">
       <ul class="logout-menu-box-list">
         <!-- <li><span class="emozi">🚨</span><span class="name">신고</span></li> -->
@@ -116,5 +116,4 @@
     </div>  <!-- .logout-menu-box -->
   </c:if>
 
-</div>
-<!-- .side-menu-bar -->
+</div>  <!-- .side-menu-bar -->

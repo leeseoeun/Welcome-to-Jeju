@@ -108,7 +108,7 @@ public class MyThemeController {
   public ModelAndView delete(HttpSession session, int no) throws Exception {
     User user = (User) session.getAttribute("loginUser");
 
-    themeDao.deleteAllLikedThemeByThemeNo(no);
+    themeDao.deleteAllLikeThemeByThemeNo(no);
     //    themeDao.deletePlaceUserTheme(no);
     publicThemeDao.delete(no);
     sqlSessionFactory.openSession().commit();

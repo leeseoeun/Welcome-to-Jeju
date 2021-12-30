@@ -187,7 +187,7 @@
   </select>
   
   <!-- 좋아하는 테마 -->
-  <select id="findAllLikedTheme" resultMap="PublicThemeMap" parameterType="int">
+  <select id="findAllLikeTheme" resultMap="PublicThemeMap" parameterType="int">
     select
       t.theme_no,
       t.title,

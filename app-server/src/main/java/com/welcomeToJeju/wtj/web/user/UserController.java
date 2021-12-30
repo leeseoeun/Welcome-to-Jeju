@@ -74,8 +74,8 @@ public class UserController {
 
     User user = userDao.findByNo(no);
 
-    themeDao.deleteAllLikedThemeByUserNo(user.getNo());
-    userDao.deleteAllLikedUser(user.getNo());
+    themeDao.deleteAllLikeThemeByUserNo(user.getNo());
+    userDao.deleteAllLikeUser(user.getNo());
     userDao.updateActive(user.getNo());
     sqlSessionFactory.openSession().commit();
     session.invalidate();

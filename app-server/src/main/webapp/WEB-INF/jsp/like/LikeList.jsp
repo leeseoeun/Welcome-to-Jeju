@@ -8,12 +8,12 @@
 <link rel="stylesheet" href="${contextRoot}/css/ranking.css">
 
 <style>
-  .liked-list {
+  .like {
     width: 33.3%;
     float: left;
   }
 
-  .liked-list-title {
+  .like-title {
     margin-left: 50px;
     text-align: center;
   }
@@ -23,14 +23,14 @@
 <div class="main-container">
 
 <br>
-<h1 class="liked-list-title">좋아요 목록 보기</h1>
+<h1 class="like-title">좋아요 목록 보기</h1>
 <br>
 
-<div class="liked-list">
-	<h3 class="liked-list-title">유저 테마</h3>
+<div class="like">
+	<h3 class="like-title">유저 테마</h3>
 	<ul class="theme-list">
 	<c:forEach items="${publicThemeList}" var="theme" varStatus="status">
-	  <a href='../likedtheme/delete?themeNo=${theme.no}'>💔</a>
+	  <a href='../liketheme/delete?themeNo=${theme.no}'>💔</a>
 	  <a class="list-container" href="place/list?no=${theme.no}">
 	    <li>
 	    <div class="content">
@@ -41,13 +41,13 @@
 	  </a>
 	</c:forEach>
 	</ul>
-</div>  <!-- .liked-list -->
+</div>  <!-- .like -->
 
-<div class="liked-list">
-	<h3 class="liked-list-title">참여 테마</h3>
+<div class="like">
+	<h3 class="like-title">참여 테마</h3>
 	<ul class="theme-list">
 	<c:forEach items="${shareThemeList}" var="theme" varStatus="status">
-	  <a href='../likedtheme/delete?themeNo=${theme.no}'>💔</a>
+	  <a href='../liketheme/delete?themeNo=${theme.no}'>💔</a>
 	  <a class="list-container" href="place/list?no=${theme.no}">
 	    <li>
 	    <div class="content">
@@ -58,13 +58,13 @@
 	  </a>
 	</c:forEach>
 	</ul>
-</div>  <!-- .liked-list -->
+</div>  <!-- .like -->
 
-<div class="liked-list">
-	<h3 class="liked-list-title">유저</h3>
+<div class="like">
+	<h3 class="like-title">유저</h3>
 	<ul class="theme-list">
 	<c:forEach items="${userList}" var="user" varStatus="status">
-	  <a href='../likeduser/delete?userNo=${user.no}'>💔</a>
+	  <a href='../likeuser/delete?userNo=${user.no}'>💔</a>
 	  <a class="list-container" href="user/themelist?no=${user.no}">
 	    <li>
 	    <div class="content">
@@ -75,7 +75,7 @@
 	  </a>
 	</c:forEach>
   </ul>
-</div>  <!-- .liked-list -->
+</div>  <!-- .like -->
 
 </div>  <!-- .main-container -->
 </div>  <!-- .container -->
