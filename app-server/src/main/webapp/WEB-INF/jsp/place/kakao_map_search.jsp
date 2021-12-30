@@ -117,7 +117,7 @@ function searchPlaces() {
     // 장소 검색 객체를 통해 키워드로 장소 검색을 요청합니다
     ps.keywordSearch(keyword, placesSearchCB,
     		{
-    	      bounds: new kakao.maps.LatLngBounds(
+    	      bounds: new kakao.maps.LatLngBounds( // 검색 범위: 제주도
     	    		  new kakao.maps.LatLng(33.0927, 126.1702),
                 new kakao.maps.LatLng(33.6243, 126.9800)
     	      )
