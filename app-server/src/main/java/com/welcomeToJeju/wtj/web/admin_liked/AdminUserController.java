@@ -1,4 +1,4 @@
-package com.welcomeToJeju.wtj.web.admin;
+package com.welcomeToJeju.wtj.web.admin_liked;
 
 import java.util.Collection;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -47,8 +47,8 @@ public class AdminUserController {
   public ModelAndView delete(int no) throws Exception {
     User user = userDao.findByNo(no);
 
-    themeDao.deleteAllLikedThemeByUserNo(user.getNo());
-    userDao.deleteAllLikedUser(user.getNo());
+    themeDao.deleteAllLikeThemeByUserNo(user.getNo());
+    userDao.deleteAllLikeUser(user.getNo());
     userDao.updateActive(user.getNo());
     sqlSessionFactory.openSession().commit();
 

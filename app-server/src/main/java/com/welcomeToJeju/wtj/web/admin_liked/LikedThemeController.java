@@ -1,3 +1,4 @@
+package com.welcomeToJeju.wtj.web.admin_liked;
 //package com.welcomeToJeju.wtj.web;
 //
 //import java.util.ArrayList;
