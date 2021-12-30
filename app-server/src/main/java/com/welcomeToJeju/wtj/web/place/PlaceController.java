@@ -53,6 +53,7 @@ public class PlaceController {
 
     User user = (User) session.getAttribute("loginUser");
 
+    // 등록되지 않은 장소 등록 시
     if (placeDao.findById(place.getId()) == null) {
       placeDao.insert(place);
 
@@ -62,6 +63,8 @@ public class PlaceController {
       placeParam.put("themeNo", no);
       placeDao.insertPlaceUserTheme(placeParam);
     }
+
+    // 이미 등록된 장소 등록 시 -> 사진 및 후기만 등록
 
     if (photoFile.getSize() > 0) {
       String filename = UUID.randomUUID().toString();

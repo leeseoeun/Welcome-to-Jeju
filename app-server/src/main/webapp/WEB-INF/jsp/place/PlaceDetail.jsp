@@ -36,10 +36,10 @@
 <div class="mb-3 row">
 <h5>사진</h5>
   <c:forEach items="${photoList}" var="placePhoto">
-    ${placePhoto.writer.emoji}&nbsp;${placePhoto.writer.nickname}
-	  <c:if test="${loginUser.no eq placePhoto.writer.no}">
+	  <%-- <c:if test="${loginUser.no eq placePhoto.writer.no}">
       <a href="delete">❌</a>
-    </c:if>
+    </c:if> --%>
+    &nbsp;&nbsp;${placePhoto.writer.emoji}&nbsp;${placePhoto.writer.nickname}
 	  <a href="${contextPath}/upload/place/${placePhoto.filePath}">
 	    <img id="f-photo-image" src="${contextPath}/upload/place/${placePhoto.filePath}_100x100.jpg">
 	  </a>
@@ -50,11 +50,10 @@
 <div class="mb-3 row">
 <h5>후기</h5>
   <c:forEach items="${commentList}" var="placeComment">
-    ${placeComment.writer.emoji}&nbsp;${placeComment.writer.nickname}
-    <c:if test="${loginUser.no eq placeComment.writer.no}">
+    <%-- <c:if test="${loginUser.no eq placeComment.writer.no}">
       <a href="delete">❌</a>
-    </c:if>
-    
+    </c:if> --%>
+    &nbsp;&nbsp;${placeComment.writer.emoji}&nbsp;${placeComment.writer.nickname}
 	  <div class = "col-sm-16">
 	  <input id='f-comment' type='text' name='comment' class="form-control" value="${placeComment.comment}" readonly>
 	  </div>
@@ -65,9 +64,9 @@
 <div class="text-center">
   <a href="list?no=${no}" class="btn btn-outline-dark">목록 보기</a>
   
-  <%-- <c:if test="${loginUser.no eq  }"> --%>
-  <a href="delete?no=${no}&id=${place.id}" class="btn btn-outline-dark">삭제하기</a>
-  <%-- </c:if> --%>
+  <%-- <c:if test="${loginUser.no eq }">
+    <a href="delete?no=${no}&id=${place.id}" class="btn btn-outline-dark">삭제하기</a>
+  </c:if> --%>
 </div>
 
 <!-- </form> -->
