@@ -10,11 +10,28 @@
 <meta charset="UTF-8">
   
 <style>
+  body {
+    background-color: #FDBB2D;
+  }
+
+  .theme-detail {
+    float: left;
+  }
+  
+  form {
+    float: right;
+  }
   
   input {
-  border: none;
-  padding:5px 0px 5px 0px;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: white;
+    padding: 0.375rem 0.75rem;
+    margin-top: 1px;
+    color: #212529;
+    font-size: 1rem;
   }
+  
   .place-search, .place {
     border: none;
     border-radius: 0.25rem;
@@ -36,8 +53,8 @@
   }
   
   #map {
-    position: relative;
-    float: left;
+    /* position: relative; */
+    float: right;
     border-radius: 0.25rem;
   }
 </style>
@@ -46,39 +63,35 @@
 <body>
 <br>
 
-<div class="dash-board" style="width:1200px; margin-left:10px;">
-  <div>
-<div class="theme-detail" style="width:400px; float: left;  position: absolute; font-family: inherit; font-size: 20px;">
+<div class="theme-detail">
   <p>
     <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     🔍 ${theme.title} 상세 보기
     </button>
   </p>
   <div class="collapse" id="collapseExample">
-    <div class="card card-body" style="z-index: 2; background-color: #F8F5F1">
-      <!-- <label for='f-no'>번호</label> -->
-      <input id='f-no' type='hidden' name='no' value='${theme.no}' readonly><br>
+    <div class="card card-body" style="background-color:#FEFEFE; z-index:2">
+      <input id='f-no' type='hidden' name='no' value='${theme.no}'><br>
       
       <label for='f-title'>제목
-        <a href='../likedtheme/add?themeNo=${theme.no}&userNo=${loginUser.no}'>&#128147;</a>
+        <a href='../likedtheme/add?themeNo=${theme.no}&userNo=${loginUser.no}'>💗</a>
       </label>
-      <input id='f-title' type='text' name='title' value='${theme.title}' style="border:none"  readonly><br>
+      <input id='f-title' type='text' name='title' value='${theme.title}' readonly><br>
       
       <label for='f-nickname'>닉네임
-        <a href='../likeduser/add?userNo=${theme.owner.no}&themeNo=${theme.no}'>&#128147;</a>
+        <a href='../likeduser/add?userNo=${theme.owner.no}&themeNo=${theme.no}'>💗</a>
       </label>
       <input id='f-nickname' type='text' name='nickname' value='${theme.owner.nickname}' readonly><br>
       
       <label for='f-category'>카테고리</label>
       <input id='f-category' type='text' name='category' value='${theme.category.name}' readonly><br>
     
-      <button type="button" class="btn btn-outline-dark" onclick="history.back();" style="width: 150px; margin-left: 95px;">목록</button>
+      <button type="button" class="btn btn-outline-dark" onclick="history.back();">목록</button>
     </div>
   </div>
 </div>  <!-- .theme-detail -->
-</div>
 
-<form action="search" style="width:500px; float: left; margin-left:1230px; margin-bottom: 20px;">
+<form action="search">
   <input id="f-no" type="hidden" name="no" value="${theme.no}">
 	<input id="f-place" type="text" name="keyword" class="place-search">
 	<a href="search?no=${theme.no}&keyword=" class="btn btn-outline-dark">🎨 장소 등록하기</a>
@@ -86,18 +99,18 @@
 
 <br><br><br>
 
-<div class="place-list" style="width:300px; float: left; positon :relative;">
+<div class="place-list">
   <c:if test="${not empty placeList}">
   <div>
 	  <c:forEach items="${placeList}" var="place">
-	      <div class="place" style="positon :relative; z-index: 1">
-	    <a href="detail?no=${theme.no}&id=${place.id}">
+	    <div class="place" style="z-index:1;">
+	      <a href="detail?no=${theme.no}&id=${place.id}">
           ${place.place_name}<br>
           ${fn:split(place.address_name, ',')[0]}<br>
-	   </a>
+        </a>
       </div>
-	   <br>
-	 </c:forEach>
+      <br>
+    </c:forEach>
   </div>
   </c:if>
   
@@ -105,7 +118,7 @@
   </c:if>
 </div>  <!-- .place-list -->
 
-<div id="map" style="width:1200px; height:480px; float: left; margin-left:400px"></div>
+<div id="map" style="width:75%; height:480px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=10e27bbc088ef2c82002c09d3c881402&libraries=services"></script>
 
@@ -172,8 +185,8 @@ geocoder.addressSearch(arr[i].get("location"), function(result, status) {
     });
 }
 </script>
+
 <div style="clear:left"></div>
-</div>
 
 </body>
 </html>
