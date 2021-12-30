@@ -129,10 +129,10 @@ mapOption = {
     level: 10 // 지도의 확대 레벨
 };  
    
-//지도를 생성합니다
+// 지도를 생성합니다
 var map = new kakao.maps.Map(mapContainer, mapOption);
 
-//주소-좌표 변환 객체를 생성합니다
+// 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
 
 //장소 목록
@@ -156,7 +156,7 @@ const result = average( arr );
 
 for (let i = 0; i < arr.length; i++) {
 
-//주소로 좌표를 검색합니다
+// 주소로 좌표를 검색합니다
 geocoder.addressSearch(arr[i].get("location"), function(result, status) {
 
     // 정상적으로 검색이 완료됐으면
@@ -186,7 +186,9 @@ geocoder.addressSearch(arr[i].get("location"), function(result, status) {
 }
 </script>
 
-<div style="clear:left"></div>
+<!-- <div style="clear:left"></div> -->
+<br><br><br><br>
 
 </body>
+
 </html>
