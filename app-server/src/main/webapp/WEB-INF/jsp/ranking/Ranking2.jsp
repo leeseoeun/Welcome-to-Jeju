@@ -27,58 +27,52 @@
 <br>
 
 <div class="ranking">
-<br>
-<h3 class="ranking-title">유저 테마</h3>
-<br>
-<ul class="theme-list">
-<c:forEach items="${publicThemeList}" var="theme" varStatus="status">
-  <a class="list-container" href="place/list?no=${theme.no}">
-    <li>
-    <div class="content">
-      <div class="icon">${theme.emoji}</div>
-      <div class="theme-title">${theme.title}</div>
-    </div>  <!-- .content -->
-    </li>
-  </a>
-</c:forEach>
-</ul>
-</div>
+	<h3 class="ranking-title">유저 테마</h3>
+	<ul class="theme-list">
+	<c:forEach items="${publicThemeList}" var="theme" varStatus="status">
+	  <a class="list-container" href="place/list?no=${theme.no}">
+	    <li>
+	    <div class="content">
+	      <div class="icon">${theme.emoji}</div>
+	      <div class="theme-title">${theme.title}</div>
+	    </div>  <!-- .content -->
+	    </li>
+	  </a>
+	</c:forEach>
+	</ul>
+</div>  <!-- .ranking -->
 
 <div class="ranking">
-<br>
-<h3 class="ranking-title">참여 테마</h3>
-<br>
-<ul class="theme-list">
-<c:forEach items="${shareThemeList}" var="theme" varStatus="status">
-  <a class="list-container" href="place/list?no=${theme.no}">
-    <li>
-    <div class="content">
-      <div class="icon">${theme.emoji}</div>
-      <div class="theme-title">${theme.title}</div>
-    </div>  <!-- .content -->
-    </li>
-  </a>
-</c:forEach>
-</ul>
-</div>
+	<h3 class="ranking-title">참여 테마</h3>
+	<ul class="theme-list">
+	<c:forEach items="${shareThemeList}" var="theme" varStatus="status">
+	  <a class="list-container" href="place/list?no=${theme.no}">
+	    <li>
+	    <div class="content">
+	      <div class="icon">${theme.emoji}</div>
+	      <div class="theme-title">${theme.title}</div>
+	    </div>  <!-- .content -->
+	    </li>
+	  </a>
+	</c:forEach>
+	</ul>
+</div>  <!-- .ranking -->
 
 <div class="ranking">
-<br>
-<h3 class="ranking-title">유저</h3>
-<br>
-<ul class="theme-list">
-<c:forEach items="${userList}" var="user" varStatus="status">
-  <a class="list-container" href="user/themelist?no=${user.no}">
-    <li>
-    <div class="content">
-      <div class="icon">${user.emoji}</div>
-      <div class="theme-title">${user.nickname}</div>
-    </div>  <!-- .content -->
-    </li>
-  </a>
-</c:forEach>
-</ul>
-</div>
+	<h3 class="ranking-title">유저</h3>
+	<ul class="theme-list">
+	<c:forEach items="${userList}" var="user" varStatus="status">
+	  <a class="list-container" href="user/themelist?no=${user.no}">
+	    <li>
+	    <div class="content">
+	      <div class="icon">${user.emoji}</div>
+	      <div class="theme-title">${user.nickname}</div>
+	    </div>  <!-- .content -->
+	    </li>
+	  </a>
+	</c:forEach>
+	</ul>
+</div>  <!-- .ranking -->
 
 </div>  <!-- .main-container -->
 </div>  <!-- .container -->
