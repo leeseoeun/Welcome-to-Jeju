@@ -21,10 +21,10 @@
 |||
 |:---:|---|
 |**OS 및 DB**|Windows10, MariaDB|
-|**사용 Tool**|Eclipse, Tomcat9, GitHub, Gradle, eXERD, Visual Studio|
+|**사용 Tool**|Eclipse, Tomcat9, GitHub, Gradle, eXERD, npm, Visual Studio Code|
 |**프로그래밍 언어**|JAVA, Servlet, JSP|
-|**웹 표준 기술**|HTML5, CSS, JAVAScript, JQuery, Ajax, npm|
-|**프레임 워크**|Spring, MyBatis, IBatis, Bootstrap|
+|**웹 표준 기술**|HTML5, CSS, JavaScript, jQuery, Ajax|
+|**프레임 워크**|Spring, MyBatis, iBATIS, Bootstrap|
 
 <br>
 
