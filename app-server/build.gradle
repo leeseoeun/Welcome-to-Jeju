@@ -79,7 +79,7 @@ war {
   archiveBaseName = "wtj"
 }
 
-eclipse{
+eclipse {
     project {
         name = "welcome-to-jeju-server"
     }
